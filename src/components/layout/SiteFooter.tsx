@@ -8,7 +8,13 @@ import { Reveal } from '@/components/ui/primitives';
 type Org = 'TCI' | 'NECTEC' | 'NSTDA';
 
 interface Props {
-  t: { developedBy: string; orgs: string; copyright: string; partnersLabel: string; logoLabels: Record<Org, string> };
+  t: {
+    developedBy: string;
+    copyright: string;
+    partnersLabel: string;
+    orgNames: Record<Org, string>;
+    logoLabels: Record<Org, string>;
+  };
 }
 
 /**
@@ -30,36 +36,37 @@ export function SiteFooter({ t }: Props) {
     ['TCI', links.tci],
     ['NECTEC', links.nectec],
     ['NSTDA', links.nstda],
-    ['Agenta AI', links.agenta],
   ] as const;
 
   return (
     <footer className="section-x border-t border-divider bg-white pt-14 pb-10">
       <div className="mx-auto flex max-w-[1120px] flex-col gap-10">
-        <Reveal className="flex flex-col items-center gap-[18px] text-center">
+        <Reveal className="flex flex-col items-center gap-6 text-center">
           <div className="mono text-[11.5px] tracking-[0.08em] text-subtle uppercase">{t.developedBy}</div>
-          <div className="flex flex-wrap items-center justify-center gap-5">
+          {/* Each organisation: logo card with its full name directly underneath. */}
+          <ul className="m-0 flex list-none flex-wrap items-start justify-center gap-x-5 gap-y-8 p-0">
             {LOGOS.map(({ org, src, width, height, href }) => (
-              <a
-                key={org}
-                href={href}
-                aria-label={t.logoLabels[org]}
-                className="grid h-[72px] w-[200px] place-items-center rounded-[10px] border border-line bg-white transition-[border-color,box-shadow,translate] duration-200 hover:border-primary-line-hover hover:shadow-lift motion-safe:hover:-translate-y-0.5"
-              >
-                <Image src={src} alt="" width={width} height={height} style={{ width, height }} />
-              </a>
+              <li key={org} className="flex w-[200px] flex-col items-center gap-3">
+                <a
+                  href={href}
+                  aria-label={t.logoLabels[org]}
+                  className="grid h-[72px] w-full place-items-center rounded-[10px] border border-line bg-white transition-[border-color,box-shadow,translate] duration-200 hover:border-primary-line-hover hover:shadow-lift motion-safe:hover:-translate-y-0.5"
+                >
+                  <Image src={src} alt="" width={width} height={height} style={{ width, height }} />
+                </a>
+                <span className="text-[12.5px] leading-[1.6] text-balance text-muted">{t.orgNames[org]}</span>
+              </li>
             ))}
-          </div>
-          <p className="m-0 max-w-[640px] text-[13px] leading-[1.7] text-muted">{t.orgs}</p>
+          </ul>
         </Reveal>
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6 text-[13px] text-muted">
+        <div className="flex flex-col items-center gap-4 border-t border-line pt-6 text-[13px] text-muted sm:flex-row sm:flex-wrap sm:justify-between">
           <div className="flex items-center gap-2">
             <span aria-hidden="true" className="grid size-[22px] place-items-center rounded-[6px] bg-primary text-[11px] font-bold text-white">
               T
             </span>
             {t.copyright}
           </div>
-          <nav aria-label={t.partnersLabel} className="flex flex-wrap gap-5">
+          <nav aria-label={t.partnersLabel} className="flex flex-wrap justify-center gap-5">
             {partners.map(([label, href]) => (
               <a key={label} href={href} className="text-muted">
                 {label}

@@ -63,7 +63,11 @@
   },
   "footer": {
     "developedBy": "Developed by",
-    "orgs": "Thai-Journal Citation Index Centre (TCI) · National Electronics and Computer Technology Center (NECTEC) · National Science and Technology Development Agency (NSTDA)",
+    "orgNames": {
+      "TCI": "Thai-Journal Citation Index Centre",
+      "NECTEC": "National Electronics and Computer Technology Center",
+      "NSTDA": "National Science and Technology Development Agency"
+    },
     "copyright": "© 2026 TCI AI Research Team",
     "partnersLabel": "Partner organization links",
     "logo": "{name} logo"

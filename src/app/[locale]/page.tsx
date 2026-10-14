@@ -147,9 +147,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <SiteFooter
         t={{
           developedBy: t('footer.developedBy'),
-          orgs: t('footer.orgs'),
           copyright: t('footer.copyright'),
           partnersLabel: t('footer.partnersLabel'),
+          orgNames: {
+            TCI: t('footer.orgNames.TCI'),
+            NECTEC: t('footer.orgNames.NECTEC'),
+            NSTDA: t('footer.orgNames.NSTDA'),
+          },
           logoLabels: {
             TCI: t('footer.logo', { name: 'TCI' }),
             NECTEC: t('footer.logo', { name: 'NECTEC' }),

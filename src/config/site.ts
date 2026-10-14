@@ -15,6 +15,5 @@ export const siteConfig = {
     tci: 'https://tci-thailand.org/',
     nectec: 'https://www.nectec.or.th/',
     nstda: 'https://www.nstda.or.th/',
-    agenta: 'https://agenta.ai/',
   },
 };

@@ -20,6 +20,13 @@ function strings(value: unknown, path = ''): Array<[string, string]> {
   return [];
 }
 
+describe('copy decisions', () => {
+  it('no longer mentions Agenta AI anywhere on the page', () => {
+    const all = JSON.stringify([th, en, getContent('th'), getContent('en')]);
+    expect(all).not.toMatch(/agenta/i);
+  });
+});
+
 describe('TH/EN parity', () => {
   const thContent = getContent('th');
   const enContent = getContent('en');
