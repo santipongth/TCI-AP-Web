@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#17171c;font-family:'IBM Plex Sans Thai',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+a{color:#4a44d6;text-decoration:none}a:hover{text-decoration:underline}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="max-width:1320px;margin:0 auto;background:#fff;min-height:100vh">
+
+<!-- NAV -->
+<header style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 40px;border-bottom:1px solid #ededf0;flex-wrap:wrap">
+  <a href="#top" style="display:flex;align-items:center;gap:10px;color:#17171c">
+    <span style="width:30px;height:30px;border-radius:8px;background:#4a44d6;color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px">T</span>
+    <span style="display:flex;flex-direction:column;line-height:1.1"><span style="font-weight:600;font-size:16px">TCI AI</span><span style="font-size:11px;color:#6b6b75;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em">RESEARCH TOOLS</span></span>
+  </a>
+  <nav style="display:flex;gap:28px;font-size:14px;color:#3c3c45;flex-wrap:wrap">
+    <a href="#tools" style="color:#3c3c45">เครื่องมือ</a>
+    <a href="#architecture" style="color:#3c3c45">สถาปัตยกรรม</a>
+    <a href="#how" style="color:#3c3c45">วิธีทำงาน</a>
+    <a href="#faq" style="color:#3c3c45">คำถามที่พบบ่อย</a>
+  </nav>
+  <div style="display:flex;gap:10px;align-items:center">
+    <a href="https://www.tci-thaijo.org/" style="font-size:14px;color:#3c3c45;padding:9px 12px">ThaiJO ↗</a>
+    <a href="#top" style="font-size:14px;font-weight:500;background:#4a44d6;color:#fff;padding:10px 18px;border-radius:999px" style-hover="background:#3b35b8;text-decoration:none">ทดลองใช้ Workspace</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" data-screen-label="Hero" style="position:relative;overflow:hidden;padding:96px 40px 72px;text-align:center">
+  <sc-if value="{{ showDots }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:0;background-image:radial-gradient(#d6d6dc 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 95%);mask-image:linear-gradient(180deg,#000 30%,transparent 95%);pointer-events:none"></div></sc-if>
+  <sc-if value="{{ showGrid }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;background-image:linear-gradient(#ebebef 1px,transparent 1px),linear-gradient(90deg,#ebebef 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 95%);mask-image:linear-gradient(180deg,#000 30%,transparent 95%);pointer-events:none"></div></sc-if>
+  <div style="position:relative;max-width:860px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:22px">
+    <div style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:#4a44d6;text-transform:uppercase"><span style="width:8px;height:8px;border-radius:50%;background:#4a44d6"></span>TCI AI Research · built on ThaiJO</div>
+    <h1 style="margin:0;font-size:clamp(36px,5.2vw,60px);line-height:1.15;font-weight:600;letter-spacing:-.02em">AI สำหรับวารสารวิชาการไทย<br>ตั้งแต่ค้นคว้าจนถึงตีพิมพ์</h1>
+    <p style="margin:0;font-size:18px;color:#4a4a54;max-width:640px;line-height:1.55">AI tools for Thai scholarly journals, from literature search to publication.</p>
+    <p style="margin:0;font-size:15px;color:#6b6b75;max-width:680px;line-height:1.7">เครื่องมือ AI จากทีมวิจัย TCI ที่เชื่อมกับฐานข้อมูล ThaiJO และฐานข้อมูลวิชาการสากลโดยตรง ช่วยผู้เขียนค้นคว้า ถาม-ตอบงานวิจัย และอ้างอิงได้เร็วขึ้น ช่วยบรรณาธิการคัดกรองบทความและหาผู้ประเมินได้แม่นยำขึ้น และทุกคำตอบตรวจสอบย้อนกลับถึงแหล่งที่มาได้</p>
+  </div>
+
+  <!-- DEMO BOX -->
+  <div style="position:relative;max-width:860px;margin:44px auto 0;text-align:left">
+    <div style="display:flex;gap:4px;padding:0 10px;overflow-x:auto">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="8">
+        <button onClick="{{ t.select }}" style="{{ t.style }}">{{ t.label }}</button>
+      </sc-for>
+    </div>
+    <div style="background:#fff;border:1px solid #e3e3e8;border-radius:16px;box-shadow:0 20px 60px -30px rgba(23,23,28,.25);overflow:hidden">
+      <div style="min-height:96px;padding:22px 24px 8px;font-size:15.5px;line-height:1.6;color:#8a8a94">{{ placeholder }}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 16px">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="3">
+          <span style="font-size:12.5px;color:#4a44d6;background:#eeedfc;border:1px solid #dcdaf7;padding:5px 10px;border-radius:999px">{{ c.text }}</span>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-top:1px solid #f0f0f3;background:#fbfbfc">
+        <div style="display:flex;gap:8px;align-items:center">
+          <span style="width:32px;height:32px;border-radius:8px;border:1px solid #e3e3e8;background:#fff;display:grid;place-items:center;color:#6b6b75;font-size:18px">+</span>
+          <span style="height:32px;padding:0 10px;border-radius:8px;border:1px solid #e3e3e8;background:#fff;display:flex;align-items:center;color:#6b6b75;font-size:12.5px;font-family:'IBM Plex Mono',monospace">PDF</span>
+          <span style="height:32px;padding:0 12px;border-radius:8px;border:1px solid #e3e3e8;background:#fff;display:flex;align-items:center;gap:8px;color:#17171c;font-size:13px"><span style="width:8px;height:8px;border-radius:50%;background:#4a44d6"></span>TCI MCP Gateway <span style="color:#9a9aa4">▾</span></span>
+        </div>
+        <span style="width:36px;height:36px;border-radius:50%;background:#4a44d6;color:#fff;display:grid;place-items:center;font-size:18px">↑</span>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" data-screen-label="Tools" style="padding:88px 40px 40px">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="text-align:center;max-width:720px;margin:0 auto 72px;display:flex;flex-direction:column;gap:14px;align-items:center">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:#4a44d6;text-transform:uppercase">Tools · เครื่องมือที่พร้อมทดลองใช้</div>
+      <h2 style="margin:0;font-size:clamp(28px,3.6vw,40px);line-height:1.2;font-weight:600;letter-spacing:-.015em">ออกแบบจากวิธีที่นักวิจัยไทยทำงานจริง</h2>
+      <p style="margin:0;font-size:16px;color:#6b6b75;line-height:1.7">Built for how Thai research actually gets done. ทุกเครื่องมือทำงานบนข้อมูล ThaiJO กว่า 423,000 บทความ จาก 1,858 วารสาร เสริมด้วยฐานข้อมูลสากล และให้ผลลัพธ์ที่ตรวจสอบแหล่งอ้างอิงได้</p>
+    </div>
+
+    <!-- Row 1: Agentic Workspace -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;padding:36px 0">
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;box-shadow:0 24px 50px -32px rgba(23,23,28,.3);overflow:hidden;font-size:12px">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #eeeef1;color:#6b6b75"><span style="width:8px;height:8px;border-radius:50%;background:#e4e4e9"></span><span style="width:8px;height:8px;border-radius:50%;background:#e4e4e9"></span><span style="width:8px;height:8px;border-radius:50%;background:#e4e4e9"></span><span style="margin-left:8px;font-weight:500;color:#17171c">Agentic Workspace</span><span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10.5px">session · pm25-north</span></div>
+        <div style="display:grid;grid-template-columns:150px 1fr;min-height:260px">
+          <div style="border-right:1px solid #eeeef1;padding:12px;display:flex;flex-direction:column;gap:6px;background:#fafafb">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#9a9aa4;margin-bottom:4px">CONNECTED MCPS</div>
+            <div style="display:flex;align-items:center;gap:7px;color:#3c3c45"><span style="width:6px;height:6px;border-radius:50%;background:#2fa36b"></span>ThaiJO Search</div>
+            <div style="display:flex;align-items:center;gap:7px;color:#3c3c45"><span style="width:6px;height:6px;border-radius:50%;background:#2fa36b"></span>Article MCP</div>
+            <div style="display:flex;align-items:center;gap:7px;color:#3c3c45"><span style="width:6px;height:6px;border-radius:50%;background:#2fa36b"></span>Journal MCP</div>
+            <div style="display:flex;align-items:center;gap:7px;color:#3c3c45"><span style="width:6px;height:6px;border-radius:50%;background:#2fa36b"></span>Author MCP</div>
+            <div style="display:flex;align-items:center;gap:7px;color:#3c3c45"><span style="width:6px;height:6px;border-radius:50%;background:#2fa36b"></span>Citation MCP</div>
+            <div style="display:flex;align-items:center;gap:7px;color:#3c3c45"><span style="width:6px;height:6px;border-radius:50%;background:#2fa36b"></span>Scholarly MCP</div>
+            <div style="display:flex;align-items:center;gap:7px;color:#9a9aa4;margin-top:4px;border:1px dashed #d9d9df;border-radius:6px;padding:4px 6px">+ register skill</div>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;gap:10px">
+            <div style="align-self:flex-end;background:#4a44d6;color:#fff;padding:8px 12px;border-radius:12px 12px 2px 12px;max-width:85%">สรุปงานวิจัย PM2.5 ภาคเหนือ 5 ปีล่าสุดจาก ThaiJO</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6b6b75;display:flex;flex-direction:column;gap:3px;padding-left:4px">
+              <span>→ plan: 3 subtasks</span>
+              <span>→ subagent: thaijo.search(q="PM2.5 ภาคเหนือ", years=5) · 24 results</span>
+              <span>→ subagent: author.lookup(top=5)</span>
+              <span>→ re-plan: + scholarly.search (cohort &lt; 5)</span>
+              <span>→ synthesize(citations=true)</span>
+            </div>
+            <div style="background:#f4f4f6;padding:10px 12px;border-radius:2px 12px 12px 12px;display:flex;flex-direction:column;gap:6px;max-width:92%">
+              <span style="height:7px;width:92%;background:#dcdce2;border-radius:4px"></span>
+              <span style="height:7px;width:84%;background:#dcdce2;border-radius:4px"></span>
+              <span style="height:7px;width:70%;background:#dcdce2;border-radius:4px"></span>
+              <div style="display:flex;gap:5px;margin-top:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;background:#fff;border:1px solid #e3e3e8;padding:2px 6px;border-radius:4px">[1] ThaiJO</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;background:#fff;border:1px solid #e3e3e8;padding:2px 6px;border-radius:4px">[2]</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;background:#fff;border:1px solid #e3e3e8;padding:2px 6px;border-radius:4px">[3]</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:440px">
+        <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:#4a44d6;background:#eeedfc;padding:4px 8px;border-radius:6px">01 · FLAGSHIP</span>
+        <h3 style="margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em">Agentic Workspace</h3>
+        <p style="margin:0;font-size:15px;color:#4a4a54;line-height:1.75">พื้นที่ทำงานส่วนตัวของนักวิจัยแต่ละคน รวม Research Assistant, Deep Research และเครื่องมือทั้งหมดไว้ที่เดียว พร้อมไฟล์ต้นฉบับและประวัติการทำงาน AI Agent จะเลือกเรียก Skill และ MCP ที่เหมาะสม เช่น ThaiJO Search, Article, Journal, Author และ Citation MCP ผ่าน TCI MCP Gateway โดยอัตโนมัติ และจดจำบริบทงานวิจัยของคุณไว้ตลอด</p>
+        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:#3c3c45">
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ขับเคลื่อนด้วย AI Agent: วางแผน → มอบงานให้ Subagent และ Tool → ปรับแผน → สังเคราะห์คำตอบพร้อมอ้างอิง</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>เพิ่ม Skill, MCP และ API ใหม่ผ่าน Registry ได้โดยไม่ต้องแก้ไขตัว Agent</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ทุกคำตอบอ้างอิงกลับไปยังบทความต้นทางใน ThaiJO และฐานข้อมูลสากล</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Row 2: Research Assistant -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;padding:36px 0">
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:440px">
+        <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:#4a44d6;background:#eeedfc;padding:4px 8px;border-radius:6px">02 · FLAGSHIP</span>
+        <h3 style="margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em">Research Assistant</h3>
+        <p style="margin:0;font-size:15px;color:#4a4a54;line-height:1.75">ผู้ช่วยถาม-ตอบงานวิจัยแบบสนทนา ถามเป็นภาษาไทยหรืออังกฤษ ระบบค้นหลักฐานแบบ hybrid search (คำสำคัญและความหมาย) จากบทความใน ThaiJO และฐานข้อมูลสากล (OpenAlex, Crossref, PubMed) แล้วตอบโดยอ้างอิงกำกับทุกข้อความ (retrieval-augmented generation) ถามต่อได้ต่อเนื่อง และเปิดบทความต้นทางได้ทันที</p>
+        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:#3c3c45">
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ตอบจากหลักฐานที่ค้นพบเท่านั้น หากหลักฐานไม่เพียงพอจะแจ้งตรง ๆ ไม่คาดเดา</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>เห็นงานวิจัยไทยและสากลในคำตอบเดียว พร้อมระบุประเภทหลักฐาน เช่น RCT หรือการทบทวนอย่างเป็นระบบ</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ส่งต่อคำถามไป Deep Research เมื่อต้องการรายงานเชิงลึก หรือบันทึกคำตอบไว้ใน Workspace</li>
+        </ul>
+      </div>
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;box-shadow:0 24px 50px -32px rgba(23,23,28,.3);overflow:hidden;font-size:12px">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #eeeef1;flex-wrap:wrap"><span style="font-weight:500;color:#17171c">Research Assistant</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#9a9aa4;margin-left:auto">SOURCES</span><span style="display:flex;align-items:center;gap:4px;font-size:10.5px;color:#3c3c45;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;background:#fff"><span style="width:6px;height:6px;border-radius:50%;background:#2fa36b"></span>ThaiJO</span><span style="display:flex;align-items:center;gap:4px;font-size:10.5px;color:#3c3c45;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;background:#fff"><span style="width:6px;height:6px;border-radius:50%;background:#2fa36b"></span>OpenAlex</span><span style="display:flex;align-items:center;gap:4px;font-size:10.5px;color:#3c3c45;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;background:#fff"><span style="width:6px;height:6px;border-radius:50%;background:#2fa36b"></span>PubMed</span></div>
+        <div style="padding:14px;display:flex;flex-direction:column;gap:10px">
+          <div style="align-self:flex-end;background:#4a44d6;color:#fff;padding:8px 12px;border-radius:12px 12px 2px 12px;max-width:85%">ฟ้าทะลายโจรมีประสิทธิผลในการรักษา COVID-19 อาการไม่รุนแรงหรือไม่</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6b6b75;padding-left:4px">→ retrieved 12 sources · ThaiJO 7 · PubMed 3 · OpenAlex 2</div>
+          <div style="background:#f4f4f6;padding:10px 12px;border-radius:2px 12px 12px 12px;display:flex;flex-direction:column;gap:8px;max-width:94%">
+            <p style="margin:0;font-size:12px;line-height:1.7;color:#3c3c45">ผลการศึกษายังไม่สอดคล้องกัน การทดลองแบบสุ่มในไทยรายงานอุบัติการณ์ปอดอักเสบที่ต่ำลงในกลุ่มที่ได้รับสารสกัดฟ้าทะลายโจร <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a44d6;background:#eeedfc;padding:0 4px;border-radius:3px">1</span> แต่การทบทวนอย่างเป็นระบบสรุปว่าหลักฐานยังไม่เพียงพอ <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a44d6;background:#eeedfc;padding:0 4px;border-radius:3px">2</span> และการทดลองหลายศูนย์ไม่พบความแตกต่างอย่างมีนัยสำคัญ <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a44d6;background:#eeedfc;padding:0 4px;border-radius:3px">3</span></p>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span style="font-size:10.5px;color:#8a5a00;background:#fdf0d0;padding:2px 8px;border-radius:999px">ความเชื่อมั่นของหลักฐาน: ต่ำ</span><span style="font-size:10.5px;color:#6b6b75">3 แหล่งหลัก · ไทย 1 · สากล 2</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div style="display:grid;grid-template-columns:22px auto 1fr auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #f0f0f3"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a44d6">[1]</span><span style="font-size:10px;font-weight:500;color:#1f7a4d;background:#e4f5ec;padding:2px 6px;border-radius:4px">ThaiJO</span><div style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="height:6px;width:79%;background:#dcdce2;border-radius:4px"></span><span style="font-size:10.5px;color:#6b6b75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">วารสารการแพทย์แผนไทยและการแพทย์ทางเลือก · 2564</span></div><span style="font-size:10px;color:#3c3c45;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;white-space:nowrap">RCT</span></div>
+            <div style="display:grid;grid-template-columns:22px auto 1fr auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #f0f0f3"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a44d6">[2]</span><span style="font-size:10px;font-weight:500;color:#1f5aa6;background:#e3eefb;padding:2px 6px;border-radius:4px">PubMed</span><div style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="height:6px;width:86%;background:#dcdce2;border-radius:4px"></span><span style="font-size:10.5px;color:#6b6b75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Systematic review &amp; meta-analysis · 2023</span></div><span style="font-size:10px;color:#3c3c45;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;white-space:nowrap">Review</span></div>
+            <div style="display:grid;grid-template-columns:22px auto 1fr auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #f0f0f3"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a44d6">[3]</span><span style="font-size:10px;font-weight:500;color:#8a5a00;background:#fdf0d0;padding:2px 6px;border-radius:4px">OpenAlex</span><div style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="height:6px;width:93%;background:#dcdce2;border-radius:4px"></span><span style="font-size:10.5px;color:#6b6b75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Multicentre RCT · 2022</span></div><span style="font-size:10px;color:#3c3c45;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;white-space:nowrap">RCT</span></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;padding:10px 14px;border-top:1px solid #eeeef1;background:#fbfbfc;flex-wrap:wrap"><span style="font-size:11px;color:#4a44d6;background:#eeedfc;border:1px solid #dcdaf7;padding:4px 9px;border-radius:999px">เปรียบเทียบขนาดยาในแต่ละการศึกษา</span><span style="font-size:11px;color:#4a44d6;background:#eeedfc;border:1px solid #dcdaf7;padding:4px 9px;border-radius:999px">มีการศึกษาในไทยปี 2566–2568 หรือไม่</span><span style="font-size:11px;color:#3c3c45;border:1px solid #e3e3e8;padding:4px 9px;border-radius:999px">→ ส่งไป Deep Research</span></div>
+      </div>
+    </div>
+
+    <!-- Row 3: Reference Extraction & Validation -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;padding:36px 0">
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;box-shadow:0 24px 50px -32px rgba(23,23,28,.3);overflow:hidden;font-size:12px">
+        <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #eeeef1"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;background:#f4f4f6;padding:3px 7px;border-radius:5px">manuscript_v3.pdf</span><span style="color:#6b6b75">32 รายการอ้างอิง</span><span style="margin-left:auto;color:#2fa36b;font-weight:500">28 / 32 verified</span></div>
+        <div style="display:flex;flex-direction:column">
+          <div style="display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid #f3f3f5"><span style="color:#9a9aa4;font-family:'IBM Plex Mono',monospace">01</span><div style="display:flex;flex-direction:column;gap:5px"><span style="height:7px;width:88%;background:#dcdce2;border-radius:4px"></span><span style="height:6px;width:50%;background:#ececf0;border-radius:4px"></span></div><span style="font-size:11px;color:#1f7a4d;background:#e4f5ec;padding:3px 8px;border-radius:999px">✓ Verified · DOI</span></div>
+          <div style="display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid #f3f3f5"><span style="color:#9a9aa4;font-family:'IBM Plex Mono',monospace">02</span><div style="display:flex;flex-direction:column;gap:5px"><span style="height:7px;width:76%;background:#dcdce2;border-radius:4px"></span><span style="height:6px;width:40%;background:#ececf0;border-radius:4px"></span></div><span style="font-size:11px;color:#1f7a4d;background:#e4f5ec;padding:3px 8px;border-radius:999px">✓ Verified · ThaiJO</span></div>
+          <div style="display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid #f3f3f5;background:#fffaf0"><span style="color:#9a9aa4;font-family:'IBM Plex Mono',monospace">03</span><div style="display:flex;flex-direction:column;gap:5px"><span style="height:7px;width:82%;background:#dcdce2;border-radius:4px"></span><span style="height:6px;width:46%;background:#ececf0;border-radius:4px"></span></div><span style="font-size:11px;color:#8a5a00;background:#fdf0d0;padding:3px 8px;border-radius:999px">⚠ ปีตีพิมพ์ไม่ตรง 2563 → 2564</span></div>
+          <div style="display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid #f3f3f5"><span style="color:#9a9aa4;font-family:'IBM Plex Mono',monospace">04</span><div style="display:flex;flex-direction:column;gap:5px"><span style="height:7px;width:70%;background:#dcdce2;border-radius:4px"></span><span style="height:6px;width:38%;background:#ececf0;border-radius:4px"></span></div><span style="font-size:11px;color:#a12a2a;background:#fde2e2;padding:3px 8px;border-radius:999px">✕ ถูกถอน (Retracted) · Crossref</span></div>
+          <div style="display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:10px 14px;background:#fff5f5"><span style="color:#9a9aa4;font-family:'IBM Plex Mono',monospace">05</span><div style="display:flex;flex-direction:column;gap:5px"><span style="height:7px;width:64%;background:#dcdce2;border-radius:4px"></span><span style="height:6px;width:30%;background:#ececf0;border-radius:4px"></span></div><span style="font-size:11px;color:#a12a2a;background:#fde2e2;padding:3px 8px;border-radius:999px">✕ ไม่พบใน ThaiJO / Crossref</span></div>
+        </div>
+        <div style="display:flex;gap:8px;padding:12px 14px;border-top:1px solid #eeeef1;background:#fbfbfc"><span style="font-size:11.5px;background:#4a44d6;color:#fff;padding:6px 12px;border-radius:999px">แก้ไขอัตโนมัติ 2 รายการ</span><span style="font-size:11.5px;border:1px solid #e3e3e8;padding:6px 12px;border-radius:999px;color:#3c3c45">Export BibTeX / RIS</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:440px">
+        <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:#4a44d6;background:#eeedfc;padding:4px 8px;border-radius:6px">03 · AUTHORS &amp; EDITORS</span>
+        <h3 style="margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em">Reference Extraction &amp; Validation</h3>
+        <p style="margin:0;font-size:15px;color:#4a4a54;line-height:1.75">อัปโหลด PDF หรือวางรายการอ้างอิง ระบบจะแยกโครงสร้าง (ผู้แต่ง ปี ชื่อเรื่อง วารสาร DOI) รองรับรูปแบบการอ้างอิงภาษาไทยทั้ง APA และ Vancouver รวมถึงปี พ.ศ. แล้วตรวจสอบกับ ThaiJO และ Crossref ว่ามีอยู่จริง ถูกต้อง และไม่ถูกถอน (retracted) ก่อนส่งถึงบรรณาธิการ</p>
+        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:#3c3c45">
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>แยกรายการอ้างอิงจาก PDF, DOCX หรือข้อความที่วาง</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ตรวจ DOI, ปี, ชื่อวารสาร และสถานะการถอนบทความ</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ช่วยบรรณาธิการคัดกรองบทความก่อนส่งผู้ประเมิน</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Row 4: Deep Research -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;padding:36px 0">
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:440px">
+        <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:#4a44d6;background:#eeedfc;padding:4px 8px;border-radius:6px">04 · AUTHORS</span>
+        <h3 style="margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em">Deep Research</h3>
+        <p style="margin:0;font-size:15px;color:#4a4a54;line-height:1.75">ตั้งคำถามวิจัยเพียงข้อเดียว ระบบจะวางแผนการค้น ค้นจาก ThaiJO และแหล่งข้อมูลสากล อ่านบทความที่เกี่ยวข้อง แล้วสังเคราะห์เป็นรายงานที่มีอ้างอิงกำกับทุกข้อความ ส่งออกเป็นร่างบททบทวนวรรณกรรมได้ทันที</p>
+        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:#3c3c45">
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>แสดงแผนการค้นและให้ผู้ใช้ปรับก่อนเริ่ม</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ให้น้ำหนักบทความไทยใน ThaiJO ควบคู่แหล่งสากล</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ส่งต่อให้ Literature Review Tool สร้างตารางเปรียบเทียบ</li>
+        </ul>
+      </div>
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;box-shadow:0 24px 50px -32px rgba(23,23,28,.3);overflow:hidden;font-size:12px;display:grid;grid-template-columns:170px 1fr;min-height:280px">
+        <div style="border-right:1px solid #eeeef1;padding:14px;background:#fafafb;display:flex;flex-direction:column;gap:12px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#9a9aa4">RESEARCH PLAN</div>
+          <div style="display:flex;gap:8px;align-items:center;color:#17171c"><span style="width:16px;height:16px;border-radius:50%;background:#2fa36b;color:#fff;display:grid;place-items:center;font-size:10px">✓</span>วางแผนการค้น</div>
+          <div style="display:flex;gap:8px;align-items:center;color:#17171c"><span style="width:16px;height:16px;border-radius:50%;background:#2fa36b;color:#fff;display:grid;place-items:center;font-size:10px">✓</span>ค้น ThaiJO · 142</div>
+          <div style="display:flex;gap:8px;align-items:center;color:#17171c"><span style="width:16px;height:16px;border-radius:50%;background:#2fa36b;color:#fff;display:grid;place-items:center;font-size:10px">✓</span>ค้น OpenAlex · PubMed · 61</div>
+          <div style="display:flex;gap:8px;align-items:center;color:#17171c"><span style="width:16px;height:16px;border-radius:50%;background:#4a44d6;color:#fff;display:grid;place-items:center;font-size:10px">…</span>อ่านเชิงลึก 18 / 24</div>
+          <div style="display:flex;gap:8px;align-items:center;color:#9a9aa4"><span style="width:16px;height:16px;border-radius:50%;border:1px solid #d9d9df"></span>สังเคราะห์รายงาน</div>
+        </div>
+        <div style="padding:18px 20px;display:flex;flex-direction:column;gap:9px">
+          <div style="font-weight:600;font-size:13px;color:#17171c">ผลกระทบของ PM2.5 ต่อสุขภาพในภาคเหนือ: การทบทวน</div>
+          <span style="height:7px;width:96%;background:#dcdce2;border-radius:4px"></span>
+          <span style="height:7px;width:90%;background:#dcdce2;border-radius:4px"></span>
+          <div style="display:flex;gap:6px;align-items:center"><span style="height:7px;width:60%;background:#dcdce2;border-radius:4px"></span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a44d6;background:#eeedfc;padding:1px 5px;border-radius:3px">[4]</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a44d6;background:#eeedfc;padding:1px 5px;border-radius:3px">[7]</span></div>
+          <span style="height:7px;width:94%;background:#dcdce2;border-radius:4px"></span>
+          <div style="display:flex;gap:6px;align-items:center"><span style="height:7px;width:48%;background:#dcdce2;border-radius:4px"></span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a44d6;background:#eeedfc;padding:1px 5px;border-radius:3px">[12]</span></div>
+          <div style="margin-top:6px;border-top:1px solid #eeeef1;padding-top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6b6b75;display:flex;flex-direction:column;gap:4px"><span>[4] วารสารสาธารณสุขศาสตร์ · 2566 · thaijo</span><span>[7] Chiang Mai Med J · 2565 · thaijo</span><span>[12] Environ Res · 2024 · openalex</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 5: Paper Explainer -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;padding:36px 0">
+      <div style="background:#17171c;border:1px solid #2a2a33;border-radius:14px;box-shadow:0 24px 50px -32px rgba(23,23,28,.6);overflow:hidden;font-size:12px;display:grid;grid-template-columns:1fr 1.3fr;min-height:280px;color:#e6e6ec">
+        <div style="padding:18px;border-right:1px solid #2a2a33;display:flex;flex-direction:column;gap:9px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#8a8a94">ThaiJO · Thai Environmental Engineering Journal · §3</div>
+          <div style="font-weight:600;font-size:13px">แบบจำลองการแพร่กระจายของ PM2.5</div>
+          <span style="height:6px;width:96%;background:#34343e;border-radius:4px"></span>
+          <span style="height:6px;width:88%;background:#34343e;border-radius:4px"></span>
+          <span style="height:6px;width:92%;background:#4a44d6;border-radius:4px"></span>
+          <span style="height:6px;width:70%;background:#4a44d6;border-radius:4px"></span>
+          <span style="height:6px;width:90%;background:#34343e;border-radius:4px"></span>
+          <span style="height:6px;width:60%;background:#34343e;border-radius:4px"></span>
+          <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8a94">scroll ↓ to animate eq. (3)</div>
+        </div>
+        <div style="padding:18px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a8a94"><span>MANIM SCENE 3 / 7</span><span>AI-generated</span></div>
+          <div style="flex:1;border-radius:10px;background:#0f0f14;border:1px solid #2a2a33;position:relative;min-height:150px;overflow:hidden">
+            <div style="position:absolute;left:14%;top:50%;width:72%;height:1px;background:#4a4a56"></div>
+            <div style="position:absolute;left:50%;top:14%;width:1px;height:72%;background:#4a4a56"></div>
+            <div style="position:absolute;left:24%;top:28%;width:52%;height:44%;border:2px solid #7c76ff;border-radius:50%"></div>
+            <div style="position:absolute;left:46%;top:46%;width:14px;height:14px;border-radius:50%;background:#7c76ff;box-shadow:0 0 18px #7c76ff"></div>
+            <div style="position:absolute;right:12px;bottom:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8c6ff">∂C/∂t = D∇²C − v·∇C</div>
+          </div>
+          <div style="height:4px;border-radius:2px;background:#2a2a33;position:relative"><div style="position:absolute;left:0;top:0;height:100%;width:43%;background:#7c76ff;border-radius:2px"></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:440px">
+        <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:#4a44d6;background:#eeedfc;padding:4px 8px;border-radius:6px">05 · OUTREACH</span>
+        <h3 style="margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em">Paper Explainer</h3>
+        <p style="margin:0;font-size:15px;color:#4a4a54;line-height:1.75">แปลงบทความใน ThaiJO เป็นหน้าเล่าเรื่องแบบเลื่อนอ่าน (scrollytelling) พร้อมแอนิเมชัน Manim ที่ AI สร้างให้สำหรับสมการและแนวคิดสำคัญ ช่วยให้นักศึกษาและสาธารณะเข้าใจงานวิจัยได้ง่ายขึ้น และเพิ่มการมองเห็นของงานวิจัยไทย</p>
+        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:#3c3c45">
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>วางลิงก์บทความจาก ThaiJO แล้วได้หน้าเล่าเรื่องพร้อมแชร์ทันที</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>แอนิเมชัน Manim ผูกกับสมการและรูปในบทความ</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ใช้สื่อสารงานวิจัยสู่สาธารณะ และเป็นสื่อการสอนในมหาวิทยาลัย</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Row 6: Research Atlas -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;padding:36px 0">
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:440px">
+        <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:#4a44d6;background:#eeedfc;padding:4px 8px;border-radius:6px">06 · DISCOVERY</span>
+        <h3 style="margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em">Research Atlas</h3>
+        <p style="margin:0;font-size:15px;color:#4a4a54;line-height:1.75">แผนที่ภูมิทัศน์งานวิจัยไทย สร้างจากการจัดกลุ่มบทความใน ThaiJO ด้วย embedding และ topic modeling ขนาดวงกลมคือจำนวนบทความ เส้นคือความเชื่อมโยงระหว่างหัวข้อ สีคือสาขาวิชา ซูมจากภาพรวมทั้งประเทศลงถึงวารสาร ผู้นิพนธ์ และบทความในแต่ละหัวข้อ</p>
+        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:#3c3c45">
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>มองเห็นภูมิทัศน์งานวิจัยไทยทั้ง 1,858 วารสารในภาพเดียว</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>คลิกหัวข้อเพื่อดูบทความ วารสาร และผู้เชี่ยวชาญที่เกี่ยวข้อง</li>
+          <li style="display:flex;gap:10px;align-items:baseline"><span style="width:6px;height:6px;border-radius:50%;background:#4a44d6;flex:none"></span>ทำงานร่วมกับ Emerging Themes เพื่อดูการเติบโตของแต่ละหัวข้อตามเวลา</li>
+        </ul>
+      </div>
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;box-shadow:0 24px 50px -32px rgba(23,23,28,.3);overflow:hidden;font-size:12px">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #eeeef1;flex-wrap:wrap">
+          <span style="font-weight:500;color:#17171c">Research Atlas</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6b6b75">ThaiJO · 2565–2569</span>
+          <span style="height:24px;padding:0 10px;border-radius:6px;border:1px solid #e3e3e8;display:flex;align-items:center;gap:6px;color:#3c3c45;font-size:11.5px">ทุกสาขา <span style="color:#9a9aa4">▾</span></span>
+          <span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6b6b75">48 topics</span>
+          <span style="display:flex;border:1px solid #e3e3e8;border-radius:6px;overflow:hidden"><span style="width:24px;height:24px;display:grid;place-items:center;color:#3c3c45;border-right:1px solid #e3e3e8">−</span><span style="width:24px;height:24px;display:grid;place-items:center;color:#3c3c45">+</span></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0">
+          <div style="position:relative;aspect-ratio:520/340;min-width:0;background-image:radial-gradient(#ececf0 1px,transparent 1.2px);background-size:14px 14px">{{ topicGraph }}</div>
+          <div style="border-left:1px solid #eeeef1;border-top:1px solid #eeeef1;padding:14px;background:#fafafb;display:flex;flex-direction:column;gap:10px;max-width:260px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#9a9aa4">TOPIC 05 · สาธารณสุข</div>
+            <div style="font-weight:600;font-size:13.5px;color:#17171c;line-height:1.35">PM2.5 และผลกระทบต่อสุขภาพ</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:14px;color:#17171c">1,284</span><span style="font-size:10.5px;color:#6b6b75">บทความ</span></div>
+              <div style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:14px;color:#17171c">86</span><span style="font-size:10.5px;color:#6b6b75">วารสาร</span></div>
+              <div style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:14px;color:#1f7a4d">↑ 38%</span><span style="font-size:10.5px;color:#6b6b75">3 ปีล่าสุด</span></div>
+              <div style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:14px;color:#17171c">412</span><span style="font-size:10.5px;color:#6b6b75">ผู้นิพนธ์</span></div>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#9a9aa4;margin-top:2px">KEYWORDS</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px"><span style="font-size:10.5px;background:#fff;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;color:#3c3c45">ฝุ่นละออง</span><span style="font-size:10.5px;background:#fff;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;color:#3c3c45">ภาคเหนือ</span><span style="font-size:10.5px;background:#fff;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;color:#3c3c45">ทางเดินหายใจ</span><span style="font-size:10.5px;background:#fff;border:1px solid #e3e3e8;padding:2px 7px;border-radius:999px;color:#3c3c45">หมอกควัน</span></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#9a9aa4;margin-top:2px">LINKED TOPICS</div>
+            <div style="display:flex;flex-direction:column;gap:4px;font-size:11.5px;color:#3c3c45"><span style="display:flex;gap:6px;align-items:center"><span style="width:7px;height:7px;border-radius:50%;background:#3a74d6"></span>T23 · วิศวกรรมสิ่งแวดล้อม</span><span style="display:flex;gap:6px;align-items:center"><span style="width:7px;height:7px;border-radius:50%;background:#b89a1f"></span>T43 · นโยบายสาธารณะ</span></div>
+            <span style="margin-top:auto;font-size:11.5px;color:#4a44d6;font-weight:500">ดูบทความทั้งหมด →</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:center;padding:10px 14px;border-top:1px solid #eeeef1;background:#fbfbfc;flex-wrap:wrap;font-size:11px;color:#3c3c45">
+          <span style="display:flex;gap:5px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#8f5ef0"></span>สาธารณสุข</span>
+          <span style="display:flex;gap:5px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#e0554f"></span>เกษตรและอาหาร</span>
+          <span style="display:flex;gap:5px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#3a74d6"></span>วิศวกรรม</span>
+          <span style="display:flex;gap:5px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#37a862"></span>ศึกษาศาสตร์</span>
+          <span style="display:flex;gap:5px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#b89a1f"></span>สังคมศาสตร์</span>
+          <span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a9aa4">size = articles · edge = co-citation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other tools grid -->
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px" style-hover="border-color:#c9c7f0">
+        <span style="width:38px;height:38px;border-radius:10px;background:#eeedfc;color:#4a44d6;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500">CB</span>
+        <h4 style="margin:4px 0 0;font-size:17px;font-weight:600">AI Chatbot</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">ตอบคำถามทั่วไปเกี่ยวกับ ThaiJO และ TCI ตลอด 24 ชั่วโมง จากคู่มือ นโยบาย และประกาศอย่างเป็นทางการ เช่น ขั้นตอนส่งบทความ เกณฑ์กลุ่มคุณภาพ ค่าธรรมเนียม และการใช้งานระบบ (คำถามงานวิจัยใช้ Research Assistant)</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px" style-hover="border-color:#c9c7f0">
+        <span style="width:38px;height:38px;border-radius:10px;background:#eeedfc;color:#4a44d6;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500">RF</span>
+        <h4 style="margin:4px 0 0;font-size:17px;font-weight:600">Reviewer Finder</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">แนะนำผู้ประเมินที่เชี่ยวชาญตรงสาขาจากประวัติการตีพิมพ์และการอ้างอิงใน ThaiJO/TCI พร้อมตรวจสอบผลประโยชน์ทับซ้อน (เช่น ผู้ร่วมวิจัยหรือสังกัดเดียวกัน) และภาระงานประเมิน</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px" style-hover="border-color:#c9c7f0">
+        <span style="width:38px;height:38px;border-radius:10px;background:#eeedfc;color:#4a44d6;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500">LR</span>
+        <h4 style="margin:4px 0 0;font-size:17px;font-weight:600">Literature Review Tool</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">อ่านชุดบทความที่เลือก สรุปประเด็นหลักและช่องว่างงานวิจัย สร้างตารางเปรียบเทียบระเบียบวิธีอัตโนมัติ และช่วยคัดกรองบทความตามขั้นตอน PRISMA สำหรับการทบทวนอย่างเป็นระบบ</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px" style-hover="border-color:#c9c7f0">
+        <span style="width:38px;height:38px;border-radius:10px;background:#eeedfc;color:#4a44d6;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500">JF</span>
+        <h4 style="margin:4px 0 0;font-size:17px;font-weight:600">Journal Finder</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">จับคู่ต้นฉบับกับวารสารในฐาน TCI ที่เหมาะสมที่สุด ตามขอบเขตเนื้อหา กลุ่มคุณภาพ TCI (1–3) ค่า T-JIF ภาษา และระยะเวลาพิจารณา พร้อมเตือนวารสารที่ไม่อยู่ในฐาน TCI หรือมีลักษณะของวารสารล่าเหยื่อ (predatory)</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px" style-hover="border-color:#c9c7f0">
+        <span style="width:38px;height:38px;border-radius:10px;background:#eeedfc;color:#4a44d6;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500">AF</span>
+        <h4 style="margin:4px 0 0;font-size:17px;font-weight:600">Author Finder</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">ค้นหานักวิจัยจากคำสำคัญ เพื่อหาผู้ร่วมวิจัย ผู้ประเมิน หรือผู้เชี่ยวชาญในหัวข้อนั้นจากผู้นิพนธ์กว่า 536,000 คนใน ThaiJO</p>
+      </div>
+      <div style="background:#fff;border:1px solid #e3e3e8;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px" style-hover="border-color:#c9c7f0">
+        <span style="width:38px;height:38px;border-radius:10px;background:#eeedfc;color:#4a44d6;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500">ET</span>
+        <h4 style="margin:4px 0 0;font-size:17px;font-weight:600">Emerging Themes</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">ค้นพบหัวข้อวิจัยที่กำลังเติบโตจากแนวโน้มการตีพิมพ์และการอ้างอิงใน ThaiJO เทียบกับแนวโน้มสากลจาก OpenAlex เพื่อหาโอกาสวิจัยใหม่</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPOSED -->
+<sc-if value="{{ showProposed }}" hint-placeholder-val="{{ true }}">
+<section id="proposed" data-screen-label="Proposed" style="padding:88px 40px;background:#fff;border-top:1px solid #ededf0;border-bottom:1px solid #ededf0">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;align-items:end;margin-bottom:40px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:#4a44d6;text-transform:uppercase">Proposed · แนวคิดเพิ่มเติม</div>
+        <h2 style="margin:0;font-size:clamp(28px,3.6vw,40px);line-height:1.2;font-weight:600;letter-spacing:-.015em">เครื่องมือในอนาคต</h2>
+      </div>
+      <p style="margin:0;font-size:15px;color:#6b6b75;line-height:1.7">Gaps in the Thai journal workflow we propose to close next. ช่องว่างที่ยังเหลือในกระบวนการทำงานของวารสารไทย โดยเฉพาะงานของกองบรรณาธิการและขั้นตอนก่อนส่งบทความ ซึ่งทีมวิจัยเสนอให้พัฒนาในระยะถัดไป</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <div style="background:#fff;border:1px dashed #cfcfd6;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6b6b75;border:1px solid #e3e3e8;padding:3px 7px;border-radius:5px">CONCEPT</span><span style="font-size:12px;color:#8a5a00;background:#fdf0d0;padding:3px 8px;border-radius:999px">บรรณาธิการ</span></div>
+        <h4 style="margin:6px 0 0;font-size:17px;font-weight:600">Similarity &amp; AI-text Detection</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">ตรวจความซ้ำซ้อนกับคลังบทความไทยใน ThaiJO โดยตรง เสริมเครื่องมือเดิมอย่างอักขราวิสุทธิ์และ Turnitin และประเมินสัดส่วนข้อความที่สร้างด้วย AI เป็นข้อมูลประกอบการพิจารณาของบรรณาธิการ</p>
+      </div>
+      <div style="background:#fff;border:1px dashed #cfcfd6;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6b6b75;border:1px solid #e3e3e8;padding:3px 7px;border-radius:5px">CONCEPT</span><span style="font-size:12px;color:#1f5aa6;background:#e3eefb;padding:3px 8px;border-radius:999px">ผู้เขียน</span></div>
+        <h4 style="margin:6px 0 0;font-size:17px;font-weight:600">TH↔EN Abstract Translator &amp; Academic Polishing</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">แปลบทคัดย่อไทย–อังกฤษด้วยศัพท์เฉพาะสาขา และขัดเกลาภาษาวิชาการโดยคงความหมายและข้อมูลเดิมครบถ้วน</p>
+      </div>
+      <div style="background:#fff;border:1px dashed #cfcfd6;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6b6b75;border:1px solid #e3e3e8;padding:3px 7px;border-radius:5px">CONCEPT</span><span style="font-size:12px;color:#1f5aa6;background:#e3eefb;padding:3px 8px;border-radius:999px">ผู้เขียน</span></div>
+        <h4 style="margin:6px 0 0;font-size:17px;font-weight:600">Thai Citation Style Formatter</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">จัดรูปแบบรายการอ้างอิงตาม APA 7 ภาษาไทย Vancouver และรูปแบบเฉพาะของแต่ละวารสารโดยอัตโนมัติ ต่อยอดจาก Reference Extraction</p>
+      </div>
+      <div style="background:#fff;border:1px dashed #cfcfd6;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6b6b75;border:1px solid #e3e3e8;padding:3px 7px;border-radius:5px">CONCEPT</span><span style="font-size:12px;color:#8a5a00;background:#fdf0d0;padding:3px 8px;border-radius:999px">บรรณาธิการ</span></div>
+        <h4 style="margin:6px 0 0;font-size:17px;font-weight:600">Metadata &amp; Keyword Enrichment</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">เสนอคำสำคัญ สาขาวิชา และ metadata ตามมาตรฐาน Crossref/DOI และ OJS เพื่อให้บทความถูกค้นพบและจัดดัชนีได้ดีขึ้นทั้งใน ThaiJO, TCI, ACI และฐานสากล</p>
+      </div>
+      <div style="background:#fff;border:1px dashed #cfcfd6;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6b6b75;border:1px solid #e3e3e8;padding:3px 7px;border-radius:5px">CONCEPT</span><span style="font-size:12px;color:#1f5aa6;background:#e3eefb;padding:3px 8px;border-radius:999px">ผู้เขียน</span></div>
+        <h4 style="margin:6px 0 0;font-size:17px;font-weight:600">Citation Recommender</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">แนะนำงานวิจัยใน ThaiJO ที่ควรอ้างอิงเพิ่มจากเนื้อหาต้นฉบับขณะเขียน โดยจัดอันดับตามความเกี่ยวข้องเท่านั้น ไม่อิงค่า T-JIF เพื่อป้องกันการอ้างอิงเพื่อเพิ่มตัวชี้วัด</p>
+      </div>
+      <div style="background:#fff;border:1px dashed #cfcfd6;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#6b6b75;border:1px solid #e3e3e8;padding:3px 7px;border-radius:5px">CONCEPT</span><span style="font-size:12px;color:#8a5a00;background:#fdf0d0;padding:3px 8px;border-radius:999px">ผู้เขียน · บรรณาธิการ</span></div>
+        <h4 style="margin:6px 0 0;font-size:17px;font-weight:600">Submission Pre-check</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">ตรวจต้นฉบับกับคำแนะนำผู้เขียนของวารสารก่อนส่ง เช่น ความยาว โครงสร้างบท บทคัดย่อสองภาษา คำสำคัญ การเปิดเผยการใช้ AI และเอกสารจริยธรรมการวิจัยในมนุษย์ ลดการตีกลับจากกองบรรณาธิการ</p>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- ARCHITECTURE -->
+<section id="architecture" data-screen-label="Architecture" style="padding:96px 40px">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="text-align:center;max-width:720px;margin:0 auto 56px;display:flex;flex-direction:column;gap:14px;align-items:center">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:#4a44d6;text-transform:uppercase">Architecture · สถาปัตยกรรม</div>
+      <h2 style="margin:0;font-size:clamp(28px,3.6vw,40px);line-height:1.2;font-weight:600;letter-spacing:-.015em">Agent เดียว เชื่อมถึงข้อมูลวารสารไทยทั้งระบบ</h2>
+      <p style="margin:0;font-size:16px;color:#6b6b75;line-height:1.7">An open, layered stack. ผู้ใช้ทำงานผ่าน Agentic Workspace, AI Agent Orchestrator วางแผนและเลือก Skill ที่เหมาะกับคำถาม แล้วเรียกข้อมูลผ่าน TCI MCP Gateway &amp; Registry (Model Context Protocol) ซึ่งเป็นจุดเชื่อมต่อเดียวของ MCP, Skill และ API ทั้งที่มีอยู่วันนี้และที่จะเพิ่มในอนาคต ข้อมูลทั้งหมดผ่าน pipeline ที่ออกแบบสำหรับภาษาไทยก่อนเข้าดัชนี และทุกการเข้าถึงเป็นไปตามสิทธิ์ของผู้ใช้ใน ThaiJO</p>
+    </div>
+
+    <div style="overflow-x:auto;padding-bottom:8px">
+      <div style="min-width:1000px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:grid;grid-template-columns:1fr 26px 1.2fr 26px 1.2fr 26px 1fr 26px 1fr;align-items:stretch">
+
+          <!-- Lane 1: Clients -->
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6b6b75;padding:0 2px 8px;border-bottom:1px solid #e3e3e8">01 · CLIENTS</div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">Agentic Workspace</span><span style="font-size:11.5px;color:#6b6b75">พื้นที่ทำงานส่วนตัว: Research Assistant, Deep Research, เครื่องมือทั้งหมด ไฟล์ต้นฉบับ และประวัติ</span></div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#4a44d6">USERS · เข้าสู่ระบบด้วยบัญชี ThaiJO หรือ ORCID</span>
+              <div style="display:flex;flex-wrap:wrap;gap:4px"><span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">ผู้เขียน</span><span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">บรรณาธิการ</span><span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">ผู้ประเมิน</span><span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">นักศึกษา / ผู้อ่าน</span></div>
+            </div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">AI Chatbot (FAQ)</span><span style="font-size:11.5px;color:#6b6b75">ถาม-ตอบทั่วไปเกี่ยวกับ ThaiJO และ TCI บนหน้าเว็บและ LINE OA ตอบจากคู่มือและประกาศ ไม่เข้าถึงเนื้อหางานวิจัย</span></div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">Editor Console · OJS plugin</span><span style="font-size:11.5px;color:#6b6b75">แผงเครื่องมือในหน้า submission ของ OJS: ตรวจอ้างอิง หาผู้ประเมิน ตรวจความซ้ำซ้อน</span></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;color:#b0b0b9;font-size:16px;padding-top:24px">⇄</div>
+
+          <!-- Lane 2: Orchestration -->
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6b6b75;padding:0 2px 8px;border-bottom:1px solid #e3e3e8">02 · ORCHESTRATION</div>
+            <div style="background:#4a44d6;color:#fff;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:7px">
+              <span style="font-weight:600;font-size:14px">AI Agent Orchestrator</span>
+              <span style="font-size:12px;color:#dcdaf7;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Planning · แตกคำถามเป็นงานย่อย</span>
+              <span style="font-size:12px;color:#dcdaf7;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Routing · เลือก Skill, MCP หรือ Subagent ที่เหมาะสม</span>
+              <span style="font-size:12px;color:#dcdaf7;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Subagents · ทำงานย่อยขนานกัน เช่น ค้นหา ตรวจอ้างอิง</span>
+              <span style="font-size:12px;color:#dcdaf7;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Re-planning · ปรับแผนเมื่อผลไม่ครบหรือล้มเหลว</span>
+              <span style="font-size:12px;color:#dcdaf7;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Synthesis · รวมผลเป็นคำตอบพร้อมอ้างอิง</span>
+              <span style="font-size:12px;color:#dcdaf7;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Memory · จดจำบริบทผู้ใช้และเซสชัน</span>
+              <span style="font-size:12px;color:#dcdaf7;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Human-in-the-loop · บรรณาธิการเป็นผู้ตัดสินใจขั้นสุดท้าย</span>
+            </div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#4a44d6">SKILLS</span>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Research Assistant (RAG Q&amp;A)</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Deep Research</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Reference Extraction &amp; Validation</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Reviewer Finder</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Research Atlas</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Journal Finder</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Literature Review Tool</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Author Finder</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Emerging Themes</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">Paper Explainer</span>
+                <span style="font-size:11px;background:#eeedfc;color:#4a44d6;padding:2px 7px;border-radius:999px">ThaiJO / TCI FAQ</span>
+                <span style="font-size:11px;border:1px dashed #c9c7f0;color:#6b6b75;padding:1px 7px;border-radius:999px">+ new</span>
+              </div>
+            </div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">LLM Router</span><span style="font-size:11.5px;color:#6b6b75">Pathumma LLM (NECTEC), Typhoon (SCB 10X), OpenThaiGPT และโมเดลสากล เลือกตามงาน ต้นทุน และข้อกำหนดด้านข้อมูล</span></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;color:#b0b0b9;font-size:16px;padding-top:24px">⇄</div>
+
+          <!-- Lane 3: Gateway -->
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6b6b75;padding:0 2px 8px;border-bottom:1px solid #e3e3e8">03 · GATEWAY</div>
+            <div style="background:#17171c;color:#fff;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:7px;flex:1">
+              <span style="font-weight:600;font-size:14px">TCI MCP Gateway &amp; Registry</span>
+              <span style="font-size:12px;color:#c4c4cc;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Registry · discovery, versioning, schema ของทุก MCP / Skill / API (รองรับ A2A สำหรับเชื่อม Agent ภายนอก)</span>
+              <span style="font-size:12px;color:#c4c4cc;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Access control · OAuth 2.1, ThaiJO SSO และสิทธิ์ตามบทบาท ผู้เขียน / บรรณาธิการ / ผู้ประเมิน</span>
+              <span style="font-size:12px;color:#c4c4cc;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Protocol bridge · MCP ↔ OJS REST API, OAI-PMH</span>
+              <span style="font-size:12px;color:#c4c4cc;display:flex;gap:8px;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#aaa6ff;flex:none"></span>Rate limiting · caching · audit log รายวารสาร</span>
+            </div>
+            <div style="border:1px dashed #b9b9c2;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px;color:#3c3c45">+ Register</span><span style="font-size:11.5px;color:#6b6b75">ลงทะเบียน Skill, MCP, API ใหม่จากวารสาร มหาวิทยาลัย หรือพาร์ทเนอร์</span></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;color:#b0b0b9;font-size:16px;padding-top:24px">⇄</div>
+
+          <!-- Lane 4: MCP servers -->
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6b6b75;padding:0 2px 8px;border-bottom:1px solid #e3e3e8">04 · MCP SERVERS</div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">ThaiJO Search MCP</span><span style="font-size:11.5px;color:#6b6b75">ค้นบทความ วารสาร ฉบับ ผู้นิพนธ์ ทั้งฐาน ThaiJO</span></div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">Article MCP</span><span style="font-size:11.5px;color:#6b6b75">metadata บทคัดย่อ PDF ฉบับเต็ม รายการอ้างอิง DOI</span></div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">Journal MCP</span><span style="font-size:11.5px;color:#6b6b75">ขอบเขต นโยบาย คำแนะนำผู้เขียน กลุ่ม TCI และ T-JIF</span></div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">Author MCP</span><span style="font-size:11.5px;color:#6b6b75">โปรไฟล์ สังกัด ORCID และผลงานใน ThaiJO</span></div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">Citation MCP</span><span style="font-size:11.5px;color:#6b6b75">การอ้างอิง cited-by T-JIF และ h-index จากฐาน TCI</span></div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">Editorial MCP</span><span style="font-size:11.5px;color:#6b6b75">สำหรับบรรณาธิการ: สถานะ submission ใน OJS, reviewer pool, ภาระงาน, COI</span></div>
+            <div style="background:#fff;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">Scholarly MCP</span><span style="font-size:11.5px;color:#6b6b75">ฐานข้อมูลสากล: OpenAlex, Crossref, PubMed, ORCID</span></div>
+            <div style="border:1px dashed #b9b9c2;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px;color:#3c3c45">Partner MCPs</span><span style="font-size:11.5px;color:#6b6b75">ห้องสมุด สถาบันวิจัย ฐานข้อมูลเฉพาะทาง</span></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;color:#b0b0b9;font-size:16px;padding-top:24px">⇄</div>
+
+          <!-- Lane 5: Data -->
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6b6b75;padding:0 2px 8px;border-bottom:1px solid #e3e3e8">05 · DATA</div>
+            <div style="background:#f7f7f5;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">ThaiJO (OJS)</span><span style="font-size:11.5px;color:#6b6b75">1,858 วารสาร · 39,307 ฉบับ · 423,394 บทความ · 536,878 ผู้นิพนธ์ · PDF ฉบับเต็ม</span></div>
+            <div style="background:#f7f7f5;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">ThaiJO / TCI Knowledge Base</span><span style="font-size:11.5px;color:#6b6b75">คู่มือผู้ใช้ นโยบาย เกณฑ์ประเมิน และประกาศ สำหรับ AI Chatbot</span></div>
+            <div style="background:#f7f7f5;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">TCI Citation Index</span><span style="font-size:11.5px;color:#6b6b75">ข้อมูลการอ้างอิง กลุ่มคุณภาพ 1–3 (รอบ 5: 2568–2572) และ T-JIF</span></div>
+            <div style="background:#f7f7f5;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">ACI · ASEAN Citation Index</span><span style="font-size:11.5px;color:#6b6b75">ฐานข้อมูลวารสารอาเซียน คัดวารสารไทยจาก TCI กลุ่ม 1</span></div>
+            <div style="background:#f7f7f5;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">Search &amp; Embedding Index</span><span style="font-size:11.5px;color:#6b6b75">ดัชนีค้นหาและเวกเตอร์ของบทความ ThaiJO ตัดคำภาษาไทย embedding หลายภาษา และ topic model</span></div>
+            <div style="background:#f7f7f5;border:1px solid #e3e3e8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px"><span style="font-weight:600;font-size:13.5px">OpenAlex · Crossref · PubMed · ORCID</span><span style="font-size:11.5px;color:#6b6b75">บทความสากล ตรวจสอบ DOI และสถานะถอนบทความ (Retraction Watch) ระบุตัวตนผู้แต่ง</span></div>
+          </div>
+        </div>
+
+        <div style="background:#f7f7f5;border:1px solid #e3e3e8;border-radius:12px;padding:12px 16px;display:flex;gap:8px 22px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:#3c3c45">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6b6b75">INGESTION PIPELINE</span>
+          <span>ดึง metadata และ PDF จาก OJS (OAI-PMH / REST)</span><span style="color:#c4c4cc">·</span>
+          <span>OCR บทความสแกนรุ่นเก่า</span><span style="color:#c4c4cc">·</span>
+          <span>แยกโครงสร้าง PDF และรายการอ้างอิง (GROBID + โมเดลภาษาไทย)</span><span style="color:#c4c4cc">·</span>
+          <span>ตัดคำภาษาไทย</span><span style="color:#c4c4cc">·</span>
+          <span>จับคู่ DOI / ORCID / ชื่อผู้นิพนธ์ซ้ำ</span><span style="color:#c4c4cc">·</span>
+          <span>สร้าง embedding และ topic</span><span style="color:#c4c4cc">·</span>
+          <span>อัปเดตรายวัน</span>
+        </div>
+        <div style="border:1px dashed #b9b9c2;border-radius:12px;padding:12px 16px;display:flex;gap:8px 22px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:#3c3c45">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6b6b75">CROSS-CUTTING</span>
+          <span>Guardrails · ป้องกัน prompt injection และข้อมูลส่วนบุคคล</span><span style="color:#c4c4cc">·</span>
+          <span>PDPA &amp; data residency</span><span style="color:#c4c4cc">·</span>
+          <span>แนวทางการใช้ AI ในการตีพิมพ์ตาม COPE</span><span style="color:#c4c4cc">·</span>
+          <span>ชุดข้อมูลประเมินผลภาษาไทยเชิงวิชาการ</span><span style="color:#c4c4cc">·</span>
+          <span>Prompt &amp; skill versioning</span><span style="color:#c4c4cc">·</span>
+          <span>Evaluation &amp; tracing (Agenta AI)</span><span style="color:#c4c4cc">·</span>
+          <span>Feedback จากผู้ใช้ → ชุดประเมิน</span><span style="color:#c4c4cc">·</span>
+          <span>Compute: ThaiSC LANTA (สวทช.) และ Thai cloud</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" data-screen-label="How it works" style="padding:72px 40px 96px;border-top:1px solid #ededf0">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:40px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:#4a44d6;text-transform:uppercase">How it works · วิธีทำงาน</div>
+      <h2 style="margin:0;font-size:clamp(28px,3.6vw,40px);line-height:1.2;font-weight:600;letter-spacing:-.015em">สี่ขั้นตอนจากคำถามถึงคำตอบที่ตรวจสอบได้</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px;padding:22px;border-top:2px solid #4a44d6;background:#fff;border-radius:0 0 12px 12px;border-left:1px solid #ededf0;border-right:1px solid #ededf0;border-bottom:1px solid #ededf0">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#4a44d6">01</span>
+        <h4 style="margin:0;font-size:16px;font-weight:600">เข้าสู่ Workspace</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">ใช้บัญชี ThaiJO หรือ ORCID ระบบดึงบริบทของคุณ เช่น สาขา บทความที่เคยตีพิมพ์ และวารสารที่สังกัด</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding:22px;border-top:2px solid #4a44d6;background:#fff;border-radius:0 0 12px 12px;border-left:1px solid #ededf0;border-right:1px solid #ededf0;border-bottom:1px solid #ededf0">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#4a44d6">02</span>
+        <h4 style="margin:0;font-size:16px;font-weight:600">ถาม หรือเลือกเครื่องมือ</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">พิมพ์คำถามเป็นภาษาไทยหรืออังกฤษ หรือเลือกเครื่องมือเฉพาะทาง เช่น Reference Extraction &amp; Validation</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding:22px;border-top:2px solid #4a44d6;background:#fff;border-radius:0 0 12px 12px;border-left:1px solid #ededf0;border-right:1px solid #ededf0;border-bottom:1px solid #ededf0">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#4a44d6">03</span>
+        <h4 style="margin:0;font-size:16px;font-weight:600">Agent วางแผนและเรียกใช้เครื่องมือ</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">Orchestrator แตกคำถามเป็นงานย่อยให้ Subagent เรียก Skill และ MCP ผ่าน TCI MCP Gateway ปรับแผนเมื่อข้อมูลไม่พอ และแสดงทุกขั้นตอนให้เห็น</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding:22px;border-top:2px solid #4a44d6;background:#fff;border-radius:0 0 12px 12px;border-left:1px solid #ededf0;border-right:1px solid #ededf0;border-bottom:1px solid #ededf0">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#4a44d6">04</span>
+        <h4 style="margin:0;font-size:16px;font-weight:600">ได้คำตอบพร้อมอ้างอิง</h4>
+        <p style="margin:0;font-size:14px;color:#6b6b75;line-height:1.7">ทุกข้อความลิงก์กลับไปยังบทความต้นทางใน ThaiJO หรือฐานข้อมูลสากล ส่งออกเป็นรายงาน BibTeX หรือ RIS หรือบันทึกไว้ใน Workspace</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" data-screen-label="FAQ" style="padding:96px 40px;border-top:1px solid #ededf0">
+  <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px">
+    <div style="display:flex;flex-direction:column;gap:12px;align-self:start">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:#4a44d6;text-transform:uppercase">FAQ · คำถามที่พบบ่อย</div>
+      <h2 style="margin:0;font-size:clamp(28px,3.6vw,40px);line-height:1.2;font-weight:600;letter-spacing:-.015em">คำถามจากผู้เขียนและบรรณาธิการ</h2>
+      <p style="margin:0;font-size:15px;color:#6b6b75;line-height:1.7">มีคำถามเพิ่มเติม ติดต่อทีมวิจัย TCI AI ผ่าน <a href="https://www.tci-thaijo.org/">ThaiJO</a></p>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #e3e3e8">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="8">
+        <div style="border-bottom:1px solid #e3e3e8">
+          <button onClick="{{ f.toggle }}" style="all:unset;display:flex;width:100%;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;cursor:pointer;font-size:16px;font-weight:500;color:#17171c;box-sizing:border-box">{{ f.q }}<span style="font-size:20px;color:#4a44d6;flex:none">{{ f.icon }}</span></button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0;padding:0 40px 18px 0;font-size:14.5px;color:#4a4a54;line-height:1.75">{{ f.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer data-screen-label="Footer" style="border-top:1px solid #ededf0;padding:56px 40px 40px;background:#fff">
+  <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:#8a8a94;text-transform:uppercase">พัฒนาโดย · Developed by</div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;align-items:center">
+        <div style="width:200px;height:72px;border-radius:10px;border:1px solid #e3e3e8;background:repeating-linear-gradient(135deg,#f0f0f3 0 8px,#f8f8fa 8px 16px);display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6b75">TCI logo</div>
+        <div style="width:200px;height:72px;border-radius:10px;border:1px solid #e3e3e8;background:repeating-linear-gradient(135deg,#f0f0f3 0 8px,#f8f8fa 8px 16px);display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6b75">NECTEC logo</div>
+        <div style="width:200px;height:72px;border-radius:10px;border:1px solid #e3e3e8;background:repeating-linear-gradient(135deg,#f0f0f3 0 8px,#f8f8fa 8px 16px);display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b6b75">NSTDA logo</div>
+      </div>
+      <p style="margin:0;font-size:13px;color:#6b6b75;max-width:640px;line-height:1.7">ศูนย์ดัชนีการอ้างอิงวารสารไทย (TCI) · ศูนย์เทคโนโลยีอิเล็กทรอนิกส์และคอมพิวเตอร์แห่งชาติ (NECTEC) · สำนักงานพัฒนาวิทยาศาสตร์และเทคโนโลยีแห่งชาติ (สวทช.)</p>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid #e3e3e8;padding-top:24px;font-size:13px;color:#6b6b75">
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;border-radius:6px;background:#4a44d6;color:#fff;display:grid;place-items:center;font-weight:700;font-size:11px">T</span>© 2026 TCI AI Research Team</div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <a href="https://www.tci-thaijo.org/" style="color:#6b6b75">ThaiJO</a>
+        <a href="https://tci-thailand.org/" style="color:#6b6b75">TCI</a>
+        <a href="https://www.nectec.or.th/" style="color:#6b6b75">NECTEC</a>
+        <a href="https://www.nstda.or.th/" style="color:#6b6b75">NSTDA</a>
+        <a href="https://agenta.ai/" style="color:#6b6b75">Agenta AI</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroPattern&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;dots&quot;,&quot;options&quot;:[&quot;dots&quot;,&quot;grid&quot;,&quot;none&quot;],&quot;tsType&quot;:&quot;'dots' | 'grid' | 'none'&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;defaultTool&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;workspace&quot;,&quot;options&quot;:[&quot;workspace&quot;,&quot;assistant&quot;,&quot;refs&quot;,&quot;deep&quot;,&quot;explainer&quot;,&quot;topics&quot;,&quot;themes&quot;,&quot;chatbot&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showProposed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  state = { tab: null, faq: 0 };
+  tabsData = [
+    { id: 'workspace', label: 'Agentic Workspace', ph: 'ถามอะไรก็ได้เกี่ยวกับงานวิจัยของคุณ เช่น “สรุปงานวิจัย PM2.5 ภาคเหนือ 5 ปีล่าสุดจาก ThaiJO พร้อมรายชื่อผู้เชี่ยวชาญ”', chips: ['สรุปงานวิจัยล่าสุดในสาขาของฉัน', 'หาวารสาร TCI กลุ่ม 1 ที่รับบทความนี้', 'ตรวจรายการอ้างอิงใน PDF'] },
+    { id: 'assistant', label: 'Research Assistant', ph: 'ถามคำถามวิจัยเป็นภาษาไทยหรืออังกฤษ ระบบตอบจากหลักฐานใน ThaiJO และฐานข้อมูลสากล พร้อมอ้างอิงทุกข้อความ', chips: ['ฟ้าทะลายโจรได้ผลกับ COVID-19 อาการไม่รุนแรงหรือไม่', 'งานวิจัยไทยเรื่อง PM2.5 กับเด็กมีข้อสรุปอย่างไร'] },
+    { id: 'refs', label: 'Reference Extraction', ph: 'วางรายการอ้างอิง หรืออัปโหลด PDF เพื่อแยกโครงสร้าง (ผู้แต่ง ปี ชื่อเรื่อง วารสาร DOI) และตรวจสอบกับ ThaiJO / Crossref', chips: ['อัปโหลด manuscript.pdf', 'ตรวจ DOI ทั้งหมด', 'ส่งออก BibTeX'] },
+    { id: 'deep', label: 'Deep Research', ph: 'ตั้งคำถามวิจัยหนึ่งข้อ ระบบจะวางแผน ค้น อ่าน และสังเคราะห์รายงานพร้อมอ้างอิงทุกข้อความ', chips: ['ผลของ PM2.5 ต่อสุขภาพเด็กในภาคเหนือ', 'การใช้ AI ในการศึกษาไทย 2564–2569'] },
+    { id: 'explainer', label: 'Paper Explainer', ph: 'วางลิงก์บทความจาก ThaiJO เพื่อแปลงเป็นหน้าเล่าเรื่องแบบเลื่อนอ่าน พร้อมแอนิเมชัน Manim ที่ AI สร้างให้', chips: ['tci-thaijo.org/…/article/view/…', 'อัปโหลด PDF บทความ'] },
+    { id: 'topics', label: 'Research Atlas', ph: 'เลือกสาขาหรือช่วงปี เพื่อดูแผนที่หัวข้อวิจัยของวารสารไทยทั้งระบบ และเจาะลงไปถึงวารสาร ผู้นิพนธ์ และบทความในแต่ละหัวข้อ', chips: ['สาธารณสุข 2565–2569', 'หัวข้อที่เติบโตเร็วที่สุด'] },
+    { id: 'themes', label: 'Emerging Themes', ph: 'ระบุสาขา เช่น สาธารณสุข หรือวิศวกรรม เพื่อดูหัวข้อวิจัยที่กำลังเติบโตจากแนวโน้มการตีพิมพ์ใน ThaiJO', chips: ['สาธารณสุข', 'เกษตรและอาหาร', 'ศึกษาศาสตร์'] },
+    { id: 'chatbot', label: 'AI Chatbot', ph: 'สอบถามข้อมูลทั่วไปเกี่ยวกับ ThaiJO และ TCI เช่น ขั้นตอนส่งบทความ เกณฑ์กลุ่มคุณภาพ ค่าธรรมเนียม หรือการใช้งานระบบ', chips: ['เกณฑ์วารสาร TCI กลุ่ม 1 คืออะไร', 'ส่งบทความใน ThaiJO อย่างไร', 'รอบประเมินคุณภาพวารสารครั้งถัดไปเมื่อไร'] },
+  ];
+  faqData = [
+    { q: 'คำตอบของ AI ใช้ข้อมูลจากที่ไหน', a: 'เครื่องมือทั้งหมดเรียกข้อมูลจาก ThaiJO และ TCI Citation Index ผ่าน MCP โดยตรง และเสริมด้วยฐานข้อมูลสากลอย่าง OpenAlex, Crossref, PubMed และ ORCID เมื่อจำเป็น ทุกคำตอบแนบลิงก์กลับไปยังบทความต้นทางเสมอ' },
+    { q: 'Research Assistant, Deep Research และ AI Chatbot ต่างกันอย่างไร', a: 'AI Chatbot ตอบคำถามทั่วไปเกี่ยวกับการใช้งาน ThaiJO และเกณฑ์ TCI จากคู่มือและประกาศ ไม่เข้าถึงเนื้อหางานวิจัย · Research Assistant ตอบคำถามวิจัยแบบสนทนาจากหลักฐานใน ThaiJO และฐานข้อมูลสากลพร้อมอ้างอิง ได้คำตอบในไม่กี่วินาที · Deep Research ใช้เวลานานกว่าเพื่อวางแผน ค้น อ่าน และสังเคราะห์เป็นรายงานฉบับเต็ม ทั้ง Research Assistant และ Deep Research ทำงานอยู่ใน Agentic Workspace' },
+    { q: 'ต้นฉบับที่อัปโหลดจะถูกนำไปใช้อย่างไร', a: 'ต้นฉบับใช้เฉพาะในเซสชันของผู้ใช้เพื่อประมวลผลคำขอนั้น ไม่นำต้นฉบับไปฝึกโมเดล จัดเก็บและประมวลผลตาม PDPA และผู้ใช้ลบข้อมูลใน Workspace ได้ทุกเมื่อ' },
+    { q: 'รองรับภาษาไทยได้ดีแค่ไหน', a: 'ระบบออกแบบสำหรับภาษาไทยเป็นหลัก ตั้งแต่การค้นหา การแยกรายการอ้างอิงรูปแบบไทย ไปจนถึงชุดข้อมูลประเมินผลที่สร้างจากบทความในวารสารไทยจริง และรองรับภาษาอังกฤษควบคู่กัน' },
+    { q: 'วารสารหรือมหาวิทยาลัยจะเชื่อมต่อได้อย่างไร', a: 'ผ่าน TCI MCP Gateway & Registry ซึ่งจะเปิดให้ลงทะเบียน Skill, MCP และ API เพิ่มเติมในระยะถัดไป วารสารนำร่องสามารถติดต่อทีมวิจัยเพื่อเริ่มทดสอบได้ก่อน' },
+    { q: 'ใช้โมเดลภาษาใด', a: 'ระบบไม่ผูกกับโมเดลเดียว LLM Router ของ Orchestrator เลือกระหว่างโมเดลภาษาไทยแบบเปิด เช่น Pathumma LLM ของ NECTEC, Typhoon ของ SCB 10X และ OpenThaiGPT กับโมเดลสากล ตามลักษณะงาน ต้นทุน และข้อกำหนดด้านข้อมูล โดยทุกคำตอบต้องอ้างอิงแหล่งข้อมูลที่ตรวจสอบได้ผ่าน MCP' },
+    { q: 'ใครเป็นผู้พัฒนา', a: 'ทีมวิจัย TCI AI ภายใต้ศูนย์ดัชนีการอ้างอิงวารสารไทย (TCI) ร่วมกับศูนย์เทคโนโลยีอิเล็กทรอนิกส์และคอมพิวเตอร์แห่งชาติ (NECTEC) สำนักงานพัฒนาวิทยาศาสตร์และเทคโนโลยีแห่งชาติ (สวทช.) โดยใช้ Agenta AI เป็นแพลตฟอร์มจัดการและประเมิน AI Agent' },
+    { q: 'การใช้ AI ขัดกับจริยธรรมการตีพิมพ์หรือไม่', a: 'เครื่องมือออกแบบตามแนวทาง COPE: AI ไม่ถือเป็นผู้นิพนธ์ ผู้เขียนต้องเปิดเผยการใช้ AI ตามนโยบายของแต่ละวารสาร และการตัดสินใจรับหรือปฏิเสธบทความยังเป็นของบรรณาธิการเสมอ ระบบช่วยค้น ตรวจสอบ และสรุป แต่ไม่ตัดสินใจแทน' },
+  ];
+  topicGraph() {
+    if (this._graph3) return this._graph3;
+    let s = 20261014;
+    const rnd = () => { s = (s + 0x6D2B79F5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+    const h = React.createElement;
+    const clusters = [
+      { name: 'สาธารณสุข', c: '#8f5ef0', x: 150, y: 110, r: 27, n: 13 },
+      { name: 'เกษตรและอาหาร', c: '#e0554f', x: 125, y: 248, r: 22, n: 11 },
+      { name: 'วิศวกรรม', c: '#3a74d6', x: 395, y: 88, r: 20, n: 10 },
+      { name: 'ศึกษาศาสตร์', c: '#37a862', x: 300, y: 212, r: 18, n: 10 },
+      { name: 'สังคมศาสตร์', c: '#b89a1f', x: 428, y: 262, r: 16, n: 9 },
+    ];
+    const edges = [], nodes = [], labels = [];
+    for (let i = 0; i < clusters.length; i++) for (let j = i + 1; j < clusters.length; j++) {
+      edges.push(h('line', { key: `h${i}${j}`, x1: clusters[i].x, y1: clusters[i].y, x2: clusters[j].x, y2: clusters[j].y, stroke: '#9a9aa4', strokeWidth: 1.2 + rnd() * 2.2, opacity: .12 }));
+    }
+    clusters.forEach((cl, ci) => {
+      const sats = [];
+      for (let i = 0; i < cl.n; i++) {
+        const a = rnd() * Math.PI * 2, d = 38 + rnd() * 64;
+        const x = Math.max(10, Math.min(510, cl.x + Math.cos(a) * d)), y = Math.max(10, Math.min(330, cl.y + Math.sin(a) * d));
+        const r = 2.5 + rnd() * 6;
+        sats.push({ x, y, r });
+        edges.push(h('line', { key: `e${ci}-${i}`, x1: cl.x, y1: cl.y, x2: x, y2: y, stroke: cl.c, strokeWidth: .8, opacity: .35 }));
+        if (i > 0 && rnd() < .55) { const p = sats[Math.floor(rnd() * i)]; edges.push(h('line', { key: `s${ci}-${i}`, x1: p.x, y1: p.y, x2: x, y2: y, stroke: cl.c, strokeWidth: .6, opacity: .22 })); }
+      }
+      sats.forEach((p, i) => {
+        nodes.push(h('circle', { key: `n${ci}-${i}`, cx: p.x, cy: p.y, r: p.r, fill: cl.c, opacity: .85 }));
+        if (i % 3 === 0) labels.push(h('text', { key: `t${ci}-${i}`, x: p.x + p.r + 2, y: p.y + 3, fontSize: 9, fill: '#6b6b75', fontFamily: 'IBM Plex Mono, monospace' }, `T${ci * 10 + i + 1}`));
+      });
+      nodes.push(h('circle', { key: `hub${ci}`, cx: cl.x, cy: cl.y, r: cl.r, fill: cl.c, opacity: .92 }));
+      labels.push(h('text', { key: `hl${ci}`, x: cl.x, y: cl.y + cl.r + 15, fontSize: 14, fontWeight: 600, textAnchor: 'middle', fill: '#17171c', stroke: '#fff', strokeWidth: 3, paintOrder: 'stroke', fontFamily: 'IBM Plex Sans Thai, sans-serif' }, cl.name));
+    });
+    const sel = { x: 222, y: 150, r: 11, c: '#8f5ef0' };
+    edges.push(h('line', { key: 'sel-e', x1: clusters[0].x, y1: clusters[0].y, x2: sel.x, y2: sel.y, stroke: sel.c, strokeWidth: 1.6, opacity: .7 }));
+    edges.push(h('line', { key: 'sel-e2', x1: clusters[2].x, y1: clusters[2].y, x2: sel.x, y2: sel.y, stroke: '#3a74d6', strokeWidth: 1, opacity: .4 }));
+    nodes.push(h('circle', { key: 'sel-ring', cx: sel.x, cy: sel.y, r: sel.r + 5, fill: 'none', stroke: '#4a44d6', strokeWidth: 1.5, strokeDasharray: '3 2' }));
+    nodes.push(h('circle', { key: 'sel', cx: sel.x, cy: sel.y, r: sel.r, fill: sel.c }));
+    labels.push(h('text', { key: 'sel-l', x: sel.x + sel.r + 9, y: sel.y + 4.5, fontSize: 13, fontWeight: 600, fill: '#4a44d6', stroke: '#fff', strokeWidth: 3, paintOrder: 'stroke', fontFamily: 'IBM Plex Sans Thai, sans-serif' }, 'T5 · PM2.5 และสุขภาพ'));
+    this._graph3 = h('svg', { viewBox: '0 0 520 340', preserveAspectRatio: 'xMidYMid meet', style: { width: '100%', height: '100%', display: 'block' } }, ...edges, ...nodes, ...labels);
+    return this._graph3;
+  }
+  renderVals() {
+    const ids = this.tabsData.map(t => t.id);
+    const active = this.state.tab ?? (ids.includes(this.props.defaultTool) ? this.props.defaultTool : ids[0]);
+    const cur = this.tabsData.find(t => t.id === active);
+    const pattern = this.props.heroPattern ?? 'dots';
+    const base = { appearance: 'none', border: 0, fontSize: '13.5px', fontWeight: 500, padding: '12px 16px', cursor: 'pointer', whiteSpace: 'nowrap', borderRadius: '10px 10px 0 0', fontFamily: 'inherit' };
+    return {
+      tabs: this.tabsData.map(t => ({
+        label: t.label,
+        select: () => this.setState({ tab: t.id }),
+        style: t.id === active ? { ...base, background: '#4a44d6', color: '#fff' } : { ...base, background: 'transparent', color: '#5c5c66' },
+      })),
+      placeholder: cur.ph,
+      chips: cur.chips.map(c => ({ text: c })),
+      showDots: pattern === 'dots',
+      showGrid: pattern === 'grid',
+      topicGraph: this.topicGraph(),
+      showProposed: this.props.showProposed ?? true,
+      faqs: this.faqData.map((f, i) => ({
+        q: f.q, a: f.a,
+        open: this.state.faq === i,
+        icon: this.state.faq === i ? '−' : '+',
+        toggle: () => this.setState(s => ({ faq: s.faq === i ? -1 : i })),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>
