@@ -30,7 +30,7 @@ export function RefsMock({ label }: { label: string }) {
     <Scene
       role="img"
       aria-label={label}
-      className="overflow-hidden rounded-[14px] border border-line bg-white text-[12px] shadow-mock"
+      className="overflow-hidden rounded-[18px] border border-line bg-white text-[12px] shadow-mock"
     >
       <div className="flex items-center gap-[10px] border-b border-hair px-[14px] py-3">
         <span className="mono rounded-[5px] bg-bubble px-[7px] py-[3px] text-[10.5px]">manuscript_v3.pdf</span>

@@ -4,10 +4,31 @@
       "id": "clients",
       "label": "01 · CLIENTS",
       "boxes": [
-        { "kind": "box", "title": "Agentic Workspace", "desc": "Personal workspace: Research Assistant, Deep Research, all tools, manuscript files and history" },
-        { "kind": "chips", "label": "USERS · Sign in with a ThaiJO or ORCID account", "chips": ["Authors", "Editors", "Reviewers", "Students / Readers"] },
-        { "kind": "box", "title": "AI Chatbot (FAQ)", "desc": "General Q&A about ThaiJO and TCI on the website and LINE OA, answered from manuals and announcements, with no access to research content" },
-        { "kind": "box", "title": "Editor Console · OJS plugin", "desc": "Tool panel on the OJS submission page: check references, find reviewers, check similarity" }
+        {
+          "kind": "box",
+          "title": "Agentic Workspace",
+          "desc": "Personal research workspace with every tool in one place"
+        },
+        {
+          "kind": "chips",
+          "label": "USERS · Sign in with ThaiJO or ORCID",
+          "chips": [
+            "Authors",
+            "Editors",
+            "Reviewers",
+            "Readers"
+          ]
+        },
+        {
+          "kind": "box",
+          "title": "AI Chatbot (FAQ)",
+          "desc": "ThaiJO and TCI help on the web and LINE OA"
+        },
+        {
+          "kind": "box",
+          "title": "Editor Console · OJS plugin",
+          "desc": "Editor tools inside OJS submissions"
+        }
       ]
     },
     {
@@ -18,34 +39,31 @@
           "kind": "primary",
           "title": "AI Agent Orchestrator",
           "bullets": [
-            "Planning · break the question into subtasks",
-            "Routing · choose the right Skill, MCP or Subagent",
-            "Subagents · run subtasks in parallel, such as search and reference checks",
-            "Re-planning · adjust the plan when results are incomplete or fail",
-            "Synthesis · combine results into a cited answer",
-            "Memory · retain user and session context",
-            "Human-in-the-loop · the editor makes the final decision"
+            "Planning · splits a question into tasks",
+            "Agent Loop · think → act → check → re-plan",
+            "Tool Use · calls Skills and MCP servers",
+            "Subagents · run tasks in parallel",
+            "Memory · keeps user context"
           ]
         },
         {
           "kind": "chips",
           "label": "SKILLS",
           "chips": [
-            "Research Assistant (RAG Q&A)",
+            "Research Assistant",
             "Deep Research",
             "Reference Extraction & Validation",
             "Reviewer Finder",
-            "Research Atlas",
             "Journal Finder",
-            "Literature Review Tool",
-            "Author Finder",
-            "Emerging Themes",
-            "Paper Explainer",
-            "ThaiJO / TCI FAQ"
+            "Research Atlas"
           ],
-          "more": "+ new"
+          "more": "+ more"
         },
-        { "kind": "box", "title": "LLM Router", "desc": "Pathumma LLM (NECTEC), Typhoon (SCB 10X), OpenThaiGPT and international models, chosen by task, cost and data requirements" }
+        {
+          "kind": "box",
+          "title": "LLM Router",
+          "desc": "Pathumma LLM, Typhoon, OpenThaiGPT and global models"
+        }
       ]
     },
     {
@@ -56,39 +74,99 @@
           "kind": "dark",
           "title": "TCI MCP Gateway & Registry",
           "bullets": [
-            "Registry · discovery, versioning and schemas for every MCP / Skill / API (A2A support for connecting external agents)",
-            "Access control · OAuth 2.1, ThaiJO SSO and role-based permissions for authors / editors / reviewers",
-            "Protocol bridge · MCP ↔ OJS REST API, OAI-PMH",
-            "Rate limiting · caching · per-journal audit logs"
+            "Registry · discover and version MCP servers, Skills, APIs",
+            "Access control · OAuth 2.1, ThaiJO SSO, role-based",
+            "Protocol bridge · MCP ↔ OJS REST, OAI-PMH",
+            "Rate limits · caching · audit log"
           ]
         },
-        { "kind": "dashed", "title": "+ Register", "desc": "Register new Skills, MCP servers and APIs from journals, universities or partners" }
+        {
+          "kind": "dashed",
+          "title": "+ Register",
+          "desc": "Add Skills, MCP servers and APIs from partners"
+        }
       ]
     },
     {
       "id": "mcp",
       "label": "04 · MCP SERVERS",
       "boxes": [
-        { "kind": "box", "title": "ThaiJO Search MCP", "desc": "Search articles, journals, issues and authors across all of ThaiJO" },
-        { "kind": "box", "title": "Article MCP", "desc": "Metadata, abstracts, full-text PDFs, reference lists, DOIs" },
-        { "kind": "box", "title": "Journal MCP", "desc": "Scope, policies, author guidelines, TCI tier and T-JIF" },
-        { "kind": "box", "title": "Author MCP", "desc": "Profiles, affiliations, ORCID and publications in ThaiJO" },
-        { "kind": "box", "title": "Citation MCP", "desc": "Citations, cited-by, T-JIF and h-index from the TCI database" },
-        { "kind": "box", "title": "Editorial MCP", "desc": "For editors: OJS submission status, reviewer pool, workload, COI" },
-        { "kind": "box", "title": "Scholarly MCP", "desc": "International databases: OpenAlex, Crossref, PubMed, ORCID" },
-        { "kind": "dashed", "title": "Partner MCPs", "desc": "Libraries, research institutes, specialist databases" }
+        {
+          "kind": "box",
+          "title": "ThaiJO Search MCP",
+          "desc": "Search articles, journals and authors"
+        },
+        {
+          "kind": "box",
+          "title": "Article MCP",
+          "desc": "Metadata, full-text PDFs, references"
+        },
+        {
+          "kind": "box",
+          "title": "Journal MCP",
+          "desc": "Journal policies, TCI tier, T-JIF"
+        },
+        {
+          "kind": "box",
+          "title": "Author MCP",
+          "desc": "ORCID profiles and publications"
+        },
+        {
+          "kind": "box",
+          "title": "Citation MCP",
+          "desc": "cited-by · T-JIF · h-index"
+        },
+        {
+          "kind": "box",
+          "title": "Editorial MCP",
+          "desc": "Editors only: submissions, reviewers, COI"
+        },
+        {
+          "kind": "box",
+          "title": "Scholarly MCP",
+          "desc": "OpenAlex · Crossref · PubMed · ORCID"
+        },
+        {
+          "kind": "dashed",
+          "title": "Partner MCPs",
+          "desc": "Libraries and specialist databases"
+        }
       ]
     },
     {
       "id": "data",
       "label": "05 · DATA",
       "boxes": [
-        { "kind": "data", "title": "ThaiJO (OJS)", "desc": "{journals} journals · {issues} issues · {articles} articles · {authors} authors · full-text PDFs" },
-        { "kind": "data", "title": "ThaiJO / TCI Knowledge Base", "desc": "User manuals, policies, assessment criteria and announcements for the AI Chatbot" },
-        { "kind": "data", "title": "TCI Citation Index", "desc": "Citation data, quality Tier 1–3 for Round 5, B.E. 2568–2572 (2025–2029), and T-JIF" },
-        { "kind": "data", "title": "ACI · ASEAN Citation Index", "desc": "ASEAN journal database; Thai journals are selected from TCI Tier 1" },
-        { "kind": "data", "title": "Search & Embedding Index", "desc": "Search and vector index of ThaiJO articles: Thai word segmentation, multilingual embeddings and topic models" },
-        { "kind": "data", "title": "OpenAlex · Crossref · PubMed · ORCID", "desc": "International articles, DOI and retraction status checks (Retraction Watch), author identification" }
+        {
+          "kind": "data",
+          "title": "ThaiJO (OJS)",
+          "desc": "{journals} journals · {articles} articles"
+        },
+        {
+          "kind": "data",
+          "title": "ThaiJO / TCI Knowledge Base",
+          "desc": "Guides, policies and notices"
+        },
+        {
+          "kind": "data",
+          "title": "TCI Citation Index",
+          "desc": "Citations, Tier 1–3 and T-JIF"
+        },
+        {
+          "kind": "data",
+          "title": "ACI · ASEAN Citation Index",
+          "desc": "ASEAN journal index"
+        },
+        {
+          "kind": "data",
+          "title": "Search & Embedding Index",
+          "desc": "Search, vector and topic-model index"
+        },
+        {
+          "kind": "data",
+          "title": "OpenAlex · Crossref · PubMed · ORCID",
+          "desc": "Global articles, DOIs and retraction status"
+        }
       ]
     }
   ],
@@ -97,11 +175,10 @@
       "kind": "data",
       "label": "INGESTION PIPELINE",
       "items": [
-        "Harvest metadata and PDFs from OJS (OAI-PMH / REST)",
-        "OCR for older scanned articles",
-        "Parse PDF structure and references (GROBID + Thai language models)",
-        "Thai word segmentation",
-        "DOI / ORCID matching and author name deduplication",
+        "Harvest from OJS (OAI-PMH / REST)",
+        "OCR for scanned articles",
+        "Parse PDFs and reference lists",
+        "Match DOI / ORCID",
         "Build embeddings and topics",
         "Daily updates"
       ]
@@ -110,14 +187,12 @@
       "kind": "dashed",
       "label": "CROSS-CUTTING",
       "items": [
-        "Guardrails · protection against prompt injection and personal data leaks",
+        "Guardrails",
         "PDPA & data residency",
-        "COPE-based guidance on AI use in publishing",
-        "Thai academic evaluation datasets",
-        "Prompt & skill versioning",
-        "Evaluation & tracing",
-        "User feedback → evaluation sets",
-        "Compute: ThaiSC LANTA (NSTDA) and Thai cloud"
+        "COPE guidelines",
+        "Thai evaluation sets",
+        "Prompt & Skill versioning",
+        "Evaluation & tracing"
       ]
     }
   ]

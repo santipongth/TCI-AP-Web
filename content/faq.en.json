@@ -1,27 +1,27 @@
 [
   {
     "question": "Where does the AI get its information?",
-    "answer": "All tools retrieve data directly from ThaiJO and the TCI Citation Index via MCP, supplemented by international databases such as OpenAlex, Crossref, PubMed and ORCID when needed. Every answer always links back to the source articles."
+    "answer": "From ThaiJO and the TCI Citation Index via MCP, supplemented by international databases such as OpenAlex, Crossref, PubMed and ORCID when needed. AI Chatbot answers from ThaiJO and TCI manuals and announcements. Every answer links back to its sources."
   },
   {
     "question": "How do Research Assistant, Deep Research and AI Chatbot differ?",
-    "answer": "AI Chatbot answers general questions about using ThaiJO and about TCI criteria from manuals and announcements, without access to research content · Research Assistant answers research questions conversationally from evidence in ThaiJO and international databases, with citations, in a few seconds · Deep Research takes longer to plan, search, read and synthesize a full report. Research Assistant and Deep Research both run inside the Agentic Workspace."
+    "answer": "They differ in data scope and depth. AI Chatbot answers general questions about using ThaiJO and about TCI criteria from manuals and announcements, without access to research content. Research Assistant answers research questions conversationally from evidence in ThaiJO and international databases, with citations, in a few seconds. Deep Research takes longer to plan, search, read and synthesize a full report. Both run inside the Agentic Workspace."
   },
   {
     "question": "How are uploaded manuscripts used?",
-    "answer": "Manuscripts are used only within the user's session to process that request. They are not used to train models, they are stored and processed in accordance with Thailand's PDPA, and users can delete their data in the Workspace at any time."
+    "answer": "Only to process the user's request within that session; they are not used to train models. Data is stored and processed in accordance with Thailand's PDPA, and users can delete their data in the Workspace at any time."
   },
   {
     "question": "How well does it handle Thai?",
-    "answer": "The system is designed for Thai first, from search and parsing of Thai-style references to evaluation datasets built from real articles in Thai journals. English is fully supported alongside it."
+    "answer": "The system is designed for Thai first, from word segmentation and search to parsing Thai-style references and evaluation datasets built from real Thai journal articles. English is supported alongside it."
   },
   {
     "question": "How can a journal or university connect?",
-    "answer": "Through the TCI MCP Gateway & Registry, which will open registration for additional Skills, MCP servers and APIs in the next phase. Pilot journals can contact the research team to start testing early."
+    "answer": "Through the TCI MCP Gateway & Registry, which will open registration for additional Skills, MCP servers and APIs in the next phase. Journals interested in piloting can contact the research team to start testing early."
   },
   {
     "question": "Which language models does it use?",
-    "answer": "The system is not tied to a single model. The Orchestrator's LLM Router chooses between open Thai language models, such as NECTEC's Pathumma LLM, SCB 10X's Typhoon and OpenThaiGPT, and international models, based on the task, cost and data requirements. Every answer must cite verifiable sources through MCP."
+    "answer": "Several; the system is not tied to a single model. The LLM Router in the AI Agent Orchestrator chooses between open Thai models, such as NECTEC's Pathumma LLM, SCB 10X's Typhoon and OpenThaiGPT, and international models, based on the task, cost and data requirements. Every answer must cite verifiable sources through MCP."
   },
   {
     "question": "Who develops it?",
@@ -29,6 +29,6 @@
   },
   {
     "question": "Does using AI conflict with publication ethics?",
-    "answer": "The tools follow COPE guidance: AI cannot be listed as an author, authors must disclose AI use under each journal's policy, and the decision to accept or reject a manuscript always remains with the editor. The system helps search, check and summarize, but does not decide on anyone's behalf."
+    "answer": "Not when it is used transparently. The tools follow COPE guidance: AI cannot be listed as an author, authors must disclose AI use under each journal's policy, and the editor always decides whether to accept or reject a manuscript. The system helps search, check and summarize, but does not decide for anyone."
   }
 ]

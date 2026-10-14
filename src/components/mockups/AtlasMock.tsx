@@ -30,7 +30,7 @@ export function AtlasMock({ label: aria }: { label: string }) {
       role="img"
       aria-label={aria}
       threshold={0.3}
-      className="overflow-hidden rounded-[14px] border border-line bg-white text-[12px] shadow-mock"
+      className="overflow-hidden rounded-[18px] border border-line bg-white text-[12px] shadow-mock"
     >
       <div className="flex flex-wrap items-center gap-2 border-b border-hair px-[14px] py-[10px]">
         <span className="font-medium text-ink">Research Atlas</span>
@@ -48,7 +48,7 @@ export function AtlasMock({ label: aria }: { label: string }) {
         <div className="relative aspect-[520/340] min-w-0 bg-[radial-gradient(#ececf0_1px,transparent_1.2px)] bg-size-[14px_14px]">
           <TopicGraph />
         </div>
-        <div className="flex max-w-[260px] flex-col gap-[10px] border-t border-l border-hair bg-surface p-[14px]">
+        <div className="flex max-w-[260px] flex-col gap-[10px] border-t border-l border-hair bg-surface p-[14px] @max-[520px]:max-w-none @max-[520px]:border-l-0">
           <div className={label}>TOPIC 05 · สาธารณสุข</div>
           <div className="text-[13.5px] leading-[1.35] font-semibold text-ink">PM2.5 และผลกระทบต่อสุขภาพ</div>
           <div className="grid grid-cols-2 gap-2">

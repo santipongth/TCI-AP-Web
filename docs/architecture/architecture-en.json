@@ -1,0 +1,348 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "TCI AI Architecture",
+    "locale": "en",
+    "output": "docs/architecture/architecture-en.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "users",
+      "type": "external",
+      "label": "Researchers",
+      "sublabel": "authors · editors",
+      "pos": [
+        40,
+        300
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "chatbot",
+      "type": "frontend",
+      "label": "AI Chatbot",
+      "sublabel": "web · LINE OA",
+      "pos": [
+        250,
+        196
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "workspace",
+      "type": "frontend",
+      "label": "Agentic Workspace",
+      "sublabel": "research web app",
+      "pos": [
+        250,
+        300
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "editor",
+      "type": "frontend",
+      "label": "Editor Console",
+      "sublabel": "OJS plugin",
+      "pos": [
+        250,
+        404
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "skills",
+      "type": "backend",
+      "label": "Skills",
+      "sublabel": "Assistant · Deep Research",
+      "pos": [
+        500,
+        60
+      ],
+      "size": [
+        190,
+        64
+      ]
+    },
+    {
+      "id": "orchestrator",
+      "type": "backend",
+      "label": "AI Agent Orchestrator",
+      "sublabel": "Agent Loop · Tool Use",
+      "pos": [
+        500,
+        200
+      ],
+      "size": [
+        190,
+        260
+      ],
+      "tag": "Planning · Memory"
+    },
+    {
+      "id": "llm",
+      "type": "cloud",
+      "label": "LLM Router",
+      "sublabel": "Pathumma · Typhoon",
+      "pos": [
+        500,
+        540
+      ],
+      "size": [
+        190,
+        64
+      ]
+    },
+    {
+      "id": "gateway",
+      "type": "security",
+      "label": "TCI MCP Gateway",
+      "sublabel": "Registry · OAuth 2.1",
+      "pos": [
+        750,
+        300
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "tag": "ThaiJO SSO"
+    },
+    {
+      "id": "thaijo_mcp",
+      "type": "backend",
+      "label": "ThaiJO MCP",
+      "sublabel": "Search · Article · Author",
+      "pos": [
+        990,
+        210
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "scholarly_mcp",
+      "type": "backend",
+      "label": "Scholarly MCP",
+      "sublabel": "OpenAlex · Crossref",
+      "pos": [
+        990,
+        390
+      ],
+      "size": [
+        180,
+        64
+      ]
+    },
+    {
+      "id": "index",
+      "type": "database",
+      "label": "Search Index",
+      "sublabel": "full text · vectors · topics",
+      "pos": [
+        1230,
+        120
+      ],
+      "size": [
+        190,
+        64
+      ]
+    },
+    {
+      "id": "thaijo_db",
+      "type": "database",
+      "label": "ThaiJO · TCI",
+      "sublabel": "articles · citations",
+      "pos": [
+        1230,
+        300
+      ],
+      "size": [
+        190,
+        64
+      ]
+    },
+    {
+      "id": "global",
+      "type": "external",
+      "label": "Global databases",
+      "sublabel": "PubMed · ORCID",
+      "pos": [
+        1230,
+        480
+      ],
+      "size": [
+        190,
+        64
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "users-workspace",
+      "from": "users",
+      "to": "workspace",
+      "label": "HTTPS",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "users-chatbot",
+      "from": "users",
+      "to": "chatbot",
+      "label": "ask",
+      "fromSide": "top",
+      "toSide": "left"
+    },
+    {
+      "id": "users-editor",
+      "from": "users",
+      "to": "editor",
+      "label": "review",
+      "fromSide": "bottom",
+      "toSide": "left"
+    },
+    {
+      "id": "workspace-orchestrator",
+      "from": "workspace",
+      "to": "orchestrator",
+      "label": "question",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "chatbot-orchestrator",
+      "from": "chatbot",
+      "to": "orchestrator",
+      "label": "FAQ",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "editor-orchestrator",
+      "from": "editor",
+      "to": "orchestrator",
+      "label": "tasks",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "orchestrator-skills",
+      "from": "orchestrator",
+      "to": "skills",
+      "label": "pick Skill",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "orchestrator-llm",
+      "from": "orchestrator",
+      "to": "llm",
+      "label": "prompt",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "orchestrator-gateway",
+      "from": "orchestrator",
+      "to": "gateway",
+      "label": "MCP",
+      "variant": "emphasis"
+    },
+    {
+      "id": "gateway-thaijo",
+      "from": "gateway",
+      "to": "thaijo_mcp",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "gateway-scholarly",
+      "from": "gateway",
+      "to": "scholarly_mcp",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "thaijo-index",
+      "from": "thaijo_mcp",
+      "to": "index",
+      "label": "search",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "thaijo-db",
+      "from": "thaijo_mcp",
+      "to": "thaijo_db",
+      "label": "read",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "scholarly-global",
+      "from": "scholarly_mcp",
+      "to": "global",
+      "label": "API",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "ingest",
+      "from": "thaijo_db",
+      "to": "index",
+      "label": "daily ingest",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "Agent",
+      "items": [
+        "Planning splits a question into tasks",
+        "Agent Loop: think → act → check → re-plan",
+        "Tool Use calls Skills and MCP servers"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Gateway",
+      "items": [
+        "Registry for MCP servers, Skills and APIs",
+        "OAuth 2.1 · ThaiJO SSO · role-based access",
+        "Rate limits · caching · audit log"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Data",
+      "items": [
+        "Harvested from OJS and updated daily",
+        "Every answer cites its sources"
+      ]
+    }
+  ]
+}

@@ -33,10 +33,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const withStats = (text: string) => fill(text, stats);
 
   return (
-    <div className="mx-auto min-h-screen max-w-[1320px] bg-white">
+    <div className="min-h-screen overflow-x-clip bg-white">
       <a
         href="#main"
-        className="sr-only z-50 rounded-full bg-primary px-4 py-2 text-[14px] text-white focus:not-sr-only focus:absolute focus:top-3 focus:left-3"
+        className="sr-only z-[70] rounded-full bg-primary px-4 py-2 text-[14px] text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
       >
         {t('nav.skip')}
       </a>
@@ -50,6 +50,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           tagline: t('nav.tagline'),
           homeLabel: t('nav.homeLabel'),
           menuLabel: t('nav.menuLabel'),
+          menuOpen: t('nav.menuOpen'),
+          menuClose: t('nav.menuClose'),
           tools: t('nav.tools'),
           architecture: t('nav.architecture'),
           how: t('nav.how'),

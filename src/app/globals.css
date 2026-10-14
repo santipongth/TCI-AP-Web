@@ -44,6 +44,8 @@
   --color-on-dark-muted: #c4c4cc;
   --color-violet: #7c76ff;
   --color-violet-soft: #c8c6ff;
+  --color-lilac: #a99cff;
+  --color-aurora-cyan: #8be3f7;
 
   --color-success: #2fa36b;
   --color-success-ink: #1f7a4d;
@@ -76,20 +78,26 @@
   --shadow-mock: 0 24px 50px -32px rgba(23, 23, 28, 0.3);
   --shadow-mock-dark: 0 24px 50px -32px rgba(23, 23, 28, 0.6);
   --shadow-lift: 0 18px 40px -28px rgba(23, 23, 28, 0.35);
+  /* Modern Glass layer: soft, indigo-tinted depth */
+  --shadow-glass: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 10px 30px -16px rgba(41, 37, 120, 0.22), 0 2px 6px -3px rgba(23, 23, 28, 0.06);
+  --shadow-glass-raised: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 18px 40px -18px rgba(41, 37, 120, 0.32), 0 2px 8px -3px rgba(23, 23, 28, 0.08);
+  --shadow-card: 0 1px 2px rgba(23, 23, 28, 0.04), 0 10px 28px -18px rgba(23, 23, 28, 0.2);
+  --shadow-card-hover: 0 1px 2px rgba(23, 23, 28, 0.04), 0 24px 48px -24px rgba(74, 68, 214, 0.38);
+  --shadow-glow: 0 30px 80px -36px rgba(74, 68, 214, 0.5), 0 12px 32px -20px rgba(23, 23, 28, 0.2);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Type scale (README › Typography) */
-  --text-h1: clamp(36px, 5.2vw, 60px);
-  --text-h1--line-height: 1.15;
-  --text-h1--letter-spacing: -0.02em;
+  --text-h1: clamp(38px, 6vw, 72px);
+  --text-h1--line-height: 1.14;
+  --text-h1--letter-spacing: -0.025em;
   --text-h1--font-weight: 600;
-  --text-h2: clamp(28px, 3.6vw, 40px);
-  --text-h2--line-height: 1.2;
-  --text-h2--letter-spacing: -0.015em;
+  --text-h2: clamp(30px, 4vw, 46px);
+  --text-h2--line-height: 1.18;
+  --text-h2--letter-spacing: -0.02em;
   --text-h2--font-weight: 600;
-  --text-h3: 26px;
+  --text-h3: clamp(23px, 2.4vw, 28px);
   --text-h3--letter-spacing: -0.01em;
   --text-h3--font-weight: 600;
 }
@@ -103,7 +111,8 @@
 
 @layer base {
   html {
-    scroll-padding-top: var(--header-h, 0px);
+    /* fixed floating header ≈ 76px */
+    scroll-padding-top: 92px;
   }
   @media (prefers-reduced-motion: no-preference) {
     html {
@@ -138,12 +147,97 @@
   }
 }
 
+/* Section label as a soft pill (Modern Glass). */
 @utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-primary-line);
+  background: rgb(255 255 255 / 0.7);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11.5px;
   letter-spacing: 0.08em;
   color: var(--color-primary);
   text-transform: uppercase;
+}
+
+/* Frosted surface for the floating header, demo box and panels. */
+@utility glass {
+  background: rgb(255 255 255 / 0.72);
+  -webkit-backdrop-filter: saturate(160%) blur(18px);
+  backdrop-filter: saturate(160%) blur(18px);
+  border: 1px solid rgb(255 255 255 / 0.75);
+  box-shadow: var(--shadow-glass);
+}
+
+/* Indigo → violet text; vertical padding keeps Thai marks inside the clip box. */
+@utility text-gradient {
+  background-image: linear-gradient(100deg, var(--color-primary) 0%, var(--color-violet) 55%, var(--color-lilac) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-block: 0.06em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #fff;
+  background-image: linear-gradient(135deg, var(--color-primary) 0%, #5b55e6 55%, var(--color-violet) 100%);
+  box-shadow: 0 8px 20px -10px rgba(74, 68, 214, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: filter 200ms, box-shadow 200ms, translate 200ms;
+  &:hover {
+    filter: brightness(1.06);
+    text-decoration: none;
+    box-shadow: 0 12px 26px -10px rgba(74, 68, 214, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* Soft gradient "stage" that product mockups sit on. */
+@utility stage {
+  background-color: var(--color-surface);
+  background-image:
+    radial-gradient(110% 80% at 0% 0%, rgba(124, 118, 255, 0.16) 0%, transparent 55%),
+    radial-gradient(90% 70% at 100% 100%, rgba(139, 227, 247, 0.2) 0%, transparent 60%),
+    radial-gradient(#e4e4ec 1px, transparent 1.2px);
+  background-size: auto, auto, 18px 18px;
+  border: 1px solid var(--color-divider);
+}
+
+/* Gradient hairline that fades in on hover (cards). */
+@utility card-glow {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--color-violet), transparent 38%, transparent 62%, var(--color-lilac));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 250ms;
+    pointer-events: none;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @utility mono {

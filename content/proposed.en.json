@@ -15,7 +15,7 @@
     "audience": "author",
     "audienceLabel": "Authors",
     "title": "Thai Citation Style Formatter",
-    "body": "Automatically formats reference lists in Thai-language APA 7, Vancouver and each journal's own house style, building on Reference Extraction."
+    "body": "Automatically formats reference lists in Thai-language APA 7, Vancouver or each journal's own house style, building on Reference Extraction & Validation."
   },
   {
     "audience": "editor",

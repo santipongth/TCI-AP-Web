@@ -1,0 +1,22 @@
+# TCI AI landing page.
+#   cp .env.example .env    # then edit the values
+#   docker compose up -d --build
+# Serves on http://localhost:${PORT:-8080}. Put a TLS reverse proxy in front on a server (see DEPLOY.md).
+services:
+  web:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:8080}
+        NEXT_PUBLIC_WORKSPACE_URL: ${NEXT_PUBLIC_WORKSPACE_URL:-}
+    image: tci-ai-landing:latest
+    container_name: tci-ai-landing
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8080}:3000"
+    environment:
+      THAIJO_STATS_URL: ${THAIJO_STATS_URL:-}
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

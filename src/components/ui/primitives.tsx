@@ -1,3 +1,4 @@
+import { Check } from 'lucide-react';
 import type { CSSProperties, ElementType, ReactNode } from 'react';
 
 type Vars = CSSProperties & Record<`--${string}`, string | number>;
@@ -10,7 +11,7 @@ export function Eyebrow({ children, className = '' }: { children: ReactNode; cla
 /** Flagship badge, e.g. "01 · FLAGSHIP". */
 export function Badge({ children }: { children: ReactNode }) {
   return (
-    <span className="mono self-start rounded-[6px] bg-primary-tint px-2 py-1 text-[11px] tracking-[0.06em] text-primary">
+    <span className="mono w-fit rounded-full bg-primary-tint px-3 py-1 text-[11px] tracking-[0.06em] text-primary ring-1 ring-primary-line">
       {children}
     </span>
   );
@@ -43,17 +44,43 @@ export function Reveal({
   );
 }
 
-/** 6px primary dot bullets (README › Tools › Text column). */
+/** Feature bullets with a check in a soft indigo disc. */
 export function BulletList({ items }: { items: string[] }) {
   return (
-    <ul className="mt-1 flex list-none flex-col gap-2 p-0 text-[14px] text-strong">
+    <ul className="mt-1 flex list-none flex-col gap-3 p-0 text-[14.5px] leading-[1.6] text-strong">
       {items.map((item) => (
-        <li key={item} className="flex items-baseline gap-[10px]">
-          <span aria-hidden="true" className="size-[6px] flex-none rounded-full bg-primary" />
-          {item}
+        <li key={item} className="flex items-start gap-3">
+          <span aria-hidden="true" className="mt-[3px] grid size-5 flex-none place-items-center rounded-full bg-primary-tint text-primary ring-1 ring-primary-line">
+            <Check className="size-3" strokeWidth={3} />
+          </span>
+          <span>{item}</span>
         </li>
       ))}
     </ul>
+  );
+}
+
+/** Eyebrow pill + H2 + optional lead, centred or left-aligned. */
+export function SectionHeader({
+  eyebrow,
+  title,
+  lead,
+  align = 'center',
+  className = '',
+}: {
+  eyebrow: ReactNode;
+  title: ReactNode;
+  lead?: ReactNode;
+  align?: 'center' | 'left';
+  className?: string;
+}) {
+  const centred = align === 'center';
+  return (
+    <Reveal className={`flex flex-col gap-4 ${centred ? 'mx-auto max-w-[760px] items-center text-center' : 'max-w-[760px]'} ${className}`}>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 className="m-0 text-h2 [text-wrap:balance]">{title}</h2>
+      {lead && <p className="m-0 text-[16px] leading-[1.75] text-muted sm:text-[17px]">{lead}</p>}
+    </Reveal>
   );
 }
 

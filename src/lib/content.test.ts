@@ -21,9 +21,32 @@ function strings(value: unknown, path = ''): Array<[string, string]> {
 }
 
 describe('copy decisions', () => {
+  const all = JSON.stringify([th, en, getContent('th'), getContent('en')]);
+
   it('no longer mentions Agenta AI anywhere on the page', () => {
-    const all = JSON.stringify([th, en, getContent('th'), getContent('en')]);
     expect(all).not.toMatch(/agenta/i);
+  });
+
+  it('drops the GROBID note and the ThaiSC LANTA compute item', () => {
+    expect(all).not.toMatch(/GROBID|LANTA|ThaiSC/i);
+  });
+
+  it.each(['th', 'en'] as const)('keeps the %s orchestrator box short: Agent Loop and Tool Use, no Human-in-the-loop', (locale) => {
+    const orchestrator = getContent(locale)
+      .architecture.lanes.flatMap((l) => l.boxes)
+      .find((b) => b.kind === 'primary');
+    const bullets = orchestrator && 'bullets' in orchestrator ? orchestrator.bullets : [];
+    expect(bullets.some((b) => b.startsWith('Agent Loop'))).toBe(true);
+    expect(bullets.some((b) => b.startsWith('Tool Use'))).toBe(true);
+    expect(bullets.join(' ')).not.toMatch(/Human-in-the-loop/i);
+    expect(bullets.length).toBeLessThanOrEqual(5);
+  });
+
+  it.each(['th', 'en'] as const)('shows only the key %s skills and no word-segmentation step', (locale) => {
+    const { lanes, bars } = getContent(locale).architecture;
+    const skills = lanes.flatMap((l) => l.boxes).find((b) => b.kind === 'chips' && b.label === 'SKILLS');
+    expect(skills && 'chips' in skills ? skills.chips.length : 0).toBeLessThanOrEqual(6);
+    expect(JSON.stringify(bars)).not.toMatch(/ตัดคำ|word segmentation/i);
   });
 });
 
