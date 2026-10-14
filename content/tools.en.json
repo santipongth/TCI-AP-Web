@@ -1,0 +1,102 @@
+{
+  "flagship": [
+    {
+      "id": "workspace",
+      "badge": "01 · FLAGSHIP",
+      "title": "Agentic Workspace",
+      "body": "A personal workspace for each researcher that brings Research Assistant, Deep Research and every other tool together in one place, along with manuscript files and work history. The AI agent automatically calls the right Skills and MCP servers, such as ThaiJO Search, Article, Journal, Author and Citation MCP, through the TCI MCP Gateway, and keeps track of your research context throughout.",
+      "bullets": [
+        "Powered by an AI agent: plan → delegate to Subagents and Tools → revise the plan → synthesize a cited answer",
+        "Add new Skills, MCP servers and APIs through the Registry without changing the agent itself",
+        "Every answer cites back to the source articles in ThaiJO and international databases"
+      ]
+    },
+    {
+      "id": "assistant",
+      "badge": "02 · FLAGSHIP",
+      "title": "Research Assistant",
+      "body": "A conversational research Q&A assistant. Ask in Thai or English: the system finds evidence with hybrid search (keyword and semantic) across ThaiJO articles and international databases (OpenAlex, Crossref, PubMed), then answers with a citation on every statement (retrieval-augmented generation). Ask follow-up questions and open the source articles instantly.",
+      "bullets": [
+        "Answers only from the evidence it finds; if the evidence is insufficient, it says so plainly instead of guessing",
+        "See Thai and international research in one answer, with the evidence type labeled, such as RCT or systematic review",
+        "Hand a question off to Deep Research when you need an in-depth report, or save the answer in the Workspace"
+      ]
+    },
+    {
+      "id": "refs",
+      "badge": "03 · AUTHORS & EDITORS",
+      "title": "Reference Extraction & Validation",
+      "body": "Upload a PDF or paste a reference list, and the system parses each entry into fields (author, year, title, journal, DOI). It handles Thai-language citations in both APA and Vancouver styles, including Buddhist Era (B.E.) years, then checks against ThaiJO and Crossref that each reference exists, is accurate and has not been retracted, before the manuscript reaches the editor.",
+      "bullets": [
+        "Extract references from PDF, DOCX or pasted text",
+        "Check DOIs, years, journal names and retraction status",
+        "Help editors screen manuscripts before sending them to reviewers"
+      ]
+    },
+    {
+      "id": "deep",
+      "badge": "04 · AUTHORS",
+      "title": "Deep Research",
+      "body": "Pose a single research question and the system plans the search, searches ThaiJO and international sources, reads the relevant articles, and synthesizes a report with a citation on every statement. Export it straight away as a draft literature review.",
+      "bullets": [
+        "Shows the search plan and lets you adjust it before starting",
+        "Weights Thai articles in ThaiJO alongside international sources",
+        "Hands off to the Literature Review Tool to build comparison tables"
+      ]
+    },
+    {
+      "id": "explainer",
+      "badge": "05 · OUTREACH",
+      "title": "Paper Explainer",
+      "body": "Turns a ThaiJO article into a scroll-driven story page (scrollytelling) with AI-generated Manim animations for key equations and concepts. It helps students and the public understand research more easily and raises the visibility of Thai research.",
+      "bullets": [
+        "Paste a ThaiJO article link and get a story page ready to share",
+        "Manim animations are tied to the article's equations and figures",
+        "Use it for public research communication and as university teaching material"
+      ]
+    },
+    {
+      "id": "atlas",
+      "badge": "06 · DISCOVERY",
+      "title": "Research Atlas",
+      "body": "A map of the Thai research landscape, built by clustering ThaiJO articles with embeddings and topic modeling. Circle size shows the number of articles, lines show links between topics, and color shows the discipline. Zoom from the national overview down to the journals, authors and articles in each topic.",
+      "bullets": [
+        "See the research landscape of all {journals} Thai journals in one view",
+        "Click a topic to see related articles, journals and experts",
+        "Works with Emerging Themes to show how each topic grows over time"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "mono": "CB",
+      "title": "AI Chatbot",
+      "body": "Answers general questions about ThaiJO and TCI around the clock, drawing on official manuals, policies and announcements, such as submission steps, quality tier criteria, fees and how to use the system. (For research questions, use Research Assistant.)"
+    },
+    {
+      "mono": "RF",
+      "title": "Reviewer Finder",
+      "body": "Suggests reviewers with matching expertise based on their publication and citation records in ThaiJO/TCI, and checks for conflicts of interest (such as co-authors or a shared affiliation) and current review workload."
+    },
+    {
+      "mono": "LR",
+      "title": "Literature Review Tool",
+      "body": "Reads a selected set of articles, summarizes key points and research gaps, builds methodology comparison tables automatically, and helps screen articles following PRISMA steps for systematic reviews."
+    },
+    {
+      "mono": "JF",
+      "title": "Journal Finder",
+      "body": "Matches a manuscript to the best-fitting journals in the TCI database by scope, TCI quality tier (Tier 1–3), T-JIF, language and review time, and warns about journals that are not indexed in TCI or show signs of being predatory."
+    },
+    {
+      "mono": "AF",
+      "title": "Author Finder",
+      "body": "Search researchers by keyword to find collaborators, reviewers or experts on a topic among more than {authorsApprox} authors in ThaiJO."
+    },
+    {
+      "mono": "ET",
+      "title": "Emerging Themes",
+      "body": "Spots growing research topics from publication and citation trends in ThaiJO, compared with global trends from OpenAlex, to reveal new research opportunities."
+    }
+  ]
+}

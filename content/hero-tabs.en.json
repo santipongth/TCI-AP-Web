@@ -1,0 +1,78 @@
+[
+  {
+    "id": "workspace",
+    "label": "Agentic Workspace",
+    "placeholder": "Ask anything about your research, e.g. “Summarize the last 5 years of PM2.5 research on northern Thailand from ThaiJO, with a list of experts”",
+    "chips": [
+      "Summarize recent research in my field",
+      "Find TCI Tier 1 journals that would accept this paper",
+      "Check the references in a PDF"
+    ]
+  },
+  {
+    "id": "assistant",
+    "label": "Research Assistant",
+    "placeholder": "Ask a research question in Thai or English and get an answer from evidence in ThaiJO and international databases, with every statement cited",
+    "chips": [
+      "Does Andrographis (fah talai jone) work for mild COVID-19?",
+      "What does Thai research conclude about PM2.5 and children?"
+    ]
+  },
+  {
+    "id": "refs",
+    "label": "Reference Extraction",
+    "placeholder": "Paste a reference list or upload a PDF to parse it into fields (author, year, title, journal, DOI) and check it against ThaiJO / Crossref",
+    "chips": [
+      "Upload manuscript.pdf",
+      "Check all DOIs",
+      "Export BibTeX"
+    ]
+  },
+  {
+    "id": "deep",
+    "label": "Deep Research",
+    "placeholder": "Pose one research question and the system will plan, search, read and synthesize a report with every statement cited",
+    "chips": [
+      "Effects of PM2.5 on children's health in northern Thailand",
+      "AI in Thai education, 2021–2026"
+    ]
+  },
+  {
+    "id": "explainer",
+    "label": "Paper Explainer",
+    "placeholder": "Paste a ThaiJO article link to turn it into a scrollytelling page with AI-generated Manim animations",
+    "chips": [
+      "tci-thaijo.org/…/article/view/…",
+      "Upload the article PDF"
+    ]
+  },
+  {
+    "id": "topics",
+    "label": "Research Atlas",
+    "placeholder": "Choose a field or year range to see a map of research topics across all Thai journals, then drill down to the journals, authors and articles in each topic",
+    "chips": [
+      "Public health, 2022–2026",
+      "Fastest-growing topics"
+    ]
+  },
+  {
+    "id": "themes",
+    "label": "Emerging Themes",
+    "placeholder": "Enter a field, such as public health or engineering, to see growing research topics based on publication trends in ThaiJO",
+    "chips": [
+      "Public health",
+      "Agriculture and food",
+      "Education"
+    ]
+  },
+  {
+    "id": "chatbot",
+    "label": "AI Chatbot",
+    "placeholder": "Ask general questions about ThaiJO and TCI, such as submission steps, quality tier criteria, fees or how to use the system",
+    "chips": [
+      "What are the criteria for TCI Tier 1 journals?",
+      "How do I submit an article on ThaiJO?",
+      "When is the next journal quality assessment round?"
+    ]
+  }
+]

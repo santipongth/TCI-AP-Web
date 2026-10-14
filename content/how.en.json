@@ -1,0 +1,22 @@
+[
+  {
+    "n": "01",
+    "title": "Sign in to the Workspace",
+    "body": "Use your ThaiJO or ORCID account. The system pulls in your context, such as your field, past publications and the journals you are affiliated with."
+  },
+  {
+    "n": "02",
+    "title": "Ask, or choose a tool",
+    "body": "Type a question in Thai or English, or choose a specialized tool such as Reference Extraction & Validation."
+  },
+  {
+    "n": "03",
+    "title": "The agent plans and calls tools",
+    "body": "The Orchestrator splits the question into subtasks for Subagents, which call Skills and MCP servers through the TCI MCP Gateway. It revises the plan when data falls short and shows every step."
+  },
+  {
+    "n": "04",
+    "title": "Get a cited answer",
+    "body": "Every statement links back to its source article in ThaiJO or an international database. Export it as a report, BibTeX or RIS, or save it in the Workspace."
+  }
+]

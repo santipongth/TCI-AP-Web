@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+@import './motion.css';
+
+/* Design tokens, from README › Design Tokens. The default palette is dropped so
+   nothing off-spec can slip in; every colour below maps to a README token. */
+@theme {
+  --color-*: initial;
+  --color-white: #fff;
+
+  --color-ink: #17171c;
+  --color-strong: #3c3c45;
+  --color-body: #4a4a54;
+  --color-muted: #6b6b75;
+  --color-subtle: #8a8a94;
+  --color-faint: #9a9aa4;
+  --color-tab: #5c5c66;
+
+  --color-line: #e3e3e8;
+  --color-divider: #ededf0;
+  --color-hair: #eeeef1;
+  --color-hair-2: #f0f0f3;
+  --color-hair-3: #f3f3f5;
+  --color-window-dot: #e4e4e9;
+
+  --color-surface: #fafafb;
+  --color-surface-2: #fbfbfc;
+  --color-bubble: #f4f4f6;
+  --color-data: #f7f7f5;
+  --color-skel: #dcdce2;
+  --color-skel-2: #ececf0;
+
+  --color-primary: #4a44d6;
+  --color-primary-hover: #3b35b8;
+  --color-primary-tint: #eeedfc;
+  --color-primary-line: #dcdaf7;
+  --color-primary-line-hover: #c9c7f0;
+  --color-primary-dot-dark: #aaa6ff;
+
+  --color-dark-line: #2a2a33;
+  --color-dark-inset: #0f0f14;
+  --color-dark-bar: #34343e;
+  --color-dark-text: #e6e6ec;
+  --color-dark-axis: #4a4a56;
+  --color-on-dark-muted: #c4c4cc;
+  --color-violet: #7c76ff;
+  --color-violet-soft: #c8c6ff;
+
+  --color-success: #2fa36b;
+  --color-success-ink: #1f7a4d;
+  --color-success-bg: #e4f5ec;
+  --color-warn-ink: #8a5a00;
+  --color-warn-bg: #fdf0d0;
+  --color-warn-row: #fffaf0;
+  --color-error-ink: #a12a2a;
+  --color-error-bg: #fde2e2;
+  --color-error-row: #fff5f5;
+  --color-info-ink: #1f5aa6;
+  --color-info-bg: #e3eefb;
+
+  --color-dash: #cfcfd6;
+  --color-dash-2: #b9b9c2;
+  --color-dash-3: #d9d9df;
+  --color-arrow: #b0b0b9;
+  --color-pattern-dot: #d6d6dc;
+  --color-pattern-grid: #ebebef;
+  --color-stripe: #f0f0f3;
+  --color-stripe-2: #f8f8fa;
+
+  --color-topic-health: #8f5ef0;
+  --color-topic-agri: #e0554f;
+  --color-topic-eng: #3a74d6;
+  --color-topic-edu: #37a862;
+  --color-topic-social: #b89a1f;
+
+  --shadow-demo: 0 20px 60px -30px rgba(23, 23, 28, 0.25);
+  --shadow-mock: 0 24px 50px -32px rgba(23, 23, 28, 0.3);
+  --shadow-mock-dark: 0 24px 50px -32px rgba(23, 23, 28, 0.6);
+  --shadow-lift: 0 18px 40px -28px rgba(23, 23, 28, 0.35);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Type scale (README › Typography) */
+  --text-h1: clamp(36px, 5.2vw, 60px);
+  --text-h1--line-height: 1.15;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 600;
+  --text-h2: clamp(28px, 3.6vw, 40px);
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h2--font-weight: 600;
+  --text-h3: 26px;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 600;
+}
+
+/* next/font exposes hashed family names through these variables. Plex Mono has no
+   Thai glyphs, so mono text falls back to Plex Sans Thai for Thai characters. */
+@theme inline {
+  --font-sans: var(--font-plex-thai), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), var(--font-plex-thai), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: var(--header-h, 0px);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    /* The reference relies on the UA default line-height; Preflight would set 1.5. */
+    line-height: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-wrap: pretty;
+  }
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  button {
+    font-family: inherit;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+@utility mono {
+  font-family: var(--font-mono);
+}
+
+/* Section horizontal padding: 40px, 20px under 640px (README › Page Structure). */
+@utility section-x {
+  padding-inline: 20px;
+  @media (width >= 640px) {
+    padding-inline: 40px;
+  }
+}

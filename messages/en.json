@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "title": "TCI AI — AI for Thai scholarly journals",
+    "description": "AI tools from the TCI research team, connected directly to ThaiJO and international scholarly databases. From literature search to publication, every answer can be traced back to its source.",
+    "ogLocale": "en_US"
+  },
+  "nav": {
+    "brand": "TCI AI",
+    "tagline": "RESEARCH TOOLS",
+    "homeLabel": "TCI AI home",
+    "menuLabel": "Main menu",
+    "tools": "Tools",
+    "architecture": "Architecture",
+    "how": "How it works",
+    "faq": "FAQ",
+    "thaijo": "ThaiJO ↗",
+    "cta": "Try the Workspace",
+    "switchTo": "ไทย",
+    "switchLabel": "เปลี่ยนเป็นภาษาไทย",
+    "skip": "Skip to main content"
+  },
+  "hero": {
+    "eyebrow": "TCI AI Research · built on ThaiJO",
+    "titleLine1": "AI for Thai scholarly journals",
+    "titleLine2": "from literature search to publication",
+    "leadEn": "Built by the TCI research team on ThaiJO data, with citations you can verify in every answer.",
+    "body": "AI tools from the TCI research team, connected directly to ThaiJO and international scholarly databases. They help authors search the literature, get answers to research questions and cite sources faster, and help editors screen manuscripts and find reviewers more accurately. Every answer can be traced back to its source.",
+    "tablistLabel": "Choose a tool",
+    "inputLabel": "Question or instruction for {tool}",
+    "suggestionsLabel": "Example questions",
+    "attachLabel": "Attach a file",
+    "pdf": "PDF",
+    "source": "TCI MCP Gateway",
+    "sourceLabel": "Data source: TCI MCP Gateway",
+    "send": "Send your question to the Workspace",
+    "sendSoon": "The Workspace will open for trials soon"
+  },
+  "tools": {
+    "eyebrow": "Tools · Ready to try",
+    "title": "Designed around how Thai researchers really work",
+    "lead": "Built for how Thai research actually gets done. Every tool runs on ThaiJO data covering more than {articlesApprox} articles from {journals} journals, supplemented by international databases, and returns results with verifiable citations."
+  },
+  "proposed": {
+    "eyebrow": "Proposed · Next concepts",
+    "title": "Future tools",
+    "lead": "Gaps in the Thai journal workflow we propose to close next. Most of them sit in editorial work and in the steps before submission, and the research team proposes to develop tools for them in the next phase.",
+    "concept": "CONCEPT"
+  },
+  "architecture": {
+    "eyebrow": "Architecture",
+    "title": "One agent, connected to all Thai journal data",
+    "lead": "An open, layered stack. Users work in the Agentic Workspace; the AI Agent Orchestrator plans and selects the Skills that fit each question, then retrieves data through the TCI MCP Gateway & Registry (Model Context Protocol), the single connection point for MCP servers, Skills and APIs, both those available today and those added in future. All data passes through a pipeline designed for the Thai language before it is indexed, and every access follows the user's permissions in ThaiJO.",
+    "diagramLabel": "Five-layer architecture diagram. Scroll horizontally to see all of it."
+  },
+  "how": {
+    "eyebrow": "How it works",
+    "title": "Four steps from question to verifiable answer"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Questions from authors and editors",
+    "contact": "More questions? Contact the TCI AI research team via <link>ThaiJO</link>"
+  },
+  "footer": {
+    "developedBy": "Developed by",
+    "orgs": "Thai-Journal Citation Index Centre (TCI) · National Electronics and Computer Technology Center (NECTEC) · National Science and Technology Development Agency (NSTDA)",
+    "copyright": "© 2026 TCI AI Research Team",
+    "partnersLabel": "Partner organization links",
+    "logo": "{name} logo"
+  },
+  "mockups": {
+    "workspace": "Example Agentic Workspace screen: a bar of connected MCP servers, the conversation, and the agent's working steps alongside a cited answer",
+    "assistant": "Example Research Assistant screen: a question about Andrographis (fah talai jone), a cited answer, the evidence confidence level, and a list of 3 sources",
+    "refs": "Example Reference Extraction screen: 32 references checked and 28 verified; sample rows show a mismatched year, a retracted article and a reference that was not found",
+    "deep": "Example Deep Research screen: a 5-step search plan and a draft report with citations",
+    "explainer": "Example Paper Explainer screen: an article with a highlighted paragraph and a Manim scene showing a dispersion equation",
+    "atlas": "Example Research Atlas screen: a map of research topics across 5 fields, with details of the topic PM2.5 and health effects"
+  }
+}

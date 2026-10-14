@@ -1,0 +1,124 @@
+{
+  "lanes": [
+    {
+      "id": "clients",
+      "label": "01 · CLIENTS",
+      "boxes": [
+        { "kind": "box", "title": "Agentic Workspace", "desc": "พื้นที่ทำงานส่วนตัว: Research Assistant, Deep Research, เครื่องมือทั้งหมด ไฟล์ต้นฉบับ และประวัติ" },
+        { "kind": "chips", "label": "USERS · เข้าสู่ระบบด้วยบัญชี ThaiJO หรือ ORCID", "chips": ["ผู้เขียน", "บรรณาธิการ", "ผู้ประเมิน", "นักศึกษา / ผู้อ่าน"] },
+        { "kind": "box", "title": "AI Chatbot (FAQ)", "desc": "ถาม-ตอบทั่วไปเกี่ยวกับ ThaiJO และ TCI บนหน้าเว็บและ LINE OA ตอบจากคู่มือและประกาศ ไม่เข้าถึงเนื้อหางานวิจัย" },
+        { "kind": "box", "title": "Editor Console · OJS plugin", "desc": "แผงเครื่องมือในหน้า submission ของ OJS: ตรวจอ้างอิง หาผู้ประเมิน ตรวจความซ้ำซ้อน" }
+      ]
+    },
+    {
+      "id": "orchestration",
+      "label": "02 · ORCHESTRATION",
+      "boxes": [
+        {
+          "kind": "primary",
+          "title": "AI Agent Orchestrator",
+          "bullets": [
+            "Planning · แตกคำถามเป็นงานย่อย",
+            "Routing · เลือก Skill, MCP หรือ Subagent ที่เหมาะสม",
+            "Subagents · ทำงานย่อยขนานกัน เช่น ค้นหา ตรวจอ้างอิง",
+            "Re-planning · ปรับแผนเมื่อผลไม่ครบหรือล้มเหลว",
+            "Synthesis · รวมผลเป็นคำตอบพร้อมอ้างอิง",
+            "Memory · จดจำบริบทผู้ใช้และเซสชัน",
+            "Human-in-the-loop · บรรณาธิการเป็นผู้ตัดสินใจขั้นสุดท้าย"
+          ]
+        },
+        {
+          "kind": "chips",
+          "label": "SKILLS",
+          "chips": [
+            "Research Assistant (RAG Q&A)",
+            "Deep Research",
+            "Reference Extraction & Validation",
+            "Reviewer Finder",
+            "Research Atlas",
+            "Journal Finder",
+            "Literature Review Tool",
+            "Author Finder",
+            "Emerging Themes",
+            "Paper Explainer",
+            "ThaiJO / TCI FAQ"
+          ],
+          "more": "+ new"
+        },
+        { "kind": "box", "title": "LLM Router", "desc": "Pathumma LLM (NECTEC), Typhoon (SCB 10X), OpenThaiGPT และโมเดลสากล เลือกตามงาน ต้นทุน และข้อกำหนดด้านข้อมูล" }
+      ]
+    },
+    {
+      "id": "gateway",
+      "label": "03 · GATEWAY",
+      "boxes": [
+        {
+          "kind": "dark",
+          "title": "TCI MCP Gateway & Registry",
+          "bullets": [
+            "Registry · discovery, versioning, schema ของทุก MCP / Skill / API (รองรับ A2A สำหรับเชื่อม Agent ภายนอก)",
+            "Access control · OAuth 2.1, ThaiJO SSO และสิทธิ์ตามบทบาท ผู้เขียน / บรรณาธิการ / ผู้ประเมิน",
+            "Protocol bridge · MCP ↔ OJS REST API, OAI-PMH",
+            "Rate limiting · caching · audit log รายวารสาร"
+          ]
+        },
+        { "kind": "dashed", "title": "+ Register", "desc": "ลงทะเบียน Skill, MCP, API ใหม่จากวารสาร มหาวิทยาลัย หรือพาร์ทเนอร์" }
+      ]
+    },
+    {
+      "id": "mcp",
+      "label": "04 · MCP SERVERS",
+      "boxes": [
+        { "kind": "box", "title": "ThaiJO Search MCP", "desc": "ค้นบทความ วารสาร ฉบับ ผู้นิพนธ์ ทั้งฐาน ThaiJO" },
+        { "kind": "box", "title": "Article MCP", "desc": "metadata บทคัดย่อ PDF ฉบับเต็ม รายการอ้างอิง DOI" },
+        { "kind": "box", "title": "Journal MCP", "desc": "ขอบเขต นโยบาย คำแนะนำผู้เขียน กลุ่ม TCI และ T-JIF" },
+        { "kind": "box", "title": "Author MCP", "desc": "โปรไฟล์ สังกัด ORCID และผลงานใน ThaiJO" },
+        { "kind": "box", "title": "Citation MCP", "desc": "การอ้างอิง cited-by T-JIF และ h-index จากฐาน TCI" },
+        { "kind": "box", "title": "Editorial MCP", "desc": "สำหรับบรรณาธิการ: สถานะ submission ใน OJS, reviewer pool, ภาระงาน, COI" },
+        { "kind": "box", "title": "Scholarly MCP", "desc": "ฐานข้อมูลสากล: OpenAlex, Crossref, PubMed, ORCID" },
+        { "kind": "dashed", "title": "Partner MCPs", "desc": "ห้องสมุด สถาบันวิจัย ฐานข้อมูลเฉพาะทาง" }
+      ]
+    },
+    {
+      "id": "data",
+      "label": "05 · DATA",
+      "boxes": [
+        { "kind": "data", "title": "ThaiJO (OJS)", "desc": "{journals} วารสาร · {issues} ฉบับ · {articles} บทความ · {authors} ผู้นิพนธ์ · PDF ฉบับเต็ม" },
+        { "kind": "data", "title": "ThaiJO / TCI Knowledge Base", "desc": "คู่มือผู้ใช้ นโยบาย เกณฑ์ประเมิน และประกาศ สำหรับ AI Chatbot" },
+        { "kind": "data", "title": "TCI Citation Index", "desc": "ข้อมูลการอ้างอิง กลุ่มคุณภาพ 1–3 (รอบ 5: 2568–2572) และ T-JIF" },
+        { "kind": "data", "title": "ACI · ASEAN Citation Index", "desc": "ฐานข้อมูลวารสารอาเซียน คัดวารสารไทยจาก TCI กลุ่ม 1" },
+        { "kind": "data", "title": "Search & Embedding Index", "desc": "ดัชนีค้นหาและเวกเตอร์ของบทความ ThaiJO ตัดคำภาษาไทย embedding หลายภาษา และ topic model" },
+        { "kind": "data", "title": "OpenAlex · Crossref · PubMed · ORCID", "desc": "บทความสากล ตรวจสอบ DOI และสถานะถอนบทความ (Retraction Watch) ระบุตัวตนผู้แต่ง" }
+      ]
+    }
+  ],
+  "bars": [
+    {
+      "kind": "data",
+      "label": "INGESTION PIPELINE",
+      "items": [
+        "ดึง metadata และ PDF จาก OJS (OAI-PMH / REST)",
+        "OCR บทความสแกนรุ่นเก่า",
+        "แยกโครงสร้าง PDF และรายการอ้างอิง (GROBID + โมเดลภาษาไทย)",
+        "ตัดคำภาษาไทย",
+        "จับคู่ DOI / ORCID / ชื่อผู้นิพนธ์ซ้ำ",
+        "สร้าง embedding และ topic",
+        "อัปเดตรายวัน"
+      ]
+    },
+    {
+      "kind": "dashed",
+      "label": "CROSS-CUTTING",
+      "items": [
+        "Guardrails · ป้องกัน prompt injection และข้อมูลส่วนบุคคล",
+        "PDPA & data residency",
+        "แนวทางการใช้ AI ในการตีพิมพ์ตาม COPE",
+        "ชุดข้อมูลประเมินผลภาษาไทยเชิงวิชาการ",
+        "Prompt & skill versioning",
+        "Evaluation & tracing (Agenta AI)",
+        "Feedback จากผู้ใช้ → ชุดประเมิน",
+        "Compute: ThaiSC LANTA (สวทช.) และ Thai cloud"
+      ]
+    }
+  ]
+}

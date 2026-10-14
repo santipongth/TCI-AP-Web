@@ -1,0 +1,38 @@
+[
+  {
+    "audience": "editor",
+    "audienceLabel": "บรรณาธิการ",
+    "title": "Similarity & AI-text Detection",
+    "body": "ตรวจความซ้ำซ้อนกับคลังบทความไทยใน ThaiJO โดยตรง เสริมเครื่องมือเดิมอย่างอักขราวิสุทธิ์และ Turnitin และประเมินสัดส่วนข้อความที่สร้างด้วย AI เป็นข้อมูลประกอบการพิจารณาของบรรณาธิการ"
+  },
+  {
+    "audience": "author",
+    "audienceLabel": "ผู้เขียน",
+    "title": "TH↔EN Abstract Translator & Academic Polishing",
+    "body": "แปลบทคัดย่อไทย–อังกฤษด้วยศัพท์เฉพาะสาขา และขัดเกลาภาษาวิชาการโดยคงความหมายและข้อมูลเดิมครบถ้วน"
+  },
+  {
+    "audience": "author",
+    "audienceLabel": "ผู้เขียน",
+    "title": "Thai Citation Style Formatter",
+    "body": "จัดรูปแบบรายการอ้างอิงตาม APA 7 ภาษาไทย Vancouver และรูปแบบเฉพาะของแต่ละวารสารโดยอัตโนมัติ ต่อยอดจาก Reference Extraction"
+  },
+  {
+    "audience": "editor",
+    "audienceLabel": "บรรณาธิการ",
+    "title": "Metadata & Keyword Enrichment",
+    "body": "เสนอคำสำคัญ สาขาวิชา และ metadata ตามมาตรฐาน Crossref/DOI และ OJS เพื่อให้บทความถูกค้นพบและจัดดัชนีได้ดีขึ้นทั้งใน ThaiJO, TCI, ACI และฐานสากล"
+  },
+  {
+    "audience": "author",
+    "audienceLabel": "ผู้เขียน",
+    "title": "Citation Recommender",
+    "body": "แนะนำงานวิจัยใน ThaiJO ที่ควรอ้างอิงเพิ่มจากเนื้อหาต้นฉบับขณะเขียน โดยจัดอันดับตามความเกี่ยวข้องเท่านั้น ไม่อิงค่า T-JIF เพื่อป้องกันการอ้างอิงเพื่อเพิ่มตัวชี้วัด"
+  },
+  {
+    "audience": "both",
+    "audienceLabel": "ผู้เขียน · บรรณาธิการ",
+    "title": "Submission Pre-check",
+    "body": "ตรวจต้นฉบับกับคำแนะนำผู้เขียนของวารสารก่อนส่ง เช่น ความยาว โครงสร้างบท บทคัดย่อสองภาษา คำสำคัญ การเปิดเผยการใช้ AI และเอกสารจริยธรรมการวิจัยในมนุษย์ ลดการตีกลับจากกองบรรณาธิการ"
+  }
+]

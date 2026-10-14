@@ -1,0 +1,38 @@
+[
+  {
+    "audience": "editor",
+    "audienceLabel": "Editors",
+    "title": "Similarity & AI-text Detection",
+    "body": "Checks similarity directly against the corpus of Thai articles in ThaiJO, complementing existing tools such as Akarawisut and Turnitin, and estimates the share of AI-generated text as input for the editor's assessment."
+  },
+  {
+    "audience": "author",
+    "audienceLabel": "Authors",
+    "title": "TH↔EN Abstract Translator & Academic Polishing",
+    "body": "Translates abstracts between Thai and English with field-specific terminology, and polishes academic writing while keeping the original meaning and content intact."
+  },
+  {
+    "audience": "author",
+    "audienceLabel": "Authors",
+    "title": "Thai Citation Style Formatter",
+    "body": "Automatically formats reference lists in Thai-language APA 7, Vancouver and each journal's own house style, building on Reference Extraction."
+  },
+  {
+    "audience": "editor",
+    "audienceLabel": "Editors",
+    "title": "Metadata & Keyword Enrichment",
+    "body": "Suggests keywords, subject areas and metadata that follow Crossref/DOI and OJS standards, so articles are easier to discover and index in ThaiJO, TCI, ACI and international databases."
+  },
+  {
+    "audience": "author",
+    "audienceLabel": "Authors",
+    "title": "Citation Recommender",
+    "body": "Suggests further ThaiJO research worth citing, based on the manuscript text as you write. Results are ranked by relevance only, not by T-JIF, to prevent citing just to boost metrics."
+  },
+  {
+    "audience": "both",
+    "audienceLabel": "Authors · Editors",
+    "title": "Submission Pre-check",
+    "body": "Checks a manuscript against the journal's author guidelines before submission, covering length, section structure, bilingual abstracts, keywords, AI-use disclosure and human research ethics documents, to reduce returns from the editorial office."
+  }
+]
