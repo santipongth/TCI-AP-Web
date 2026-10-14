@@ -12,12 +12,13 @@ interface Props {
 }
 
 /**
- * Display sizes give each mark the same visual area (~4,200 px²) inside the 200×72
- * slot, so the squarer TCI mark does not look smaller than the wide NECTEC / NSTDA
- * wordmarks. Sources are trimmed of transparent padding and are ≥2.5× these sizes.
+ * Display sizes give each mark roughly the same visual area (~4,200 px²) inside the
+ * 200×72 slot, so the squarer TCI mark does not look smaller than the wide NECTEC /
+ * NSTDA wordmarks; TCI gets ~20% extra because its fine sub-lines read lighter.
+ * Sources are trimmed of transparent padding and are ≥2.2× these sizes.
  */
 const LOGOS: Array<{ org: Org; src: StaticImageData; width: number; height: number; href: string }> = [
-  { org: 'TCI', src: tciLogo, width: 90, height: 47, href: siteConfig.links.tci },
+  { org: 'TCI', src: tciLogo, width: 100, height: 52, href: siteConfig.links.tci },
   { org: 'NECTEC', src: nectecLogo, width: 115, height: 36, href: siteConfig.links.nectec },
   { org: 'NSTDA', src: nstdaLogo, width: 113, height: 37, href: siteConfig.links.nstda },
 ];

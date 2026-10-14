@@ -80,8 +80,8 @@ export function SiteHeader({ otherLocale, ctaHref, thaijoHref, t }: Props) {
       ref={ref}
       className="section-x relative z-40 flex flex-wrap items-center justify-between gap-6 border-b border-divider bg-white py-[18px] transition-[background-color,backdrop-filter] duration-300 md:sticky md:top-0 md:data-scrolled:bg-white/85 md:data-scrolled:backdrop-blur-md"
     >
-      <a href="#top" aria-label={t.homeLabel} className="flex items-center gap-[10px] text-ink hover:no-underline">
-        <span className="grid size-[30px] place-items-center rounded-[8px] bg-primary text-[15px] font-bold text-white">T</span>
+      <a href="#top" title={t.homeLabel} className="flex items-center gap-[10px] text-ink hover:no-underline">
+        <span aria-hidden="true" className="grid size-[30px] place-items-center rounded-[8px] bg-primary text-[15px] font-bold text-white">T</span>
         <span className="flex flex-col leading-[1.1]">
           <span className="text-[16px] font-semibold">{t.brand}</span>
           <span className="mono text-[11px] tracking-[0.04em] text-muted">{t.tagline}</span>

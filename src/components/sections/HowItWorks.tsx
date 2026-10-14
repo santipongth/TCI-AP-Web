@@ -30,7 +30,7 @@ export function HowItWorks({ t, steps }: Props) {
                   className="how-rule absolute -top-[2px] -right-px -left-px h-[2px] bg-primary"
                 />
                 <span className="mono text-[12px] text-primary">{step.n}</span>
-                <h4 className="m-0 text-[16px] font-semibold">{step.title}</h4>
+                <h3 className="m-0 text-[16px] font-semibold">{step.title}</h3>
                 <p className="m-0 text-[14px] leading-[1.7] text-muted">{step.body}</p>
               </div>
             </Reveal>

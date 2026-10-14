@@ -106,8 +106,10 @@ describe('HeroDemo input', () => {
 
   it('submits a GET form with tool and q to the Workspace when configured', () => {
     renderDemo({ workspaceUrl: 'https://ws.example.org/app' });
-    const form = screen.getByRole('tabpanel') as HTMLFormElement;
-    expect(form.tagName).toBe('FORM');
+    // A <form> may not take role="tabpanel"; the panel wraps the form instead.
+    const panel = screen.getByRole('tabpanel');
+    expect(panel.tagName).not.toBe('FORM');
+    const form = panel.querySelector('form')!;
     expect(form).toHaveAttribute('action', 'https://ws.example.org/app');
     expect(form).toHaveAttribute('method', 'get');
     expect(form.querySelector('input[name="tool"]')).toHaveValue('workspace');
@@ -121,7 +123,7 @@ describe('HeroDemo input', () => {
     expect(send).toHaveAttribute('aria-disabled', 'true');
     expect(send).toHaveAccessibleDescription(T.sendSoon);
     const event = new Event('submit', { bubbles: true, cancelable: true });
-    fireEvent(screen.getByRole('tabpanel'), event);
+    fireEvent(screen.getByRole('tabpanel').querySelector('form')!, event);
     expect(event.defaultPrevented).toBe(true);
   });
 });

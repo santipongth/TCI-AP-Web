@@ -33,7 +33,10 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                 className="flex w-full cursor-pointer items-center justify-between gap-4 border-0 bg-transparent py-[18px] text-left text-[16px] font-medium text-ink"
               >
                 {item.question}
-                <span aria-hidden="true" className="relative size-5 flex-none text-primary">
+                {/* The invisible 20px "+" keeps the reference's line box (and row height);
+                    the two bars draw the icon so the vertical one can rotate into "−". */}
+                <span aria-hidden="true" className="relative flex-none text-[20px] text-primary">
+                  <span className="invisible">+</span>
                   <span className="absolute top-1/2 left-1/2 h-[1.5px] w-[11px] -translate-1/2 rounded-full bg-current" />
                   <span
                     className={`absolute top-1/2 left-1/2 h-[11px] w-[1.5px] -translate-1/2 rounded-full bg-current transition-transform duration-200 ease-out motion-reduce:transition-none ${

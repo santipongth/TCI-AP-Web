@@ -80,7 +80,7 @@ export function HeroDemo({ tabs, defaultTool, workspaceUrl, t }: Props) {
         role="tablist"
         aria-label={t.tablistLabel}
         onKeyDown={onTabKeyDown}
-        className="relative flex gap-1 overflow-x-auto px-[10px] [scrollbar-width:thin]"
+        className="relative flex gap-1 overflow-x-auto px-[10px] [scrollbar-color:#dcdce2_transparent] [scrollbar-width:thin]"
       >
         <span
           ref={indicatorRef}
@@ -112,91 +112,90 @@ export function HeroDemo({ tabs, defaultTool, workspaceUrl, t }: Props) {
         })}
       </div>
 
-      <form
-        id={panelId}
-        role="tabpanel"
-        aria-labelledby={tabId(active.id)}
-        action={workspaceUrl}
-        method="get"
-        onSubmit={(event) => {
-          if (!workspaceUrl) {
-            event.preventDefault();
-            return;
-          }
-          track({ name: 'cta_click', location: 'hero_submit' });
-        }}
-        className="overflow-hidden rounded-[16px] border border-line bg-white shadow-demo transition-[border-color,box-shadow] duration-200 focus-within:border-primary-line-hover"
-      >
-        <input type="hidden" name="tool" value={active.id} />
-        {/* The ::after copy sizes the field from the full placeholder (or value), so the
-            box never jumps while the placeholder types out. */}
-        <div
-          data-full={value || active.placeholder}
-          className="grid min-h-[96px] after:invisible after:col-start-1 after:row-start-1 after:px-6 after:pt-[22px] after:pb-2 after:text-[15.5px] after:leading-[1.6] after:whitespace-pre-wrap after:content-[attr(data-full)_'_']"
+      <div id={panelId} role="tabpanel" aria-labelledby={tabId(active.id)}>
+        <form
+          action={workspaceUrl}
+          method="get"
+          onSubmit={(event) => {
+            if (!workspaceUrl) {
+              event.preventDefault();
+              return;
+            }
+            track({ name: 'cta_click', location: 'hero_submit' });
+          }}
+          className="overflow-hidden rounded-[16px] border border-line bg-white shadow-demo transition-[border-color,box-shadow] duration-200 focus-within:border-primary-line-hover"
         >
-          <textarea
-            ref={inputRef}
-            name="q"
-            rows={1}
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
-            placeholder={placeholder}
-            aria-label={fill(t.inputLabel, { tool: active.label })}
-            className="col-start-1 row-start-1 resize-none overflow-hidden border-0 bg-transparent px-6 pt-[22px] pb-2 text-[15.5px] leading-[1.6] text-ink outline-none placeholder:text-subtle focus-visible:outline-none"
-          />
-        </div>
-
-        <div role="group" aria-label={t.suggestionsLabel} className="flex flex-wrap gap-2 px-5 pb-4">
-          {active.chips.map((chip, i) => (
-            <button
-              key={`${active.id}-${chip}`}
-              type="button"
-              onClick={() => pickChip(chip)}
-              className="hero-chip cursor-pointer rounded-full border border-primary-line bg-primary-tint px-[10px] py-[5px] text-[12.5px] text-primary transition-colors hover:border-primary-line-hover"
-              style={{ '--i': i } as React.CSSProperties}
-            >
-              {chip}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-between gap-3 border-t border-hair-2 bg-surface-2 px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span
-              role="img"
-              aria-label={t.attachLabel}
-              className="grid size-8 place-items-center rounded-[8px] border border-line bg-white text-[18px] text-muted"
-            >
-              +
-            </span>
-            <span className="mono flex h-8 items-center rounded-[8px] border border-line bg-white px-[10px] text-[12.5px] text-muted">
-              {t.pdf}
-            </span>
-            <span
-              aria-label={t.sourceLabel}
-              className="flex h-8 items-center gap-2 rounded-[8px] border border-line bg-white px-3 text-[13px] whitespace-nowrap text-ink"
-            >
-              <span aria-hidden="true" className="size-2 rounded-full bg-primary" />
-              {t.source} <span className="text-faint">▾</span>
-            </span>
-          </div>
-          <button
-            type="submit"
-            aria-label={t.send}
-            aria-disabled={workspaceUrl ? undefined : true}
-            aria-describedby={workspaceUrl ? undefined : soonId}
-            title={workspaceUrl ? undefined : t.sendSoon}
-            className="grid size-9 flex-none cursor-pointer place-items-center rounded-full border-0 bg-primary text-[18px] text-white transition-[background-color,transform] duration-200 hover:bg-primary-hover active:scale-95 aria-disabled:cursor-default motion-reduce:transition-none"
+          <input type="hidden" name="tool" value={active.id} />
+          {/* The ::after copy sizes the field from the full placeholder (or value), so the
+              box never jumps while the placeholder types out. */}
+          <div
+            data-full={value || active.placeholder}
+            className="grid min-h-[96px] after:invisible after:col-start-1 after:row-start-1 after:px-6 after:pt-[22px] after:pb-2 after:text-[15.5px] after:leading-[1.6] after:whitespace-pre-wrap after:content-[attr(data-full)_'_']"
           >
-            ↑
-          </button>
-          {!workspaceUrl && (
-            <span id={soonId} hidden>
-              {t.sendSoon}
-            </span>
-          )}
-        </div>
-      </form>
+            <textarea
+              ref={inputRef}
+              name="q"
+              rows={1}
+              value={value}
+              onChange={(event) => setValue(event.target.value)}
+              placeholder={placeholder}
+              aria-label={fill(t.inputLabel, { tool: active.label })}
+              className="col-start-1 row-start-1 resize-none overflow-hidden border-0 bg-transparent px-6 pt-[22px] pb-2 text-[15.5px] leading-[1.6] text-ink outline-none placeholder:text-subtle focus-visible:outline-none"
+            />
+          </div>
+
+          <div role="group" aria-label={t.suggestionsLabel} className="flex flex-wrap gap-2 px-5 pb-4">
+            {active.chips.map((chip, i) => (
+              <button
+                key={`${active.id}-${chip}`}
+                type="button"
+                onClick={() => pickChip(chip)}
+                className="hero-chip cursor-pointer rounded-full border border-primary-line bg-primary-tint px-[10px] py-[5px] text-[12.5px] text-primary transition-colors hover:border-primary-line-hover"
+                style={{ '--i': i } as React.CSSProperties}
+              >
+                {chip}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between gap-3 border-t border-hair-2 bg-surface-2 px-4 py-3">
+            <div className="flex items-center gap-2">
+              <span
+                role="img"
+                aria-label={t.attachLabel}
+                className="grid size-8 place-items-center rounded-[8px] border border-line bg-white text-[18px] text-muted"
+              >
+                +
+              </span>
+              <span className="mono flex h-8 items-center rounded-[8px] border border-line bg-white px-[10px] text-[12.5px] text-muted">
+                {t.pdf}
+              </span>
+              <span
+                title={t.sourceLabel}
+                className="flex h-8 items-center gap-2 rounded-[8px] border border-line bg-white px-3 text-[13px] whitespace-nowrap text-ink"
+              >
+                <span aria-hidden="true" className="size-2 rounded-full bg-primary" />
+                {t.source} <span className="text-faint">▾</span>
+              </span>
+            </div>
+            <button
+              type="submit"
+              aria-label={t.send}
+              aria-disabled={workspaceUrl ? undefined : true}
+              aria-describedby={workspaceUrl ? undefined : soonId}
+              title={workspaceUrl ? undefined : t.sendSoon}
+              className="grid size-9 flex-none cursor-pointer place-items-center rounded-full border-0 bg-primary text-[18px] text-white transition-[background-color,transform] duration-200 hover:bg-primary-hover active:scale-95 aria-disabled:cursor-default motion-reduce:transition-none"
+            >
+              ↑
+            </button>
+            {!workspaceUrl && (
+              <span id={soonId} hidden>
+                {t.sendSoon}
+              </span>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export function Proposed({ t, items }: Props) {
                   </span>
                   <span className={`rounded-full px-2 py-[3px] text-[12px] ${AUDIENCE[item.audience]}`}>{item.audienceLabel}</span>
                 </div>
-                <h4 className="m-0 mt-[6px] text-[17px] font-semibold">{item.title}</h4>
+                <h3 className="m-0 mt-[6px] text-[17px] font-semibold">{item.title}</h3>
                 <p className="m-0 text-[14px] leading-[1.7] text-muted">{item.body}</p>
               </div>
             </Reveal>
