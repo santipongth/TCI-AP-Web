@@ -12,7 +12,7 @@
   {
     "n": "03",
     "title": "The agent plans and calls tools",
-    "body": "The Orchestrator splits the question into subtasks for Subagents, which call Skills and MCP servers through the TCI MCP Gateway. It revises the plan when data falls short and shows every step."
+    "body": "The AI Agent Orchestrator splits the question into subtasks for subagents, which call Skills and MCP servers through the TCI MCP Gateway. It re-plans when data falls short and shows every step."
   },
   {
     "n": "04",

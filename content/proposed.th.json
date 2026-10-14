@@ -15,13 +15,13 @@
     "audience": "author",
     "audienceLabel": "ผู้เขียน",
     "title": "Thai Citation Style Formatter",
-    "body": "จัดรูปแบบรายการอ้างอิงตาม APA 7 ภาษาไทย Vancouver และรูปแบบเฉพาะของแต่ละวารสารโดยอัตโนมัติ ต่อยอดจาก Reference Extraction"
+    "body": "จัดรูปแบบรายการอ้างอิงตาม APA 7 ภาษาไทย Vancouver และรูปแบบเฉพาะของแต่ละวารสารโดยอัตโนมัติ ต่อยอดจาก Reference Extraction & Validation"
   },
   {
     "audience": "editor",
     "audienceLabel": "บรรณาธิการ",
     "title": "Metadata & Keyword Enrichment",
-    "body": "เสนอคำสำคัญ สาขาวิชา และ metadata ตามมาตรฐาน Crossref/DOI และ OJS เพื่อให้บทความถูกค้นพบและจัดดัชนีได้ดีขึ้นทั้งใน ThaiJO, TCI, ACI และฐานสากล"
+    "body": "เสนอคำสำคัญ สาขาวิชา และ metadata ตามมาตรฐาน Crossref/DOI และ OJS เพื่อให้บทความถูกค้นพบและจัดทำดัชนีได้ดีขึ้นทั้งใน ThaiJO, TCI, ACI และฐานข้อมูลสากล"
   },
   {
     "audience": "author",

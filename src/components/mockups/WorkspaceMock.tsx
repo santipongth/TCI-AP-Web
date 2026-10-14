@@ -24,7 +24,7 @@ export function WorkspaceMock({ label }: { label: string }) {
     <Scene
       role="img"
       aria-label={label}
-      className="overflow-hidden rounded-[14px] border border-line bg-white text-[12px] shadow-mock"
+      className="overflow-hidden rounded-[18px] border border-line bg-white text-[12px] shadow-mock"
     >
       <div className="flex items-center gap-2 border-b border-hair px-[14px] py-[10px] text-muted">
         <span className="size-2 rounded-full bg-window-dot" />
@@ -33,9 +33,9 @@ export function WorkspaceMock({ label }: { label: string }) {
         <span className="ml-2 font-medium text-ink">Agentic Workspace</span>
         <span className="mono ml-auto text-[10.5px]">session · pm25-north</span>
       </div>
-      <div className="grid min-h-[260px] grid-cols-[150px_1fr]">
-        <div className="flex flex-col gap-[6px] border-r border-hair bg-surface p-3">
-          <div className="mono mb-1 text-[10px] tracking-[0.06em] text-faint">CONNECTED MCPS</div>
+      <div className="grid min-h-[260px] grid-cols-[150px_1fr] @max-[440px]:grid-cols-1">
+        <div className="flex flex-col gap-[6px] border-r border-hair bg-surface p-3 @max-[440px]:flex-row @max-[440px]:flex-wrap @max-[440px]:gap-x-3 @max-[440px]:border-r-0 @max-[440px]:border-b">
+          <div className="mono mb-1 text-[10px] tracking-[0.06em] text-faint @max-[440px]:basis-full">CONNECTED MCPS</div>
           {MCPS.map(([name, at]) => (
             <div key={name} className="flex items-center gap-[7px] text-strong">
               <span data-anim="dot-on" style={timing(at, 300)} className="size-[6px] flex-none rounded-full bg-success" />

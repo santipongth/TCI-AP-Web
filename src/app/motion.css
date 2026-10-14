@@ -85,6 +85,10 @@
   [data-scene='armed'] [data-anim='grow-x-c'] { transform: scaleX(0); }
   [data-scene='play'] [data-anim='grow-x-c'] { animation-name: tci-grow-x; }
 
+  [data-scene='armed'] [data-anim='grow-y-top'] { transform: scaleY(0); }
+  [data-scene] [data-anim='grow-y-top'] { transform-origin: center top; }
+  [data-scene='play'] [data-anim='grow-y-top'] { animation-name: tci-grow-y; }
+
   [data-scene='armed'] [data-anim='grow-y-c'] { transform: scaleY(0); }
   [data-scene='play'] [data-anim='grow-y-c'] { animation-name: tci-grow-y; }
 
@@ -148,12 +152,6 @@
     animation-iteration-count: 2;
     animation-fill-mode: none;
     --ease: cubic-bezier(0.45, 0, 0.55, 1);
-  }
-
-  /* How it works: while the rule overlay animates, the card's own top border steps back */
-  [data-scene='armed'] .how-card,
-  [data-scene='play'] .how-card {
-    border-top-color: var(--color-divider);
   }
 
   /* Explainer: one orbit along the ellipse, then back to the reference spot */

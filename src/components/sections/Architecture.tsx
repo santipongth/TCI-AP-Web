@@ -1,5 +1,6 @@
 import { Scene } from '@/components/motion/Scene';
-import { Eyebrow, Reveal, timing } from '@/components/ui/primitives';
+import { ArrowLeftRight } from 'lucide-react';
+import { SectionHeader, timing } from '@/components/ui/primitives';
 import type { ArchBar, ArchBox, ArchLane } from '@/lib/content';
 
 interface Props {
@@ -24,7 +25,7 @@ function Box({ box }: { box: ArchBox }) {
   switch (box.kind) {
     case 'primary':
       return (
-        <div className="flex flex-col gap-[7px] rounded-[12px] bg-primary p-[14px] text-white">
+        <div className="flex flex-col gap-[7px] rounded-[14px] bg-linear-to-br from-primary to-[#5b55e6] p-[14px] text-white shadow-[0_14px_30px_-16px_rgba(74,68,214,0.8)]">
           <span className="text-[14px] font-semibold">{box.title}</span>
           <div className="flex flex-col gap-[7px] text-primary-line">
             {box.bullets.map((b) => (
@@ -37,7 +38,7 @@ function Box({ box }: { box: ArchBox }) {
       );
     case 'dark':
       return (
-        <div className="flex flex-1 flex-col gap-[7px] rounded-[12px] bg-ink p-[14px] text-white">
+        <div className="flex flex-col gap-[7px] rounded-[14px] bg-ink p-[14px] text-white shadow-[0_14px_30px_-18px_rgba(23,23,28,0.7)]">
           <span className="text-[14px] font-semibold">{box.title}</span>
           <div className="flex flex-col gap-[7px] text-on-dark-muted">
             {box.bullets.map((b) => (
@@ -50,7 +51,7 @@ function Box({ box }: { box: ArchBox }) {
       );
     case 'chips':
       return (
-        <div className="flex flex-col gap-2 rounded-[12px] border border-line bg-white px-[14px] py-3">
+        <div className="flex flex-col gap-2 rounded-[14px] border border-line bg-white px-[14px] py-3">
           <span className="mono text-[10px] tracking-[0.06em] text-primary">{box.label}</span>
           <div className="flex flex-wrap gap-1">
             {box.chips.map((c) => (
@@ -66,12 +67,12 @@ function Box({ box }: { box: ArchBox }) {
       );
     default: {
       const surface = {
-        box: 'border border-line bg-white',
+        box: 'border border-line bg-white shadow-[0_1px_2px_rgba(23,23,28,0.04)]',
         data: 'border border-line bg-data',
         dashed: 'border border-dashed border-dash-2',
       }[box.kind];
       return (
-        <div className={`flex flex-col gap-[3px] rounded-[12px] px-[14px] py-3 ${surface}`}>
+        <div className={`flex flex-col gap-[3px] rounded-[14px] px-[14px] py-3 ${surface}`}>
           <span className={`text-[13.5px] font-semibold ${box.kind === 'dashed' ? 'text-strong' : ''}`}>{box.title}</span>
           <span className="text-[11.5px] text-muted">{box.desc}</span>
         </div>
@@ -80,12 +81,12 @@ function Box({ box }: { box: ArchBox }) {
   }
 }
 
-/** ⇄ between lanes; a small packet crosses it twice when the diagram first plays. */
+/** Connector between lanes: ⇄ side by side (≥1200px), ⇅ when lanes stack. A packet crosses it twice on play. */
 function Gutter({ index }: { index: number }) {
   return (
-    <div className="flex items-center justify-center pt-6 text-[16px] text-arrow">
-      <span className="relative">
-        ⇄
+    <div className="flex items-center justify-center py-1 text-arrow min-[1200px]:py-0 min-[1200px]:pt-6">
+      <span className="relative grid place-items-center rotate-90 min-[1200px]:rotate-0">
+        <ArrowLeftRight aria-hidden="true" className="size-4" />
         <span
           aria-hidden="true"
           data-anim="flow"
@@ -98,14 +99,14 @@ function Gutter({ index }: { index: number }) {
 }
 
 function Bar({ bar, at }: { bar: ArchBar; at: number }) {
-  const surface = bar.kind === 'data' ? 'border border-line bg-data' : 'border border-dashed border-dash-2';
+  const surface = bar.kind === 'data' ? 'border border-line bg-data' : 'border border-dashed border-dash-2 bg-white/60';
   return (
     <div
       data-anim="fade-up"
       style={timing(at, 500)}
-      className={`flex flex-wrap items-center gap-x-[22px] gap-y-2 rounded-[12px] px-4 py-3 text-[12.5px] text-strong ${surface}`}
+      className={`flex flex-wrap items-center gap-x-[18px] gap-y-2 rounded-[14px] px-4 py-3 text-[12.5px] text-strong ${surface}`}
     >
-      <span className="mono text-[10.5px] tracking-[0.08em] text-muted">{bar.label}</span>
+      <span className="mono basis-full text-[10.5px] tracking-[0.08em] text-muted sm:basis-auto">{bar.label}</span>
       {bar.items.map((item, i) => (
         <span key={item} className="contents">
           <span>{item}</span>
@@ -120,33 +121,33 @@ function Bar({ bar, at }: { bar: ArchBar; at: number }) {
   );
 }
 
-/** Architecture (README › 5). Scrolls horizontally below 1000px; the region is keyboard-scrollable. */
+/**
+ * Architecture: five lanes side by side from 1200px (where 1000px of diagram fits);
+ * below that the lanes stack with ⇅ connectors, so nothing scrolls sideways.
+ */
 export function Architecture({ t, lanes, bars }: Props) {
   return (
-    <section id="architecture" className="section-x py-24">
+    <section id="architecture" className="section-x py-20 sm:py-28">
       <div className="mx-auto max-w-[1120px]">
-        <Reveal className="mx-auto mb-14 flex max-w-[720px] flex-col items-center gap-[14px] text-center">
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <h2 className="m-0 text-h2">{t.title}</h2>
-          <p className="m-0 text-[16px] leading-[1.7] text-muted">{t.lead}</p>
-        </Reveal>
+        <SectionHeader eyebrow={t.eyebrow} title={t.title} lead={t.lead} className="mb-12" />
 
         <Scene
-          role="region"
+          role="group"
           aria-label={t.diagramLabel}
-          tabIndex={0}
-          threshold={0.2}
-          className="overflow-x-auto overscroll-x-contain pb-2"
+          threshold={0.15}
+          className="rounded-[28px] border border-line bg-[linear-gradient(180deg,#fafafb,#fff_45%)] p-3 shadow-card sm:p-6 lg:p-8"
         >
-          <div className="flex min-w-[1000px] flex-col gap-[14px]">
-            <div className="grid grid-cols-[1fr_26px_1.2fr_26px_1.2fr_26px_1fr_26px_1fr] items-stretch">
+          <div className="flex flex-col gap-[14px]">
+            <div className="flex flex-col gap-1 min-[1200px]:grid min-[1200px]:grid-cols-[1fr_26px_1.2fr_26px_1.2fr_26px_1fr_26px_1fr] min-[1200px]:items-stretch min-[1200px]:gap-0">
               {lanes.map((lane, i) => (
                 <div key={lane.id} className="contents">
                   <div data-anim="fade-up" style={timing(i * 110, 520)} className="flex flex-col gap-2">
                     <div className={laneHeader}>{lane.label}</div>
-                    {lane.boxes.map((box, j) => (
-                      <Box key={j} box={box} />
-                    ))}
+                    <div className="grid gap-2 sm:grid-cols-2 min-[1200px]:flex min-[1200px]:flex-1 min-[1200px]:flex-col">
+                      {lane.boxes.map((box, j) => (
+                        <Box key={j} box={box} />
+                      ))}
+                    </div>
                   </div>
                   {i < lanes.length - 1 && <Gutter index={i} />}
                 </div>

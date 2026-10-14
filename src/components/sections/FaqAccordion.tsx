@@ -16,13 +16,18 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
   };
 
   return (
-    <div className="flex flex-col border-t border-line">
+    <div className="flex flex-col gap-3">
       {items.map((item, i) => {
         const expanded = open === i;
         const buttonId = `${uid}-q${i}`;
         const panelId = `${uid}-a${i}`;
         return (
-          <div key={item.question} className="border-b border-line">
+          <div
+            key={item.question}
+            className={`rounded-[18px] border transition-[background-color,border-color,box-shadow] duration-300 ${
+              expanded ? 'border-primary-line bg-[linear-gradient(180deg,#f6f5ff,#fff)] shadow-card' : 'border-line bg-white hover:border-primary-line-hover'
+            }`}
+          >
             <h3 className="m-0 text-[16px] font-medium">
               <button
                 id={buttonId}
@@ -30,13 +35,16 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                 aria-expanded={expanded}
                 aria-controls={panelId}
                 onClick={() => toggle(i)}
-                className="flex w-full cursor-pointer items-center justify-between gap-4 border-0 bg-transparent py-[18px] text-left text-[16px] font-medium text-ink"
+                className="flex w-full cursor-pointer items-center justify-between gap-4 rounded-[18px] border-0 bg-transparent px-5 py-4 text-left text-[16px] font-medium text-ink sm:px-6 sm:py-5"
               >
                 {item.question}
-                {/* The invisible 20px "+" keeps the reference's line box (and row height);
-                    the two bars draw the icon so the vertical one can rotate into "−". */}
-                <span aria-hidden="true" className="relative flex-none text-[20px] text-primary">
-                  <span className="invisible">+</span>
+                {/* Two bars draw the icon so the vertical one can rotate into "−". */}
+                <span
+                  aria-hidden="true"
+                  className={`relative grid size-8 flex-none place-items-center rounded-full transition-colors duration-300 ${
+                    expanded ? 'bg-primary text-white' : 'bg-primary-tint text-primary'
+                  }`}
+                >
                   <span className="absolute top-1/2 left-1/2 h-[1.5px] w-[11px] -translate-1/2 rounded-full bg-current" />
                   <span
                     className={`absolute top-1/2 left-1/2 h-[11px] w-[1.5px] -translate-1/2 rounded-full bg-current transition-transform duration-200 ease-out motion-reduce:transition-none ${
@@ -56,7 +64,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
               }`}
             >
               <div className="overflow-hidden">
-                <p className="m-0 pr-10 pb-[18px] text-[14.5px] leading-[1.75] text-body">{item.answer}</p>
+                <p className="m-0 px-5 pb-5 text-[15px] leading-[1.8] text-body sm:px-6 sm:pr-16">{item.answer}</p>
               </div>
             </div>
           </div>

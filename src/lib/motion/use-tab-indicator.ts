@@ -5,25 +5,34 @@ import { prefersReducedMotion } from './use-reduced-motion';
 
 const useIsoLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
+interface Box {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+
 /**
  * Sliding background for the active tab, animated FLIP-style with transform only.
+ * Works when tabs wrap onto several rows (it moves on both axes).
  * Until `ready`, the active tab paints its own background (SSR / no-JS look).
  */
 export function useTabIndicator(listRef: RefObject<HTMLElement | null>, activeIndex: number) {
   const indicatorRef = useRef<HTMLSpanElement>(null);
-  const last = useRef<{ left: number; width: number } | null>(null);
+  const last = useRef<Box | null>(null);
   const active = useRef(activeIndex);
   const [ready, setReady] = useState(false);
 
-  const measure = () => {
+  const measure = (): Box | null => {
     const tab = listRef.current?.querySelectorAll<HTMLElement>('[role="tab"]')[active.current];
-    return tab ? { left: tab.offsetLeft, width: tab.offsetWidth } : null;
+    return tab ? { left: tab.offsetLeft, top: tab.offsetTop, width: tab.offsetWidth, height: tab.offsetHeight } : null;
   };
 
-  const place = (el: HTMLSpanElement, box: { left: number; width: number }) => {
+  const place = (el: HTMLSpanElement, box: Box) => {
     el.style.transition = 'none';
     el.style.width = `${box.width}px`;
-    el.style.transform = `translateX(${box.left}px)`;
+    el.style.height = `${box.height}px`;
+    el.style.transform = `translate(${box.left}px, ${box.top}px)`;
   };
 
   useIsoLayoutEffect(() => {
@@ -37,12 +46,11 @@ export function useTabIndicator(listRef: RefObject<HTMLElement | null>, activeIn
       place(el, box);
     } else {
       // Invert to the previous box, then play to the new one.
-      el.style.transition = 'none';
-      el.style.width = `${box.width}px`;
-      el.style.transform = `translateX(${prev.left}px) scaleX(${prev.width / box.width})`;
+      place(el, box);
+      el.style.transform = `translate(${prev.left}px, ${prev.top}px) scale(${prev.width / box.width}, ${prev.height / box.height})`;
       void el.getBoundingClientRect();
-      el.style.transition = 'transform 260ms var(--ease-out-soft)';
-      el.style.transform = `translateX(${box.left}px)`;
+      el.style.transition = 'transform 300ms var(--ease-out-soft)';
+      el.style.transform = `translate(${box.left}px, ${box.top}px)`;
     }
     setReady(true);
   }, [activeIndex]);

@@ -5,7 +5,7 @@
     "placeholder": "Ask anything about your research, e.g. “Summarize the last 5 years of PM2.5 research on northern Thailand from ThaiJO, with a list of experts”",
     "chips": [
       "Summarize recent research in my field",
-      "Find TCI Tier 1 journals that would accept this paper",
+      "Find TCI Tier 1 journals that fit this paper",
       "Check the references in a PDF"
     ]
   },
@@ -21,7 +21,7 @@
   {
     "id": "refs",
     "label": "Reference Extraction",
-    "placeholder": "Paste a reference list or upload a PDF to parse it into fields (author, year, title, journal, DOI) and check it against ThaiJO / Crossref",
+    "placeholder": "Paste a reference list or upload a PDF to parse it into fields (author, year, title, journal, DOI) and check it against ThaiJO and Crossref",
     "chips": [
       "Upload manuscript.pdf",
       "Check all DOIs",
@@ -31,7 +31,7 @@
   {
     "id": "deep",
     "label": "Deep Research",
-    "placeholder": "Pose one research question and the system will plan, search, read and synthesize a report with every statement cited",
+    "placeholder": "Ask one research question and the system will plan, search, read and synthesize a report with every statement cited",
     "chips": [
       "Effects of PM2.5 on children's health in northern Thailand",
       "AI in Thai education, 2021–2026"
@@ -58,7 +58,7 @@
   {
     "id": "themes",
     "label": "Emerging Themes",
-    "placeholder": "Enter a field, such as public health or engineering, to see growing research topics based on publication trends in ThaiJO",
+    "placeholder": "Enter a field, such as public health or engineering, to see growing research topics based on publication and citation trends in ThaiJO",
     "chips": [
       "Public health",
       "Agriculture and food",
@@ -71,7 +71,7 @@
     "placeholder": "Ask general questions about ThaiJO and TCI, such as submission steps, quality tier criteria, fees or how to use the system",
     "chips": [
       "What are the criteria for TCI Tier 1 journals?",
-      "How do I submit an article on ThaiJO?",
+      "How do I submit an article via ThaiJO?",
       "When is the next journal quality assessment round?"
     ]
   }

@@ -62,9 +62,9 @@ export function DeepResearchMock({ label }: { label: string }) {
     <Scene
       role="img"
       aria-label={label}
-      className="grid min-h-[280px] grid-cols-[170px_1fr] overflow-hidden rounded-[14px] border border-line bg-white text-[12px] shadow-mock"
+      className="grid min-h-[280px] grid-cols-[170px_1fr] overflow-hidden @max-[440px]:grid-cols-1 rounded-[18px] border border-line bg-white text-[12px] shadow-mock"
     >
-      <div className="flex flex-col gap-3 border-r border-hair bg-surface p-[14px]">
+      <div className="flex flex-col gap-3 border-r border-hair bg-surface p-[14px] @max-[440px]:border-r-0 @max-[440px]:border-b">
         <div className="mono text-[10px] tracking-[0.06em] text-faint">RESEARCH PLAN</div>
         {STEPS.map((s, i) => (
           <div key={i} className={`flex items-center gap-2 ${s.state === 'pending' ? 'text-faint' : 'text-ink'}`}>

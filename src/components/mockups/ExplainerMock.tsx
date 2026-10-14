@@ -20,9 +20,9 @@ export function ExplainerMock({ label }: { label: string }) {
     <Scene
       role="img"
       aria-label={label}
-      className="grid min-h-[280px] grid-cols-[1fr_1.3fr] overflow-hidden rounded-[14px] border border-dark-line bg-ink text-[12px] text-dark-text shadow-mock-dark"
+      className="grid min-h-[280px] grid-cols-[1fr_1.3fr] overflow-hidden @max-[440px]:grid-cols-1 rounded-[18px] border border-dark-line bg-ink text-[12px] text-dark-text shadow-mock-dark"
     >
-      <div className="flex flex-col gap-[9px] border-r border-dark-line p-[18px]">
+      <div className="flex flex-col gap-[9px] border-r border-dark-line p-[18px] @max-[440px]:border-r-0 @max-[440px]:border-b">
         <div className="mono text-[10px] tracking-[0.06em] text-subtle">ThaiJO · Thai Environmental Engineering Journal · §3</div>
         <div className="text-[13px] font-semibold">แบบจำลองการแพร่กระจายของ PM2.5</div>
         <Bar w="96%" h={6} tone="dark" />

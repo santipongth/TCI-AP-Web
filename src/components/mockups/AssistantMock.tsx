@@ -34,7 +34,7 @@ export function AssistantMock({ label }: { label: string }) {
     <Scene
       role="img"
       aria-label={label}
-      className="overflow-hidden rounded-[14px] border border-line bg-white text-[12px] shadow-mock"
+      className="overflow-hidden rounded-[18px] border border-line bg-white text-[12px] shadow-mock"
     >
       <div className="flex flex-wrap items-center gap-2 border-b border-hair px-[14px] py-[10px]">
         <span className="font-medium text-ink">Research Assistant</span>
