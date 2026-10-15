@@ -16,7 +16,8 @@ import { getContent } from '@/lib/content';
 import { fill } from '@/lib/fill';
 import { formatStats, getThaiJoStats } from '@/lib/stats';
 
-// Live ThaiJO stats refresh hourly (ISR); without THAIJO_STATS_URL the page is fully static.
+// ThaiJO stats refresh hourly (ISR). The build always renders the fallback figures, so live
+// numbers appear after the first regeneration; without THAIJO_STATS_URL they never change.
 export const revalidate = 3600;
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {

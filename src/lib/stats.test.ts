@@ -1,5 +1,13 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { FALLBACK_STATS, floorTo, formatStats, getThaiJoStats } from './stats';
+
+// Fallbacks warn on purpose; keep the test output quiet and assert on the spy instead.
+beforeAll(() => {
+  vi.spyOn(console, 'warn').mockImplementation(() => {});
+});
+afterAll(() => {
+  vi.restoreAllMocks();
+});
 
 const ok = (body: unknown) =>
   vi.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve(body) } as unknown as Response);
@@ -27,8 +35,16 @@ describe('getThaiJoStats', () => {
   });
 
   it('falls back on a non-OK response', async () => {
-    const fetchImpl = vi.fn().mockResolvedValue({ ok: false, json: () => Promise.resolve({}) });
+    const fetchImpl = vi.fn().mockResolvedValue({ ok: false, status: 503, json: () => Promise.resolve({}) });
     await expect(getThaiJoStats({ url: 'https://stats.example', fetchImpl })).resolves.toEqual(FALLBACK_STATS);
+  });
+
+  it('logs a warning whenever it falls back, so a broken endpoint is noticed', async () => {
+    const warn = vi.mocked(console.warn);
+    warn.mockClear();
+    const fetchImpl = vi.fn().mockResolvedValue({ ok: false, status: 503, json: () => Promise.resolve({}) });
+    await getThaiJoStats({ url: 'https://stats.example', fetchImpl });
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('HTTP 503'));
   });
 
   it.each([

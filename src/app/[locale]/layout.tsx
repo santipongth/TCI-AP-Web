@@ -52,6 +52,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       url: `/${locale}`,
       siteName: 'TCI AI',
     },
+    // The image itself comes from ./opengraph-image.png (one bilingual card for both locales).
+    twitter: { card: 'summary_large_image' },
   };
 }
 

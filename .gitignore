@@ -7,9 +7,9 @@ out/
 next-env.d.ts
 *.tsbuildinfo
 
-# env
-.env
-.env*.local
+# env (only the template is tracked)
+.env*
+!.env.example
 
 # misc
 .DS_Store

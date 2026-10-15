@@ -8,8 +8,9 @@ coverage
 .dockerignore
 Dockerfile
 docker-compose.yml
-.env
-.env*.local
+# Any .env file: Next copies loaded .env / .env.production into the standalone output.
+.env*
+!.env.example
 *.tsbuildinfo
 npm-debug.log*
 # design handoff and docs are not part of the app build
@@ -17,4 +18,5 @@ design
 README.md
 DEPLOY.md
 .archify
+.github
 docs

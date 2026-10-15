@@ -6,6 +6,8 @@
 #     --build-arg NEXT_PUBLIC_SITE_URL=https://example.org .
 #
 # NEXT_PUBLIC_* values are inlined into the bundle, so they are BUILD args.
+# NEXT_PUBLIC_SITE_URL is required: the build stops without it, so canonical,
+# hreflang and og:url can never ship pointing at localhost by accident.
 # THAIJO_STATS_URL is read by the server at runtime.
 
 ARG NODE_IMAGE=node:24-alpine
@@ -19,8 +21,9 @@ RUN npm ci --no-audit --no-fund
 # ---- 2. build ----
 FROM ${NODE_IMAGE} AS build
 WORKDIR /app
-ARG NEXT_PUBLIC_SITE_URL=http://localhost:8080
+ARG NEXT_PUBLIC_SITE_URL
 ARG NEXT_PUBLIC_WORKSPACE_URL=
+RUN test -n "$NEXT_PUBLIC_SITE_URL" || { echo "NEXT_PUBLIC_SITE_URL is required, e.g. https://ai.example.org (http://localhost:8080 for a local test)"; exit 1; }
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL} \
     NEXT_PUBLIC_WORKSPACE_URL=${NEXT_PUBLIC_WORKSPACE_URL} \
     NEXT_TELEMETRY_DISABLED=1
