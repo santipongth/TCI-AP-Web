@@ -1,5 +1,7 @@
 # Handoff: TCI AI Landing Page
 
+> The original design handoff, kept for reference. The site is built in `src/`; see the [README](../README.md) for current status, setup and launch items.
+
 ## Overview
 A bilingual (Thai-first, English sub-lines) landing page for the **TCI AI research team** that shows its AI tools for Thai scholarly journals (ThaiJO / TCI). The audiences are authors/researchers and funders/executives (TCI, NECTEC, NSTDA). The page is a **research showcase**. It covers 6 flagship tools, 6 supporting tools, 6 proposed concepts, the system architecture, a 4-step flow, an FAQ, and a partner footer.
 
