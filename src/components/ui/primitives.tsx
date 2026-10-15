@@ -3,7 +3,7 @@ import type { CSSProperties, ElementType, ReactNode } from 'react';
 
 type Vars = CSSProperties & Record<`--${string}`, string | number>;
 
-/** Mono, uppercase section label in primary (README › Typography › Eyebrow). */
+/** Mono, uppercase section label in primary (docs/HANDOFF.md › Typography › Eyebrow). */
 export function Eyebrow({ children, className = '' }: { children: ReactNode; className?: string }) {
   return <div className={`eyebrow ${className}`}>{children}</div>;
 }

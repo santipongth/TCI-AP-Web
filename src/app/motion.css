@@ -7,6 +7,8 @@
  * Hook points
  *   [data-reveal] + --i     scroll reveal, flipped to [data-in] by the inline observer
  *   .hero-in + --d          hero intro, runs from first paint
+ *   .hero-rise + --d        hero paragraphs: slide only, never invisible, so the LCP
+ *                           text paints on first render instead of after its delay
  *   [data-scene]            final | armed | play, owned by <Scene>
  *   [data-anim] + --d/--dur intro step inside a scene
  */
@@ -40,6 +42,9 @@
   /* ---------- Hero intro (CSS only, from first paint) ---------- */
   html.js .hero-in {
     animation: tci-fade-up 600ms var(--ease-out-soft) var(--d, 0ms) both;
+  }
+  html.js .hero-rise {
+    animation: tci-rise 600ms var(--ease-out-soft) var(--d, 0ms) both;
   }
   html.js .hero-ping::after {
     animation: tci-ping 1200ms var(--ease-out-soft) 700ms 2 both;
@@ -163,6 +168,7 @@
 @keyframes tci-fade { from { opacity: 0; } }
 @keyframes tci-fade-up { from { opacity: 0; transform: translateY(14px); } }
 @keyframes tci-fade-up-sm { from { opacity: 0; transform: translateY(8px); } }
+@keyframes tci-rise { from { transform: translateY(8px); } }
 @keyframes tci-slide-x { from { opacity: 0; transform: translateX(-10px); } }
 @keyframes tci-pop { from { opacity: 0; transform: scale(0.6); } }
 @keyframes tci-grow-x { from { transform: scaleX(0); } }

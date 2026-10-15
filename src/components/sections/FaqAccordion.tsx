@@ -4,7 +4,7 @@ import { useId, useState } from 'react';
 import { track } from '@/lib/analytics';
 import type { FaqItem } from '@/lib/content';
 
-/** Single-open accordion, first item open on load (README › FAQ). */
+/** Single-open accordion, first item open on load (docs/HANDOFF.md › FAQ). */
 export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const uid = useId();
   const [open, setOpen] = useState(0);

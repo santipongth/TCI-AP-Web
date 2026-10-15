@@ -3,6 +3,7 @@ import nectecLogo from '@/assets/logos/nectec.png';
 import nstdaLogo from '@/assets/logos/nstda.png';
 import tciLogo from '@/assets/logos/tci.png';
 import { siteConfig } from '@/config/site';
+import { BrandMark } from '@/components/ui/BrandMark';
 import { Reveal } from '@/components/ui/primitives';
 
 type Org = 'TCI' | 'NECTEC' | 'NSTDA';
@@ -61,9 +62,7 @@ export function SiteFooter({ t }: Props) {
         </Reveal>
         <div className="flex flex-col items-center gap-4 border-t border-line pt-6 text-[13px] text-muted sm:flex-row sm:flex-wrap sm:justify-between">
           <div className="flex items-center gap-2">
-            <span aria-hidden="true" className="grid size-[22px] place-items-center rounded-[6px] bg-primary text-[11px] font-bold text-white">
-              T
-            </span>
+            <BrandMark className="size-[24px] flex-none" />
             {t.copyright}
           </div>
           <nav aria-label={t.partnersLabel} className="flex flex-wrap justify-center gap-5">

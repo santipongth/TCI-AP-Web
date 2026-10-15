@@ -3,12 +3,8 @@
     {
       "id": "clients",
       "label": "01 · CLIENTS",
+      "name": "Users and apps",
       "boxes": [
-        {
-          "kind": "box",
-          "title": "Agentic Workspace",
-          "desc": "Personal research workspace with every tool in one place"
-        },
         {
           "kind": "chips",
           "label": "USERS · Sign in with ThaiJO or ORCID",
@@ -18,6 +14,11 @@
             "Reviewers",
             "Readers"
           ]
+        },
+        {
+          "kind": "box",
+          "title": "Agentic Workspace",
+          "desc": "Personal research workspace with every tool in one place"
         },
         {
           "kind": "box",
@@ -34,6 +35,7 @@
     {
       "id": "orchestration",
       "label": "02 · ORCHESTRATION",
+      "name": "Agent planning",
       "boxes": [
         {
           "kind": "primary",
@@ -69,27 +71,31 @@
     {
       "id": "gateway",
       "label": "03 · GATEWAY",
+      "name": "Single connection point",
       "boxes": [
         {
-          "kind": "dark",
+          "kind": "gateway",
           "title": "TCI MCP Gateway & Registry",
           "bullets": [
             "Registry · discover and version MCP servers, Skills, APIs",
-            "Access control · OAuth 2.1, ThaiJO SSO, role-based",
-            "Protocol bridge · MCP ↔ OJS REST, OAI-PMH",
+            "Access control · OAuth 2.1, ThaiJO or ORCID accounts, role-based",
+            "Protocol bridge · turns the OJS REST API and existing APIs into MCP",
+            "Trust · vets MCP servers and Skills before registration",
+            "A2A · connects external agents via the Agent2Agent protocol",
             "Rate limits · caching · audit log"
           ]
         },
         {
           "kind": "dashed",
           "title": "+ Register",
-          "desc": "Add Skills, MCP servers and APIs from partners"
+          "desc": "Add Skills, MCP servers and APIs from journals, universities and partners"
         }
       ]
     },
     {
       "id": "mcp",
       "label": "04 · MCP SERVERS",
+      "name": "Data services",
       "boxes": [
         {
           "kind": "box",
@@ -136,6 +142,7 @@
     {
       "id": "data",
       "label": "05 · DATA",
+      "name": "Data sources",
       "boxes": [
         {
           "kind": "data",
@@ -165,34 +172,34 @@
         {
           "kind": "data",
           "title": "OpenAlex · Crossref · PubMed · ORCID",
-          "desc": "Global articles, DOIs and retraction status"
+          "desc": "Global articles, DOIs and retraction status",
+          "external": true
         }
       ]
     }
   ],
   "bars": [
     {
-      "kind": "data",
+      "kind": "pipeline",
       "label": "INGESTION PIPELINE",
+      "name": "Data ingestion",
       "items": [
         "Harvest from OJS (OAI-PMH / REST)",
         "OCR for scanned articles",
         "Parse PDFs and reference lists",
-        "Match DOI / ORCID",
-        "Build embeddings and topics",
-        "Daily updates"
+        "Build embeddings and topics"
       ]
     },
     {
-      "kind": "dashed",
+      "kind": "cross",
       "label": "CROSS-CUTTING",
+      "name": "Applies to every layer",
       "items": [
         "Guardrails",
-        "PDPA & data residency",
+        "PDPA & Data Residency",
         "COPE guidelines",
-        "Thai evaluation sets",
-        "Prompt & Skill versioning",
-        "Evaluation & tracing"
+        "Prompt & Skill",
+        "Evaluation & Tracing"
       ]
     }
   ]

@@ -46,10 +46,10 @@ export function Hero({ pattern, t, demo }: Props) {
             <span className="text-gradient">{t.titleLine2}</span>
           </span>
         </h1>
-        <p className="hero-in m-0 max-w-[660px] text-[17px] leading-[1.6] text-body sm:text-[19px]" style={d(300)}>
+        <p className="hero-rise m-0 max-w-[660px] text-[17px] leading-[1.6] text-body sm:text-[19px]" style={d(300)}>
           {t.leadEn}
         </p>
-        <p className="hero-in m-0 max-w-[700px] text-[15px] leading-[1.75] text-muted" style={d(380)}>
+        <p className="hero-rise m-0 max-w-[700px] text-[15px] leading-[1.75] text-muted" style={d(380)}>
           {t.body}
         </p>
       </div>

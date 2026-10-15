@@ -3,12 +3,8 @@
     {
       "id": "clients",
       "label": "01 · CLIENTS",
+      "name": "ผู้ใช้และช่องทางใช้งาน",
       "boxes": [
-        {
-          "kind": "box",
-          "title": "Agentic Workspace",
-          "desc": "พื้นที่ทำงานวิจัยส่วนตัว รวมทุกเครื่องมือไว้ที่เดียว"
-        },
         {
           "kind": "chips",
           "label": "USERS · เข้าสู่ระบบด้วย ThaiJO หรือ ORCID",
@@ -18,6 +14,11 @@
             "ผู้ประเมิน",
             "ผู้อ่าน"
           ]
+        },
+        {
+          "kind": "box",
+          "title": "Agentic Workspace",
+          "desc": "พื้นที่ทำงานวิจัยส่วนตัว รวมทุกเครื่องมือไว้ที่เดียว"
         },
         {
           "kind": "box",
@@ -34,6 +35,7 @@
     {
       "id": "orchestration",
       "label": "02 · ORCHESTRATION",
+      "name": "AI Agent วางแผนงาน",
       "boxes": [
         {
           "kind": "primary",
@@ -69,27 +71,31 @@
     {
       "id": "gateway",
       "label": "03 · GATEWAY",
+      "name": "จุดเชื่อมต่อกลาง",
       "boxes": [
         {
-          "kind": "dark",
+          "kind": "gateway",
           "title": "TCI MCP Gateway & Registry",
           "bullets": [
             "Registry · ค้นหาและจัดเวอร์ชัน MCP, Skill, API",
-            "Access control · OAuth 2.1, ThaiJO SSO, สิทธิ์ตามบทบาท",
-            "Protocol bridge · MCP ↔ OJS REST, OAI-PMH",
+            "Access control · OAuth 2.1, บัญชี ThaiJO หรือ ORCID, สิทธิ์ตามบทบาท",
+            "Protocol bridge · แปลง OJS REST API และ API เดิมให้เป็น MCP",
+            "Trust · ตรวจ MCP และ Skill ก่อนขึ้นทะเบียน",
+            "A2A · เชื่อม Agent ภายนอกด้วยโปรโตคอล Agent2Agent",
             "Rate limit · cache · audit log"
           ]
         },
         {
           "kind": "dashed",
           "title": "+ Register",
-          "desc": "เพิ่ม Skill, MCP และ API จากพันธมิตร"
+          "desc": "เพิ่ม Skill, MCP และ API จากวารสาร มหาวิทยาลัย และพันธมิตร"
         }
       ]
     },
     {
       "id": "mcp",
       "label": "04 · MCP SERVERS",
+      "name": "บริการข้อมูล",
       "boxes": [
         {
           "kind": "box",
@@ -136,6 +142,7 @@
     {
       "id": "data",
       "label": "05 · DATA",
+      "name": "แหล่งข้อมูล",
       "boxes": [
         {
           "kind": "data",
@@ -165,34 +172,34 @@
         {
           "kind": "data",
           "title": "OpenAlex · Crossref · PubMed · ORCID",
-          "desc": "บทความสากล DOI และสถานะการถอน"
+          "desc": "บทความสากล DOI และสถานะการถอน",
+          "external": true
         }
       ]
     }
   ],
   "bars": [
     {
-      "kind": "data",
+      "kind": "pipeline",
       "label": "INGESTION PIPELINE",
+      "name": "นำเข้าข้อมูล",
       "items": [
         "ดึงข้อมูลจาก OJS (OAI-PMH / REST)",
         "OCR บทความฉบับสแกน",
         "แยกโครงสร้าง PDF และรายการอ้างอิง",
-        "จับคู่ DOI / ORCID",
-        "สร้าง embedding และ topic",
-        "อัปเดตรายวัน"
+        "สร้าง Embedding และ Topic"
       ]
     },
     {
-      "kind": "dashed",
+      "kind": "cross",
       "label": "CROSS-CUTTING",
+      "name": "ใช้กับทุกชั้น",
       "items": [
         "Guardrails",
-        "PDPA & data residency",
+        "PDPA & Data Residency",
         "แนวทาง COPE",
-        "ชุดประเมินภาษาไทย",
-        "Prompt & Skill versioning",
-        "Evaluation & tracing"
+        "Prompt & Skill",
+        "Evaluation & Tracing"
       ]
     }
   ]

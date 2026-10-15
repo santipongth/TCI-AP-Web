@@ -5,7 +5,7 @@ export interface ThaiJoStats {
   authors: number;
 }
 
-/** As shown on tci-thaijo.org in October 2026 (README › State). */
+/** As shown on tci-thaijo.org in October 2026 (docs/HANDOFF.md › State). */
 export const FALLBACK_STATS: ThaiJoStats = {
   journals: 1858,
   issues: 39307,
@@ -22,6 +22,12 @@ function isStats(value: unknown): value is ThaiJoStats {
     const n = record[k];
     return typeof n === 'number' && Number.isInteger(n) && n > 0;
   });
+}
+
+/** Keeps the page up, but leaves a trace in the server log so a broken endpoint gets noticed. */
+function fallback(reason: string): ThaiJoStats {
+  console.warn(`[stats] THAIJO_STATS_URL failed (${reason}); using the October 2026 figures`);
+  return FALLBACK_STATS;
 }
 
 interface Options {
@@ -45,12 +51,12 @@ export async function getThaiJoStats({
       signal: AbortSignal.timeout(timeoutMs),
       next: { revalidate: 3600 },
     } as RequestInit);
-    if (!res.ok) return FALLBACK_STATS;
+    if (!res.ok) return fallback(`HTTP ${res.status}`);
     const body: unknown = await res.json();
-    if (!isStats(body)) return FALLBACK_STATS;
+    if (!isStats(body)) return fallback('payload is not { journals, issues, articles, authors } as positive integers');
     return { journals: body.journals, issues: body.issues, articles: body.articles, authors: body.authors };
-  } catch {
-    return FALLBACK_STATS;
+  } catch (error) {
+    return fallback(error instanceof Error ? error.message : String(error));
   }
 }
 

@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 @import './motion.css';
 
-/* Design tokens, from README › Design Tokens. The default palette is dropped so
-   nothing off-spec can slip in; every colour below maps to a README token. */
+/* Design tokens, from docs/HANDOFF.md › Design Tokens. The default palette is dropped so
+   nothing off-spec can slip in; every colour below maps to a token in docs/HANDOFF.md. */
 @theme {
   --color-*: initial;
   --color-white: #fff;
@@ -47,6 +47,17 @@
   --color-lilac: #a99cff;
   --color-aurora-cyan: #8be3f7;
 
+  /* TCI AI logo accent: the antenna and head of the robot mark. */
+  --color-brand-orange: #f7962a;
+
+  /* Gateway hub (Architecture): a light cyan from the hero aurora, so it reads apart
+     from the indigo orchestrator while staying bright. Ink on gateway is ~7:1. */
+  --color-gateway-top: #f7fcfe;
+  --color-gateway: #e8f6fb;
+  --color-gateway-line: #c3e5ef;
+  --color-gateway-ink: #0e5b70;
+  --color-gateway-dot: #22a2c3;
+
   --color-success: #2fa36b;
   --color-success-ink: #1f7a4d;
   --color-success-bg: #e4f5ec;
@@ -88,7 +99,7 @@
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Type scale (README › Typography) */
+  /* Type scale (docs/HANDOFF.md › Typography) */
   --text-h1: clamp(38px, 6vw, 72px);
   --text-h1--line-height: 1.14;
   --text-h1--letter-spacing: -0.025em;
@@ -244,7 +255,7 @@
   font-family: var(--font-mono);
 }
 
-/* Section horizontal padding: 40px, 20px under 640px (README › Page Structure). */
+/* Section horizontal padding: 40px, 20px under 640px (docs/HANDOFF.md › Page Structure). */
 @utility section-x {
   padding-inline: 20px;
   @media (width >= 640px) {

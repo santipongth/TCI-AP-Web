@@ -27,7 +27,7 @@ interface Props {
   };
 }
 
-/** Hero demo box: tool tabs, prompt field, suggestion chips (README › Hero › Demo box). */
+/** Hero demo box: tool tabs, prompt field, suggestion chips (docs/HANDOFF.md › Hero › Demo box). */
 export function HeroDemo({ tabs, defaultTool, workspaceUrl, t }: Props) {
   const uid = useId();
   const initial = Math.max(0, tabs.findIndex((tab) => tab.id === defaultTool));

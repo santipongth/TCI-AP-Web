@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "TCI AI — AI for Thai scholarly journals",
+    "title": "AI for Thai scholarly journals",
     "description": "AI tools from the TCI AI research team, connected directly to ThaiJO and international scholarly databases. From literature search to publication, every answer can be traced back to its source.",
     "ogLocale": "en_US"
   },
@@ -52,7 +52,14 @@
     "eyebrow": "Architecture",
     "title": "One agent, connected to all Thai journal data",
     "lead": "An open, layered stack. Users work in the Agentic Workspace, where the AI Agent Orchestrator plans each question, picks the Skills that fit and retrieves data through the TCI MCP Gateway & Registry: a single connection point for current and future Skills, MCP (Model Context Protocol) servers and APIs. All data passes through a Thai-language pipeline before indexing, and every access follows the user's permissions in ThaiJO.",
-    "diagramLabel": "Five-layer architecture diagram; scroll horizontally to see all of it"
+    "diagramLabel": "Five-layer architecture diagram, from users to data sources",
+    "legend": {
+      "label": "Legend",
+      "core": "Core component",
+      "data": "Data and indexes",
+      "external": "External source",
+      "extensible": "Added through the Registry"
+    }
   },
   "how": {
     "eyebrow": "How it works",

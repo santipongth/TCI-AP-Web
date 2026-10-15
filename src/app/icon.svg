@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<style>.p{fill:#4a44d6}.l{fill:#dcdaf7}.o{fill:#f7962a}@media (prefers-color-scheme:dark){.p{fill:#8f8aff}.l{fill:#d4d1fa}}</style>
+<circle class="o" cx="16" cy="2.5" r="2"/>
+<rect class="o" x="15.25" y="4" width="1.5" height="2.25" rx=".5"/>
+<rect class="l" x="4" y="7.5" width="7" height="7" rx="1.75"/>
+<circle class="p" cx="16" cy="11" r="3.5"/>
+<rect class="l" x="21" y="7.5" width="7" height="7" rx="1.75"/>
+<path class="p" fill-rule="evenodd" d="M5.75 16h3.5a1.75 1.75 0 0 1 1.75 1.75v3.5a1.75 1.75 0 0 1 -1.75 1.75h-3.5a1.75 1.75 0 0 1 -1.75 -1.75v-3.5a1.75 1.75 0 0 1 1.75 -1.75zM6.75 18h1.5a0.75 0.75 0 0 1 0.75 0.75v1.5a0.75 0.75 0 0 1 -0.75 0.75h-1.5a0.75 0.75 0 0 1 -0.75 -0.75v-1.5a0.75 0.75 0 0 1 0.75 -0.75zM22.75 16h3.5a1.75 1.75 0 0 1 1.75 1.75v3.5a1.75 1.75 0 0 1 -1.75 1.75h-3.5a1.75 1.75 0 0 1 -1.75 -1.75v-3.5a1.75 1.75 0 0 1 1.75 -1.75zM23.75 18h1.5a0.75 0.75 0 0 1 0.75 0.75v1.5a0.75 0.75 0 0 1 -0.75 0.75h-1.5a0.75 0.75 0 0 1 -0.75 -0.75v-1.5a0.75 0.75 0 0 1 0.75 -0.75z"/>
+<rect class="p" x="12.5" y="16" width="7" height="7" rx="1.75"/>
+<rect class="p" x="4" y="24.5" width="7" height="7" rx="1.75"/>
+<rect class="p" x="12.5" y="24.5" width="7" height="7" rx="1.75"/>
+<rect class="p" x="21" y="24.5" width="7" height="7" rx="1.75"/>
+<rect class="p" x="1" y="13.5" width="1.75" height="12" rx=".875"/>
+<rect class="p" x="29.25" y="13.5" width="1.75" height="12" rx=".875"/>
+</svg>

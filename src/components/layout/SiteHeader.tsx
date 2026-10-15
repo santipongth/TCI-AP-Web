@@ -3,6 +3,7 @@
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
+import { BrandMark, BrandName } from '@/components/ui/BrandMark';
 import { track } from '@/lib/analytics';
 
 interface Props {
@@ -136,15 +137,12 @@ export function SiteHeader({ otherLocale, ctaHref, thaijoHref, t }: Props) {
           }`}
         >
           <a href="#top" title={t.homeLabel} className="flex min-h-11 items-center gap-[10px] text-ink hover:no-underline">
-            <span
-              aria-hidden="true"
-              className="grid size-[30px] place-items-center rounded-[9px] bg-linear-to-br from-primary to-violet text-[15px] font-bold text-white shadow-[0_6px_16px_-6px_rgba(74,68,214,.7)]"
-            >
-              T
-            </span>
-            <span className="flex flex-col leading-[1.1]">
-              <span className="text-[16px] font-semibold">{t.brand}</span>
-              <span className="mono text-[10.5px] tracking-[0.06em] text-muted">{t.tagline}</span>
+            <BrandMark className="size-10 flex-none" />
+            <span className="flex flex-col gap-[3px] leading-none">
+              <span className="mono text-[17px] font-bold tracking-[-0.01em]">
+                <BrandName name={t.brand} />
+              </span>
+              <span className="mono text-[9.5px] tracking-[0.16em] text-muted">{t.tagline}</span>
             </span>
           </a>
 
