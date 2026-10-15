@@ -129,6 +129,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             title: t('architecture.title'),
             lead: t('architecture.lead'),
             diagramLabel: t('architecture.diagramLabel'),
+            legend: {
+              label: t('architecture.legend.label'),
+              core: t('architecture.legend.core'),
+              data: t('architecture.legend.data'),
+              external: t('architecture.legend.external'),
+              extensible: t('architecture.legend.extensible'),
+            },
           }}
           lanes={content.architecture.lanes.map((lane) => ({
             ...lane,

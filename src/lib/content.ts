@@ -57,19 +57,26 @@ export interface HowStep {
 }
 
 export type ArchBox =
-  | { kind: 'box' | 'data' | 'dashed'; title: string; desc: string }
+  /** `external`: a source outside ThaiJO/TCI (shown with a globe and in the legend). */
+  | { kind: 'box' | 'data' | 'dashed'; title: string; desc: string; external?: boolean }
   | { kind: 'chips'; label: string; chips: string[]; more?: string }
-  | { kind: 'primary' | 'dark'; title: string; bullets: string[] };
+  /** Bullets read "Term · description"; the term is set in bold. */
+  | { kind: 'primary' | 'gateway'; title: string; bullets: string[] };
 
 export interface ArchLane {
   id: string;
+  /** Code-style label, identical in both locales, e.g. "03 · GATEWAY". */
   label: string;
+  /** Plain-language lane name in the page language. */
+  name: string;
   boxes: ArchBox[];
 }
 
 export interface ArchBar {
-  kind: 'data' | 'dashed';
+  /** `pipeline` steps run in order; `cross` items apply to every lane. */
+  kind: 'pipeline' | 'cross';
   label: string;
+  name: string;
   items: string[];
 }
 

@@ -47,6 +47,14 @@
   --color-lilac: #a99cff;
   --color-aurora-cyan: #8be3f7;
 
+  /* Gateway hub (Architecture): a light cyan from the hero aurora, so it reads apart
+     from the indigo orchestrator while staying bright. Ink on gateway is ~7:1. */
+  --color-gateway-top: #f7fcfe;
+  --color-gateway: #e8f6fb;
+  --color-gateway-line: #c3e5ef;
+  --color-gateway-ink: #0e5b70;
+  --color-gateway-dot: #22a2c3;
+
   --color-success: #2fa36b;
   --color-success-ink: #1f7a4d;
   --color-success-bg: #e4f5ec;
