@@ -47,6 +47,9 @@
   --color-lilac: #a99cff;
   --color-aurora-cyan: #8be3f7;
 
+  /* TCI AI logo accent: the antenna and head of the robot mark. */
+  --color-brand-orange: #f7962a;
+
   /* Gateway hub (Architecture): a light cyan from the hero aurora, so it reads apart
      from the indigo orchestrator while staying bright. Ink on gateway is ~7:1. */
   --color-gateway-top: #f7fcfe;

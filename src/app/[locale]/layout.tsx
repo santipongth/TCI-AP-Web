@@ -16,7 +16,8 @@ const plexThai = IBM_Plex_Sans_Thai({
 
 const plexMono = IBM_Plex_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  // 700 is for the "TCI AI" wordmark in the header.
+  weight: ['400', '500', '700'],
   variable: '--font-plex-mono',
   display: 'swap',
 });
